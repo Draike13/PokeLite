@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { HelperService } from '../helper.service';
+import { Pokemon } from '../pokemon.model';
 @Component({
   selector: 'app-header',
   imports: [MatIconModule, MatToolbarModule, MatButtonModule, MatMenuModule],
@@ -14,5 +15,8 @@ export class HeaderComponent {
   constructor(private helperService: HelperService) {}
   get pokemonList() {
     return this.helperService.pokemonList();
+  }
+  playPokemon(pokemon: Pokemon) {
+    this.helperService.activePokemon.set(pokemon);
   }
 }

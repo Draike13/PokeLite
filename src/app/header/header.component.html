@@ -10,7 +10,9 @@
   <mat-menu #menu="matMenu">
     @for (pokemon of pokemonList; track $index) {
 
-    <button class="menu-button" mat-menu-item>{{ pokemon.name }}</button>
+    <button (click)="playPokemon(pokemon)" class="menu-button" mat-menu-item>
+      {{ pokemon.name }}
+    </button>
     }
   </mat-menu>
   <span>Pokemon Rogue Lite</span>
