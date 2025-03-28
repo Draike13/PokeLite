@@ -13,10 +13,17 @@ import { Pokemon } from '../pokemon.model';
 })
 export class HeaderComponent {
   constructor(private helperService: HelperService) {}
+
+  playerName = '';
+
   get pokemonList() {
     return this.helperService.pokemonList();
   }
   playPokemon(pokemon: Pokemon) {
     this.helperService.activePokemon.set(pokemon);
+    this.playerName = "Trevor's";
+  }
+  get pokemonName() {
+    return this.helperService.playerName;
   }
 }

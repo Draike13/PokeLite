@@ -14,7 +14,9 @@ export class HelperService {
 
   playerHealth: WritableSignal<number | null> = signal(null);
   playerAttack: WritableSignal<number | null> = signal(null);
+  playerLevel: WritableSignal<number | null> = signal(null);
   playerName: WritableSignal<string> = signal('');
+  playerImage: WritableSignal<string> = signal('assets/Default.jpg');
 
   activePokemon: WritableSignal<Pokemon | null> = signal(null);
 
@@ -26,6 +28,8 @@ export class HelperService {
   buildStats() {
     this.playerAttack.set(this.activePokemon()!.attack);
     this.playerHealth.set(this.activePokemon()!.health);
+    this.playerLevel.set(this.activePokemon()!.level);
     this.playerName.set(this.activePokemon()!.name);
+    this.playerImage.set(this.activePokemon()!.image);
   }
 }

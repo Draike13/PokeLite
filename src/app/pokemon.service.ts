@@ -14,7 +14,7 @@ export class PokemonService {
       experience: 0,
       evolutionLevel: 9,
       secondEvoultionLevel: 20,
-      image: '',
+      image: 'assets/Bulbasaur.png',
     },
     {
       name: 'Charmander',
@@ -24,7 +24,7 @@ export class PokemonService {
       experience: 0,
       evolutionLevel: 9,
       secondEvoultionLevel: 20,
-      image: '',
+      image: 'assets/Charmander.jpg',
     },
     {
       name: 'Squirtle',
@@ -34,7 +34,7 @@ export class PokemonService {
       experience: 0,
       evolutionLevel: 9,
       secondEvoultionLevel: 20,
-      image: '',
+      image: 'assets/Squirtle.jpg',
     },
   ]);
 }

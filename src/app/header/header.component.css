@@ -1,8 +1,13 @@
 .header {
   border-bottom: solid 1px #ffabf3;
   color: #ffabf3;
+  display: flex;
+  gap: 2rem;
 }
-
+.player-pokemon-name {
+  display: flex;
+  margin-left: 16rem;
+}
 mat-icon {
   color: #ffabf3;
 }

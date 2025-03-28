@@ -12,7 +12,7 @@ import { HelperService } from '../helper.service';
 export class StatBoxCenterComponent {
   constructor(private helperService: HelperService) {}
 
-  get name() {
-    return this.helperService.playerName;
+  get level() {
+    return this.helperService.playerLevel;
   }
 }
