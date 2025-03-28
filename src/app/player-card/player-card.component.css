@@ -1,12 +1,25 @@
 .player-display {
-  width: 94vw;
-  height: 48vh;
-  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  position: fixed;
   bottom: 0;
-  z-index: 1;
   left: 50%;
-  transform: translate(-50%);
+  transform: translateX(-50%);
+  width: 86vw;
+  height: 48vh;
+  z-index: 1;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+mat-card-actions {
+  justify-content: space-between;
+  display: flex;
+  flex-grow: 1;
+  min-height: 100%;
+  align-items: center;
+  position: relative;
 }

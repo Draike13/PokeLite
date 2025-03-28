@@ -1,17 +1,19 @@
-<app-header />
-<app-content-box />
-<div class="options-container">
-  <app-choice-box-left />
-  <app-choice-box-center />
-  <app-choice-box-right />
+<div class="main">
+  <app-header />
+  <app-content-box />
+  <div class="options-container">
+    <app-choice-box-left />
+    <app-choice-box-center />
+    <app-choice-box-right />
+  </div>
+
+  <div class="stats-container">
+    <app-player-card>
+      <app-stat-box-left class="left" />
+      <app-stat-box-center class="center" />
+      <app-stat-box-right class="right" />
+    </app-player-card>
+  </div>
+
+  <app-footer />
 </div>
-
-<app-player-card />
-
-<div class="stats-container">
-  <app-stat-box-left />
-  <app-stat-box-center />
-  <app-stat-box-right />
-</div>
-
-<app-footer />

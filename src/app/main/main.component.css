@@ -7,7 +7,33 @@
 }
 
 .stats-container {
+  flex-grow: 1;
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
+  align-items: flex-end;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.left,
+.right,
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+}
+.left {
+  align-self: flex-start;
+}
+.center {
+  align-self: center;
+}
+.right {
+  align-self: flex-end;
 }
