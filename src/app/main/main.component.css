@@ -1,10 +1,13 @@
-.content-container {
-  margin-top: 1rem;
-}
-
 .options-container {
   margin-top: 8rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  z-index: 5;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }

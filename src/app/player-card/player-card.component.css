@@ -1,0 +1,10 @@
+.player-display {
+  width: 94vw;
+  height: 48vh;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%);
+  isolation: isolate;
+}

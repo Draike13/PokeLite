@@ -1,25 +1,18 @@
 <mat-toolbar class="header">
   <button
+    [matMenuTriggerFor]="menu"
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with menu icon"
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My App</span>
+  <mat-menu #menu="matMenu">
+    @for (pokemon of pokemonList; track $index) {
+
+    <button class="menu-button" mat-menu-item>{{ pokemon.name }}</button>
+    }
+  </mat-menu>
+  <span>Pokemon Rogue Lite</span>
   <span class="example-spacer"></span>
-  <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-  >
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  >
-    <mat-icon>share</mat-icon>
-  </button>
 </mat-toolbar>

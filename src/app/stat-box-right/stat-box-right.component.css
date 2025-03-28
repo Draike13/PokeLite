@@ -1,5 +1,15 @@
 .container {
-  width: 24vw;
+  width: 16vw;
   height: 8vh;
+  z-index: 25;
+  border-radius: 0;
+  border-top: solid 1px#ffabf3;
+  border-left: solid 1px#ffabf3;
+  border-right: solid 1px #ffabf3;
+  border-bottom: 0;
   margin-right: 2rem;
+}
+
+.attack {
+  color: #ffabf3;
 }

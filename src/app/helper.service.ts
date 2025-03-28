@@ -1,9 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
+import { PokemonService } from './pokemon.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HelperService {
+  constructor(private pokemonService: PokemonService) {}
 
-  constructor() { }
+  get pokemonList() {
+    return this.pokemonService.pokemon;
+  }
+
+  playerHealth: WritableSignal<number | null> = signal(null);
+  playerAttack: WritableSignal<number | null> = signal(null);
+  playerName: WritableSignal<string> = signal('');
 }

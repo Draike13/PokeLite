@@ -2,4 +2,6 @@
   position: absolute;
   bottom: 0;
   height: 2vh;
+  z-index: 100;
+  border-top: solid 1px #ffabf3;
 }

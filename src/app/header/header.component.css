@@ -1,1 +1,11 @@
+.header {
+  border-bottom: solid 1px #ffabf3;
+  color: #ffabf3;
+}
 
+mat-icon {
+  color: #ffabf3;
+}
+.menu-button {
+  color: #ffabf3;
+}

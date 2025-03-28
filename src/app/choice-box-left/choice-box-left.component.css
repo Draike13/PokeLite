@@ -1,5 +1,8 @@
 .container {
-  width: 24vw;
-  height: 32vh;
+  width: 28vw;
+  height: 48vh;
+  z-index: 25;
+  transform: translate(0, -20%);
   margin-left: 2rem;
+  border: solid 1px #ffabf3;
 }

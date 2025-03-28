@@ -8,6 +8,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { StatBoxRightComponent } from '../stat-box-right/stat-box-right.component';
 import { StatBoxCenterComponent } from '../stat-box-center/stat-box-center.component';
 import { StatBoxLeftComponent } from '../stat-box-left/stat-box-left.component';
+import { PlayerCardComponent } from '../player-card/player-card.component';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +22,7 @@ import { StatBoxLeftComponent } from '../stat-box-left/stat-box-left.component';
     StatBoxRightComponent,
     StatBoxCenterComponent,
     StatBoxLeftComponent,
+    PlayerCardComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css',

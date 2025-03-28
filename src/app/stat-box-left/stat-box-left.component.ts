@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { HelperService } from '../helper.service';
 
 @Component({
   selector: 'app-stat-box-left',
@@ -8,4 +9,9 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './stat-box-left.component.html',
   styleUrl: './stat-box-left.component.css',
 })
-export class StatBoxLeftComponent {}
+export class StatBoxLeftComponent {
+  constructor(private helperService: HelperService) {}
+  get health() {
+    return this.helperService.playerHealth;
+  }
+}
