@@ -11,7 +11,7 @@ import { HelperService } from '../helper.service';
 })
 export class StatBoxLeftComponent {
   constructor(private helperService: HelperService) {}
-  get health() {
-    return this.helperService.playerHealth;
+  get currentHealth() {
+    return this.helperService.playerCurrentHealth;
   }
 }

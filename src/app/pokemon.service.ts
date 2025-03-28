@@ -8,7 +8,8 @@ export class PokemonService {
   pokemon: WritableSignal<Pokemon[]> = signal([
     {
       name: 'Bulbasaur',
-      health: 25,
+      currentHealth: 25,
+      maxHealth: 25,
       attack: 3,
       level: 1,
       experience: 0,
@@ -18,7 +19,8 @@ export class PokemonService {
     },
     {
       name: 'Charmander',
-      health: 20,
+      currentHealth: 20,
+      maxHealth: 20,
       attack: 5,
       level: 1,
       experience: 0,
@@ -28,7 +30,8 @@ export class PokemonService {
     },
     {
       name: 'Squirtle',
-      health: 15,
+      currentHealth: 15,
+      maxHealth: 15,
       attack: 7,
       level: 1,
       experience: 0,

@@ -12,11 +12,13 @@ export class HelperService {
     return this.pokemonService.pokemon;
   }
 
-  playerHealth: WritableSignal<number | null> = signal(null);
+  playerCurrentHealth: WritableSignal<number | null> = signal(null);
   playerAttack: WritableSignal<number | null> = signal(null);
   playerLevel: WritableSignal<number | null> = signal(null);
-  playerName: WritableSignal<string> = signal('');
+  playerPokemonName: WritableSignal<string> = signal('');
   playerImage: WritableSignal<string> = signal('assets/Default.jpg');
+  PlayerExp: WritableSignal<number> = signal(0);
+  playerMaxHealth: WritableSignal<number> = signal(0);
 
   activePokemon: WritableSignal<Pokemon | null> = signal(null);
 
@@ -27,9 +29,11 @@ export class HelperService {
   });
   buildStats() {
     this.playerAttack.set(this.activePokemon()!.attack);
-    this.playerHealth.set(this.activePokemon()!.health);
+    this.playerCurrentHealth.set(this.activePokemon()!.currentHealth);
+    this.playerMaxHealth.set(this.activePokemon()!.maxHealth);
     this.playerLevel.set(this.activePokemon()!.level);
-    this.playerName.set(this.activePokemon()!.name);
+    this.playerPokemonName.set(this.activePokemon()!.name);
     this.playerImage.set(this.activePokemon()!.image);
+    this.PlayerExp.set(this.activePokemon()!.experience);
   }
 }

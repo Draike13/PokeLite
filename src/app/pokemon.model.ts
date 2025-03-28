@@ -1,6 +1,7 @@
 export interface Pokemon {
   name: string;
-  health: number;
+  currentHealth: number;
+  maxHealth: number;
   attack: number;
   level: number;
   experience: number;

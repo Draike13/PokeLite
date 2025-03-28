@@ -24,6 +24,6 @@ export class HeaderComponent {
     this.playerName = "Trevor's";
   }
   get pokemonName() {
-    return this.helperService.playerName;
+    return this.helperService.playerPokemonName;
   }
 }
