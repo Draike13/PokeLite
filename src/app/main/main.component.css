@@ -1,0 +1,10 @@
+.content-container {
+  margin-top: 1rem;
+}
+
+.options-container {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
