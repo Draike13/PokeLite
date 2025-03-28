@@ -2,6 +2,7 @@
   width: 16vw;
   height: 8vh;
   z-index: 25;
+  display: flex;
   border-radius: 0;
   border-top: solid 1px#ffabf3;
   border-left: solid 1px#ffabf3;
@@ -10,5 +11,14 @@
 }
 
 .attack {
+  align-self: flex-start;
+  font-size: 2rem;
+  color: #ffabf3;
+}
+
+.stat {
+  margin-top: 1vh;
+  align-self: flex-end;
+  font-size: 2rem;
   color: #ffabf3;
 }

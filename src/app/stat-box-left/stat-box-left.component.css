@@ -10,5 +10,13 @@
 }
 
 .health {
+  font-size: 2rem;
+  color: #ffabf3;
+}
+
+.stat {
+  margin-top: 1vh;
+  align-self: flex-end;
+  font-size: 2rem;
   color: #ffabf3;
 }
