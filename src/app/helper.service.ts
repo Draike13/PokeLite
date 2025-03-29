@@ -11,7 +11,7 @@ export class HelperService {
   get pokemonList() {
     return this.pokemonService.pokemon;
   }
-
+  playerName: WritableSignal<string> = signal('');
   playerCurrentHealth: WritableSignal<number | null> = signal(null);
   playerAttack: WritableSignal<number | null> = signal(null);
   playerLevel: WritableSignal<number | null> = signal(null);
