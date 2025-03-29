@@ -8,4 +8,5 @@ export interface Pokemon {
   evolutionLevel?: number;
   secondEvoultionLevel?: number;
   image: string;
+  locked: boolean;
 }

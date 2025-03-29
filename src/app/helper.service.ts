@@ -9,8 +9,11 @@ export class HelperService {
   constructor(private pokemonService: PokemonService) {}
 
   get pokemonList() {
-    return this.pokemonService.pokemon;
+    return this.pokemonService
+      .pokemon()
+      .filter((eachPokemon) => !eachPokemon.locked);
   }
+
   playerName: WritableSignal<string> = signal('');
   playerCurrentHealth: WritableSignal<number | null> = signal(null);
   playerAttack: WritableSignal<number | null> = signal(null);

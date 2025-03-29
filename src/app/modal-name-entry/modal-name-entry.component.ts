@@ -12,7 +12,6 @@ import { HelperService } from '../helper.service';
 import { Pokemon } from '../pokemon.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -25,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    NgStyle,
+
     FormsModule,
   ],
   templateUrl: './modal-name-entry.component.html',

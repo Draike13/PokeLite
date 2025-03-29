@@ -32,7 +32,7 @@ export class HeaderComponent {
     return this.helperService.playerName;
   }
   get pokemonList() {
-    return this.helperService.pokemonList();
+    return this.helperService.pokemonList;
   }
   get pokemonName() {
     return this.helperService.playerPokemonName;

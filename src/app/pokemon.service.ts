@@ -16,6 +16,7 @@ export class PokemonService {
       evolutionLevel: 9,
       secondEvoultionLevel: 20,
       image: 'assets/Bulbasaur.png',
+      locked: false,
     },
     {
       name: 'Charmander',
@@ -27,6 +28,7 @@ export class PokemonService {
       evolutionLevel: 9,
       secondEvoultionLevel: 20,
       image: 'assets/Charmander.jpg',
+      locked: false,
     },
     {
       name: 'Squirtle',
@@ -38,6 +40,18 @@ export class PokemonService {
       evolutionLevel: 9,
       secondEvoultionLevel: 20,
       image: 'assets/Squirtle.jpg',
+      locked: false,
+    },
+    {
+      name: 'Pikachu',
+      currentHealth: 30,
+      maxHealth: 30,
+      attack: 10,
+      level: 1,
+      experience: 0,
+      evolutionLevel: 15,
+      image: 'assets/Pikachu.png',
+      locked: true,
     },
   ]);
 }

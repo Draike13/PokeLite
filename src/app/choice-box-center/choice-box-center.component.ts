@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HelperService } from '../helper.service';
 import { BattleService } from '../battle.service';
+import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-choice-box-center',
@@ -13,7 +14,8 @@ import { BattleService } from '../battle.service';
 export class ChoiceBoxCenterComponent {
   constructor(
     private helperService: HelperService,
-    private battleService: BattleService
+    private battleService: BattleService,
+    private pokemonService: PokemonService
   ) {}
 
   giveExp() {
@@ -24,5 +26,12 @@ export class ChoiceBoxCenterComponent {
   }
   heal() {
     this.battleService.recoverHealth();
+  }
+  unlock() {
+    this.pokemonService.pokemon().forEach((eachPokemon) => {
+      if (eachPokemon.name === 'Pikachu') {
+        eachPokemon.locked = false;
+      }
+    });
   }
 }
