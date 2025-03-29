@@ -1,13 +1,34 @@
-<h2 mat-dialog-title>{{ data.pokemon.name }}</h2>
-<mat-dialog-content> </mat-dialog-content>
+<h2 class="title" mat-dialog-title>
+  Start New Game with {{ data.pokemon.name }}?
+</h2>
+<mat-dialog-content class="content">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter Player Name</mat-label>
+    <input
+      required
+      minlength="3"
+      matInput
+      placeholder="Player"
+      [(ngModel)]="userName"
+      #playerName="ngModel"
+      (keydown.enter)="playPokemon(data.pokemon, playerName.value)"
+    />
+    @if (playerName.invalid){
+    <mat-error>Username must be at least 3 characters</mat-error>
+    }
+    <mat-icon matSuffix>gamepad</mat-icon>
+
+    <mat-hint>Not Joey...</mat-hint>
+  </mat-form-field>
+</mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button>No Thanks</button>
+  <button mat-button [mat-dialog-close]>On Second Thought...</button>
   <button
-    (click)="playPokemon(data.pokemon)"
+    [disabled]="playerName.invalid"
+    (click)="playPokemon(data.pokemon, playerName.value)"
     mat-button
-    [mat-dialog-close]
     cdkFocusInitial
   >
-    Ok
+    Let's Go!
   </button>
 </mat-dialog-actions>

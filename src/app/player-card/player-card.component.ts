@@ -14,7 +14,6 @@ export class PlayerCardComponent {
   constructor(private helperService: HelperService) {}
 
   get selectedImage() {
-    console.log(this.helperService.playerImage());
     return this.helperService.playerImage;
   }
 }

@@ -9,6 +9,7 @@ import {
   MatDialog,
   MatDialogModule,
   MAT_DIALOG_DATA,
+  MatDialogConfig,
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../modal-name-entry/modal-name-entry.component';
 @Component({
@@ -40,6 +41,11 @@ export class HeaderComponent {
   openDialog(pokemon: Pokemon) {
     this.dialog.open(ModalNameEntryComponent, {
       data: { pokemon: pokemon },
+      height: '15vh',
+      width: '40vw',
+      position: {
+        top: '8vh',
+      },
     });
   }
 }
