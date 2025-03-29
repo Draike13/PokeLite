@@ -29,7 +29,7 @@ export class ChoiceBoxCenterComponent {
   }
   unlock() {
     this.pokemonService.pokemon().forEach((eachPokemon) => {
-      if (eachPokemon.name === 'Pikachu') {
+      if (eachPokemon.id === 4) {
         eachPokemon.locked = false;
       }
     });

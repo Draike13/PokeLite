@@ -7,6 +7,7 @@ import { Pokemon } from './pokemon.model';
 export class PokemonService {
   pokemon: WritableSignal<Pokemon[]> = signal([
     {
+      id: 1,
       name: 'Bulbasaur',
       currentHealth: 25,
       maxHealth: 25,
@@ -19,6 +20,7 @@ export class PokemonService {
       locked: false,
     },
     {
+      id: 2,
       name: 'Charmander',
       currentHealth: 20,
       maxHealth: 20,
@@ -31,6 +33,7 @@ export class PokemonService {
       locked: false,
     },
     {
+      id: 3,
       name: 'Squirtle',
       currentHealth: 15,
       maxHealth: 15,
@@ -43,6 +46,7 @@ export class PokemonService {
       locked: false,
     },
     {
+      id: 4,
       name: 'Pikachu',
       currentHealth: 30,
       maxHealth: 30,

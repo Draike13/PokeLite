@@ -22,12 +22,13 @@
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]>On Second Thought...</button>
+  <button (click)="refusal(data.pokemon)" mat-button [mat-dialog-close]>
+    {{ refusalText }}
+  </button>
   <button
     [disabled]="playerName.invalid"
     (click)="playPokemon(data.pokemon, playerName.value)"
     mat-button
-    cdkFocusInitial
   >
     Let's Go!
   </button>
