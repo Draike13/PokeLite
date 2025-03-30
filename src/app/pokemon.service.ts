@@ -57,12 +57,12 @@ export class PokemonService {
     {
       id: 2222,
       name: 'Mega Charizard',
-      currentHealth: 0,
+      currentHealth: 150,
       maxHealth: 250,
-      attack: 30,
-      level: 0,
+      attack: 40,
+      level: 100,
       experience: 0,
-      image: 'assets/MegaCharizard.jpg',
+      image: 'assets/MegaCharizard.png',
       locked: true,
     },
     {

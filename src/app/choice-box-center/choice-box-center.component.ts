@@ -18,6 +18,7 @@ export class ChoiceBoxCenterComponent {
     private pokemonService: PokemonService
   ) {}
 
+  megaStone: boolean = false;
   giveExp() {
     this.battleService.giveExp();
   }
@@ -36,5 +37,21 @@ export class ChoiceBoxCenterComponent {
   }
   level() {
     this.battleService.gainLevel();
+  }
+  megaEvolve() {
+    if (
+      this.helperService.activePokemon()!.id === 222 &&
+      this.megaStone === true
+    ) {
+      this.helperService.fullPokeList().forEach((eachPokemon) => {
+        if (eachPokemon.id === 2222) {
+          this.helperService.activePokemon.set(eachPokemon);
+        }
+      });
+    }
+  }
+
+  aquireStone() {
+    return (this.megaStone = true);
   }
 }
