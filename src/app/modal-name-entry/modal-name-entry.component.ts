@@ -74,6 +74,7 @@ export class ModalNameEntryComponent {
     } else if (this.refusalCount() > 2) {
       this.refusalText = 'On Second Thought...';
     }
+    //add more logic to these to make it see WHICH pokemon have been checked
   }
   specialUnlock = effect(() => {
     if (this.refusalCount() === 3) {

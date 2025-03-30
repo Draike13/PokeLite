@@ -39,4 +39,8 @@ export class BattleService {
       this.currentHealth.set(this.maxHealth());
     }
   }
+  gainLevel() {
+    this.experience.set(0);
+    this.level.set(this.level()! + 1);
+  }
 }
