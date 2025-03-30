@@ -17,7 +17,4 @@ export class LevelingService {
   get firstEvoLevel() {
     return this.helperService.playerEvolutionLevel;
   }
-  get secondEvoLevel() {
-    return this.helperService.playerSecondEvolutionLevel;
-  }
 }
