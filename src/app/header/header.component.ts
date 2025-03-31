@@ -12,6 +12,7 @@ import {
   MatDialogConfig,
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../modal-name-entry/modal-name-entry.component';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-header',
   imports: [
@@ -20,6 +21,7 @@ import { ModalNameEntryComponent } from '../modal-name-entry/modal-name-entry.co
     MatButtonModule,
     MatMenuModule,
     MatDialogModule,
+    MatCardModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -28,6 +30,7 @@ export class HeaderComponent {
   constructor(private helperService: HelperService) {}
   dialog = inject(MatDialog);
 
+  pokeball = 'assets/Pokeball.png';
   get playerName() {
     return this.helperService.playerName;
   }
@@ -46,6 +49,14 @@ export class HeaderComponent {
       position: {
         top: '8vh',
       },
+    });
+  }
+
+  unlockEevee() {
+    this.helperService.fullPokeList().filter((eachPokemon) => {
+      if (eachPokemon.id === 5) {
+        eachPokemon.locked = false;
+      }
     });
   }
 }

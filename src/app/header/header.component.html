@@ -1,4 +1,12 @@
 <mat-toolbar class="header">
+  <img
+    (click)="unlockEevee()"
+    mat-card-avatar
+    class="image"
+    src="assets/Pokeball.png"
+    alt=""
+  />
+
   <button
     [matMenuTriggerFor]="menu"
     mat-icon-button
