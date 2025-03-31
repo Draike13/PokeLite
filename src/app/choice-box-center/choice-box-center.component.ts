@@ -40,12 +40,20 @@ export class ChoiceBoxCenterComponent {
   }
   megaEvolve() {
     if (
-      this.helperService.activePokemon()!.id === 222 &&
+      this.helperService.activePokemon()!.id ===
+        Number(
+          `${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}`
+        ) &&
       this.megaStone === true
     ) {
       let currentLevel = this.helperService.playerLevel();
       this.helperService.fullPokeList().forEach((eachPokemon) => {
-        if (eachPokemon.id === 2222) {
+        if (
+          eachPokemon.id ===
+          Number(
+            `${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}`
+          )
+        ) {
           this.helperService.activePokemon.set(eachPokemon);
           setTimeout(() => {
             this.helperService.playerLevel.set(currentLevel);
