@@ -43,9 +43,13 @@ export class ChoiceBoxCenterComponent {
       this.helperService.activePokemon()!.id === 222 &&
       this.megaStone === true
     ) {
+      let currentLevel = this.helperService.playerLevel();
       this.helperService.fullPokeList().forEach((eachPokemon) => {
         if (eachPokemon.id === 2222) {
           this.helperService.activePokemon.set(eachPokemon);
+          setTimeout(() => {
+            this.helperService.playerLevel.set(currentLevel);
+          });
         }
       });
     }

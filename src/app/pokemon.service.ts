@@ -60,7 +60,7 @@ export class PokemonService {
       currentHealth: 150,
       maxHealth: 250,
       attack: 40,
-      level: 100,
+      level: 0,
       experience: 0,
       image: 'assets/MegaCharizard.png',
       locked: true,

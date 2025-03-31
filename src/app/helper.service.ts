@@ -25,6 +25,7 @@ export class HelperService {
       .filter((eachPokemon) => !eachPokemon.locked);
   }
   playerName: WritableSignal<string> = signal('');
+  pokemonBaseId: number = 0;
 
   playerId: WritableSignal<number> = signal(0);
   playerPokemonName: WritableSignal<string> = signal('');
@@ -44,25 +45,48 @@ export class HelperService {
     }
   });
 
-  evolveCharmander = effect(() => {
+  evolveStarter = effect(() => {
     const level = this.playerLevel();
     const evoLevel = this.playerEvolutionLevel();
-    if (this.playerId() === 2) {
+    if (
+      this.pokemonBaseId === 1 ||
+      this.pokemonBaseId === 2 ||
+      this.pokemonBaseId === 3 ||
+      this.pokemonBaseId === 4
+    ) {
       if (level !== null && evoLevel !== undefined && level === evoLevel) {
-        if (this.playerId() !== 22) {
+        if (
+          this.playerId() !==
+          Number(`${this.pokemonBaseId} + ${this.pokemonBaseId}`)
+        ) {
           this.fullPokeList().forEach((eachPokemon) => {
-            if (eachPokemon.id === 22) {
+            if (
+              eachPokemon.id ===
+              Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
+            ) {
               this.activePokemon.set(eachPokemon);
             }
           });
         }
       }
     }
-    if (this.playerId() === 22) {
+    if (
+      this.playerId() === Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
+    ) {
       if (level !== null && evoLevel !== null && level === evoLevel) {
-        if (this.playerId() !== 222) {
+        if (
+          this.playerId() !==
+          Number(
+            `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
+          )
+        ) {
           this.fullPokeList().forEach((eachPokemon) => {
-            if (eachPokemon.id === 222) {
+            if (
+              eachPokemon.id ===
+              Number(
+                `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
+              )
+            ) {
               this.activePokemon.set(eachPokemon);
             }
           });
