@@ -30,7 +30,7 @@ export class HelperService {
   playerId: WritableSignal<number> = signal(0);
   playerPokemonName: WritableSignal<string> = signal('');
   playerCurrentHealth: WritableSignal<number> = signal(0);
-  playerAttack: WritableSignal<number | null> = signal(null);
+  playerAttack: WritableSignal<number> = signal(0);
   playerLevel: WritableSignal<number | null> = signal(null);
   playerImage: WritableSignal<string> = signal('assets/Default.jpg');
   PlayerExp: WritableSignal<number> = signal(0);
@@ -97,7 +97,9 @@ export class HelperService {
 
   buildStats() {
     this.playerId.set(this.activePokemon()!.id);
-    this.playerAttack.set(this.activePokemon()!.attack);
+    const currentAttack = untracked(() => this.playerAttack());
+    const attackGain = this.activePokemon()?.attack ?? 0;
+    this.playerAttack.set(currentAttack + attackGain);
     this.playerMaxHealth.set(this.activePokemon()!.maxHealth);
     this.playerLevel.set(this.activePokemon()!.level);
     this.playerPokemonName.set(this.activePokemon()!.name);
@@ -105,7 +107,7 @@ export class HelperService {
     this.PlayerExp.set(this.activePokemon()!.experience);
     this.playerEvolutionLevel.set(this.activePokemon()?.evolutionLevel);
     const currentHealth = untracked(() => this.playerCurrentHealth());
-    const additionalHealth = this.activePokemon()?.currentHealth ?? 0;
-    this.playerCurrentHealth.set(currentHealth + additionalHealth);
+    const healthGain = this.activePokemon()?.currentHealth ?? 0;
+    this.playerCurrentHealth.set(currentHealth + healthGain);
   }
 }
