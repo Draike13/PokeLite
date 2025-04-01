@@ -39,13 +39,15 @@ export class ContentBoxComponent {
     'saves' | 'blurb' | 'nameEntry' | 'pokemonSelection'
   > = signal('blurb');
   selectedSave: SaveFile | null = null;
-  helperService: any;
 
-  constructor(private dialog: MatDialog, private saveService: SaveService) {}
+  constructor(
+    private dialog: MatDialog,
+    private saveService: SaveService,
+    private helperService: HelperService
+  ) {}
 
   pokemonList() {
-    let saves = this.saveService.getSaves();
-    return saves[this.selectedSave!.slot - 1].pokemonData;
+    return this.helperService.pokemonList(this.selectedSave!.pokemonData);
   }
 
   displaySaveFiles() {

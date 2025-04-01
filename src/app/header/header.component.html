@@ -15,12 +15,5 @@
   <button [matMenuTriggerFor]="menu" mat-icon-button class="menu">
     <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    @for (pokemon of pokemonList; track pokemon.id) {
-
-    <button (click)="openDialog(pokemon)" class="menu-button" mat-menu-item>
-      {{ pokemon.name }}
-    </button>
-    }
-  </mat-menu>
+  <mat-menu #menu="matMenu"> </mat-menu>
 </mat-toolbar>

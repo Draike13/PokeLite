@@ -8,22 +8,25 @@ import {
 } from '@angular/core';
 import { PokemonService } from './pokemon.service';
 import { Pokemon } from './pokemon.model';
+import { SaveService } from './save.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HelperService {
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private saveService: SaveService
+  ) {}
 
   get fullPokeList() {
     return this.pokemonService.pokemon;
   }
 
-  get pokemonList() {
-    return this.pokemonService
-      .pokemon()
-      .filter((eachPokemon) => !eachPokemon.locked);
+  pokemonList(pokemonData: Pokemon[]) {
+    return pokemonData.filter((eachPokemon) => !eachPokemon.locked);
   }
+
   playerName: WritableSignal<string> = signal('');
   pokemonBaseId: number = 0;
 
