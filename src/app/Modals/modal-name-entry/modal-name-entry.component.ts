@@ -15,7 +15,6 @@ import { FormsModule } from '@angular/forms';
 import { SpecialService } from '../../special.service';
 import { PokemonService } from '../../pokemon.service';
 import { SaveService } from '../../save.service';
-import { SaveFile } from '../../save.model';
 
 @Component({
   selector: 'app-modal-name-entry',
@@ -46,14 +45,8 @@ export class ModalNameEntryComponent {
 
   setName(name: string) {
     if (name.length >= 3) {
-      const saves = this.saveService.getSaves();
-      const saveToUpdate = saves.find(
-        (save: SaveFile) => save.slot === this.data.selectedSave.slot
-      );
-      if (saveToUpdate) {
-        saveToUpdate.playerName = name;
-        this.saveService.saveGame(saveToUpdate);
-      }
+      this.helperService.activeSave()!.playerName = name;
+      this.saveService.saveGame(this.helperService.activeSave()!);
     }
     this.dialogRef.close();
   }

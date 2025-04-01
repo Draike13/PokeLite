@@ -19,7 +19,7 @@
     } } @if (currentView() ==='pokemonSelection') { @for (pokemon of
     pokemonList(); track pokemon.id) {
 
-    <button mat-button>
+    <button mat-button (click)="selectPokemon(pokemon)">
       {{ pokemon.name }}
     </button>
     } }

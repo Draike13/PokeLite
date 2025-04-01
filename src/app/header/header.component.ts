@@ -44,17 +44,6 @@ export class HeaderComponent {
     return this.helperService.playerPokemonName;
   }
 
-  openDialog(pokemon: Pokemon) {
-    this.dialog.open(ModalPokemonSelectComponent, {
-      data: { pokemon: pokemon },
-      height: '24vh',
-      width: '48vw',
-      position: {
-        top: '8vh',
-      },
-    });
-  }
-
   special() {
     this.specialService.unlockEevee();
   }

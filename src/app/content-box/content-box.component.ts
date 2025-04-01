@@ -19,7 +19,9 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../Modals/modal-name-entry/modal-name-entry.component';
+import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
 import { SaveFile } from '../save.model';
+import { Pokemon } from '../pokemon.model';
 
 @Component({
   selector: 'app-content-box',
@@ -38,7 +40,10 @@ export class ContentBoxComponent {
   currentView: WritableSignal<
     'saves' | 'blurb' | 'nameEntry' | 'pokemonSelection'
   > = signal('blurb');
-  selectedSave: SaveFile | null = null;
+
+  get selectedSave() {
+    return this.helperService.activeSave;
+  }
 
   constructor(
     private dialog: MatDialog,
@@ -47,14 +52,14 @@ export class ContentBoxComponent {
   ) {}
 
   pokemonList() {
-    return this.helperService.pokemonList(this.selectedSave!.pokemonData);
+    return this.helperService.pokemonList();
   }
 
   displaySaveFiles() {
     this.currentView.set('saves');
   }
   handleSaveClick(save: SaveFile) {
-    this.selectedSave = save;
+    this.selectedSave?.set(save);
     if (save.playerName === 'New Game') {
       this.openNameModal();
     } else {
@@ -77,9 +82,20 @@ export class ContentBoxComponent {
     });
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result) {
-        this.selectedSave!.playerName = result;
+        this.selectedSave()!.playerName = result;
         this.currentView.set('pokemonSelection');
       }
+    });
+  }
+
+  selectPokemon(selectedPokemon: Pokemon) {
+    this.dialog.open(ModalPokemonSelectComponent, {
+      data: { pokemon: selectedPokemon },
+      height: '24vh',
+      width: '48vw',
+      position: {
+        top: '8vh',
+      },
     });
   }
 }

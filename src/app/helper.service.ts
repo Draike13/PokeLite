@@ -9,6 +9,7 @@ import {
 import { PokemonService } from './pokemon.service';
 import { Pokemon } from './pokemon.model';
 import { SaveService } from './save.service';
+import { SaveFile } from './save.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,12 +24,15 @@ export class HelperService {
     return this.pokemonService.pokemon;
   }
 
-  pokemonList(pokemonData: Pokemon[]) {
-    return pokemonData.filter((eachPokemon) => !eachPokemon.locked);
+  pokemonList() {
+    return this.activeSave()!.pokemonData.filter(
+      (eachPokemon) => !eachPokemon.locked
+    );
   }
-
+  // currentSaveSlot: WritableSignal<number> = signal(0);
   playerName: WritableSignal<string> = signal('');
   pokemonBaseId: number = 0;
+  activeSave: WritableSignal<SaveFile | null> = signal(null);
 
   playerId: WritableSignal<number> = signal(0);
   playerPokemonName: WritableSignal<string> = signal('');
@@ -62,12 +66,18 @@ export class HelperService {
           this.playerId() !==
           Number(`${this.pokemonBaseId} + ${this.pokemonBaseId}`)
         ) {
-          this.fullPokeList().forEach((eachPokemon) => {
+          this.activeSave()!.pokemonData.forEach((eachPokemon) => {
             if (
               eachPokemon.id ===
               Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
             ) {
+              eachPokemon.locked = false;
               this.activePokemon.set(eachPokemon);
+              this.saveService.saveGame(this.activeSave()!);
+            }
+            if (eachPokemon.id === Number(`${this.pokemonBaseId}`)) {
+              eachPokemon.locked = true;
+              this.saveService.saveGame(this.activeSave()!);
             }
           });
         }
@@ -83,14 +93,23 @@ export class HelperService {
             `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
           )
         ) {
-          this.fullPokeList().forEach((eachPokemon) => {
+          this.activeSave()!.pokemonData.forEach((eachPokemon) => {
             if (
               eachPokemon.id ===
               Number(
                 `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
               )
             ) {
+              eachPokemon.locked = false;
               this.activePokemon.set(eachPokemon);
+              this.saveService.saveGame(this.activeSave()!);
+            }
+            if (
+              eachPokemon.id ===
+              Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
+            ) {
+              eachPokemon.locked = true;
+              this.saveService.saveGame(this.activeSave()!);
             }
           });
         }

@@ -10,11 +10,4 @@ export class LevelingService {
     private pokemonService: PokemonService,
     private helperService: HelperService
   ) {}
-
-  get level() {
-    return this.helperService.playerLevel;
-  }
-  get firstEvoLevel() {
-    return this.helperService.playerEvolutionLevel;
-  }
 }

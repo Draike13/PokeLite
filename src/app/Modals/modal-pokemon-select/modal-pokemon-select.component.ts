@@ -32,7 +32,6 @@ import { PokemonService } from '../../pokemon.service';
   styleUrl: './modal-pokemon-select.component.css',
 })
 export class ModalPokemonSelectComponent {
-  userName = '';
   constructor(
     private pokemonService: PokemonService,
     private specialService: SpecialService,
@@ -48,22 +47,13 @@ export class ModalPokemonSelectComponent {
   get refusalCount() {
     return this.specialService.refusalCount;
   }
-  playPokemon(pokemon: Pokemon, name: string) {
-    if (name.length >= 3) {
-      this.helperService.activePokemon.set(pokemon);
-      this.helperService.playerName.set(`${name}'s`);
-      this.helperService.pokemonBaseId = pokemon.commonId;
-      this.dialogRef.close();
-    }
-  }
   refusal(pokemon: Pokemon) {
-    if (pokemon.id === 1) {
-      this.specialService.bRefusal.set(true);
-    } else if (pokemon.id === 2) {
-      this.specialService.cRefusal.set(true);
-    } else if (pokemon.id === 3) {
-      this.specialService.sRefusal.set(true);
-    }
+    return this.specialService.refusal(pokemon);
+  }
+  startGame(pokemon: Pokemon) {
+    this.helperService.activePokemon.set(pokemon);
+    this.helperService.pokemonBaseId = pokemon.commonId;
+    this.dialogRef.close();
   }
 
   countTracker() {
@@ -76,13 +66,4 @@ export class ModalPokemonSelectComponent {
     }
     //add more logic to these to make it see WHICH pokemon have been checked
   }
-  specialUnlock = effect(() => {
-    if (this.refusalCount() === 3) {
-      setTimeout(() => {
-        this.pokemonService.pokemon().forEach((eachPokemon) => {
-          if (eachPokemon.id === 4) eachPokemon.locked = false;
-        });
-      });
-    }
-  });
 }
