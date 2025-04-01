@@ -40,6 +40,9 @@ export class SaveService {
   }
 
   saveGame(updatedSave: SaveFile) {
-    console.log('saved');
+    let storedSaves = this.getSaves();
+    storedSaves[updatedSave.slot - 1] = updatedSave;
+
+    localStorage.setItem(this.SAVE_KEY, JSON.stringify(storedSaves));
   }
 }

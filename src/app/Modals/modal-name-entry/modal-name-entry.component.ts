@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SpecialService } from '../../special.service';
 import { PokemonService } from '../../pokemon.service';
+import { SaveService } from '../../save.service';
+import { SaveFile } from '../../save.model';
 
 @Component({
   selector: 'app-modal-name-entry',
@@ -38,52 +40,22 @@ export class ModalNameEntryComponent {
     private pokemonService: PokemonService,
     private specialService: SpecialService,
     private helperService: HelperService,
+    private saveService: SaveService,
     private dialogRef: MatDialogRef<ModalNameEntryComponent>
-  ) {
-    this.countTracker();
-  }
+  ) {}
   data = inject(MAT_DIALOG_DATA);
 
-  refusalText = '';
-
-  get refusalCount() {
-    return this.specialService.refusalCount;
-  }
-  playPokemon(name: string) {
+  setName(name: string) {
     if (name.length >= 3) {
-      // this.helperService.activePokemon.set(pokemon);
-      this.helperService.playerName.set(`${name}'s`);
-      // this.helperService.pokemonBaseId = pokemon.commonId;
-      this.dialogRef.close();
+      const saves = this.saveService.getSaves();
+      const saveToUpdate = saves.find(
+        (save: SaveFile) => save.slot === this.data.selectedSave.slot
+      );
+      if (saveToUpdate) {
+        saveToUpdate.playerName = name;
+        this.saveService.saveGame(saveToUpdate);
+      }
     }
+    this.dialogRef.close();
   }
-  refusal(pokemon: Pokemon) {
-    if (pokemon.id === 1) {
-      this.specialService.bRefusal.set(true);
-    } else if (pokemon.id === 2) {
-      this.specialService.cRefusal.set(true);
-    } else if (pokemon.id === 3) {
-      this.specialService.sRefusal.set(true);
-    }
-  }
-
-  countTracker() {
-    if (this.refusalCount() < 2) {
-      this.refusalText = 'On Second Thought...';
-    } else if (this.refusalCount() === 2) {
-      this.refusalText = 'Maybe You Just Need Something...Different?';
-    } else if (this.refusalCount() > 2) {
-      this.refusalText = 'On Second Thought...';
-    }
-    //add more logic to these to make it see WHICH pokemon have been checked
-  }
-  specialUnlock = effect(() => {
-    if (this.refusalCount() === 3) {
-      setTimeout(() => {
-        this.pokemonService.pokemon().forEach((eachPokemon) => {
-          if (eachPokemon.id === 4) eachPokemon.locked = false;
-        });
-      });
-    }
-  });
 }

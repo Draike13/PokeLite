@@ -12,6 +12,7 @@ import {
   MatDialogConfig,
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../Modals/modal-name-entry/modal-name-entry.component';
+import { SaveFile } from '../save.model';
 
 @Component({
   selector: 'app-content-box',
@@ -39,15 +40,15 @@ export class ContentBoxComponent {
   displaySaveFiles() {
     this.saves = true;
   }
-  nameSaveFile() {
-    this.dialog.open(ModalNameEntryComponent),
-      {
-        height: '24vh',
-        width: '48vw',
-        position: {
-          top: '8vh',
-        },
-      };
+  nameSaveFile(save: SaveFile) {
+    this.dialog.open(ModalNameEntryComponent, {
+      data: { selectedSave: save },
+      height: '24vh',
+      width: '48vw',
+      position: {
+        top: '8vh',
+      },
+    });
   }
 }
 // openDialog(pokemon: Pokemon) {

@@ -12,7 +12,7 @@
     </div>
     } @for (save of saveFiles(); track save.slot) { @if (saves === true) {
 
-    <button mat-button (click)="nameSaveFile()">
+    <button mat-button (click)="nameSaveFile(save)">
       {{ save.slot }} {{ save.playerName }}
     </button>
     } }
