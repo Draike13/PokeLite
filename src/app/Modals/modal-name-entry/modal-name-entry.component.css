@@ -6,5 +6,5 @@
 }
 
 .content {
-  overflow: hidden;
+  overflow: hidden !important;
 }

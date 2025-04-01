@@ -1,4 +1,10 @@
-import { Component, inject } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HelperService } from '../helper.service';
@@ -10,6 +16,7 @@ import {
   MatDialogModule,
   MAT_DIALOG_DATA,
   MatDialogConfig,
+  MatDialogRef,
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../Modals/modal-name-entry/modal-name-entry.component';
 import { SaveFile } from '../save.model';
@@ -28,36 +35,49 @@ import { SaveFile } from '../save.model';
   styleUrl: './content-box.component.css',
 })
 export class ContentBoxComponent {
-  constructor(
-    private helperService: HelperService,
-    private saveService: SaveService
-  ) {}
-  dialog = inject(MatDialog);
-  saves = false;
+  currentView: WritableSignal<
+    'saves' | 'blurb' | 'nameEntry' | 'pokemonSelection'
+  > = signal('blurb');
+  selectedSave: SaveFile | null = null;
+  helperService: any;
+
+  constructor(private dialog: MatDialog, private saveService: SaveService) {}
+
+  pokemonList() {
+    let saves = this.saveService.getSaves();
+    return saves[this.selectedSave!.slot - 1].pokemonData;
+  }
+
+  displaySaveFiles() {
+    this.currentView.set('saves');
+  }
+  handleSaveClick(save: SaveFile) {
+    this.selectedSave = save;
+    if (save.playerName === 'New Game') {
+      this.openNameModal();
+    } else {
+      this.currentView.set('pokemonSelection');
+    }
+  }
+
   saveFiles() {
     return this.saveService.getSaves();
   }
-  displaySaveFiles() {
-    this.saves = true;
-  }
-  nameSaveFile(save: SaveFile) {
-    this.dialog.open(ModalNameEntryComponent, {
-      data: { selectedSave: save },
+
+  openNameModal() {
+    const dialogRef = this.dialog.open(ModalNameEntryComponent, {
+      data: { selectedSave: this.selectedSave },
       height: '24vh',
       width: '48vw',
       position: {
         top: '8vh',
       },
     });
+    dialogRef.afterClosed().subscribe((result: string) => {
+      if (result) {
+        this.selectedSave!.playerName = result;
+        this.currentView.set('pokemonSelection');
+      }
+    });
   }
 }
-// openDialog(pokemon: Pokemon) {
-//     this.dialog.open(ModalNameEntryComponent, {
-//       data: { pokemon: pokemon },
-//       height: '24vh',
-//       width: '48vw',
-//       position: {
-//         top: '8vh',
-//       },
-//     });
-//   }

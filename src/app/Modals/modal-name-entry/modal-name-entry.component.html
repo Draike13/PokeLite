@@ -1,7 +1,6 @@
-<h2 class="title" mat-dialog-title></h2>
+<h2 class="title" mat-dialog-title>Enter your Player Name</h2>
 <mat-dialog-content class="content">
   <mat-form-field appearance="outline">
-    <mat-label>Enter Player Name</mat-label>
     <input
       required
       minlength="3"
@@ -14,7 +13,7 @@
     @if (playerName.invalid){
     <mat-error>Username must be at least 3 characters</mat-error>
     }
-    <mat-icon matSuffix>gamepad</mat-icon>
+    <mat-icon matSuffix>face</mat-icon>
 
     <mat-hint>Not Joey...</mat-hint>
   </mat-form-field>

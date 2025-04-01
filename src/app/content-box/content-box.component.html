@@ -1,6 +1,6 @@
 <mat-card class="main-content-container" appearance="outlined">
   <mat-card-content>
-    @if (saves === false) {
+    @if (currentView() === 'blurb') {
 
     <div>
       <p class="blurb">
@@ -10,10 +10,17 @@
         Start Game
       </button>
     </div>
-    } @for (save of saveFiles(); track save.slot) { @if (saves === true) {
+    } @if (currentView() === 'saves') { @for (save of saveFiles(); track
+    save.slot) {
 
-    <button mat-button (click)="nameSaveFile(save)">
+    <button mat-button (click)="handleSaveClick(save)">
       {{ save.slot }} {{ save.playerName }}
+    </button>
+    } } @if (currentView() ==='pokemonSelection') { @for (pokemon of
+    pokemonList(); track pokemon.id) {
+
+    <button mat-button>
+      {{ pokemon.name }}
     </button>
     } }
   </mat-card-content>
