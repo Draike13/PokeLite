@@ -1,7 +1,7 @@
 import { Component, effect } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { HelperService } from '../helper.service';
+import { HelperService } from '../../helper.service';
 
 @Component({
   selector: 'app-stat-box-left',

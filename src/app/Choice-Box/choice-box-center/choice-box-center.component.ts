@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { HelperService } from '../helper.service';
-import { BattleService } from '../battle.service';
-import { PokemonService } from '../pokemon.service';
+import { HelperService } from '../../helper.service';
+import { BattleService } from '../../battle.service';
+import { PokemonService } from '../../pokemon.service';
 
 @Component({
   selector: 'app-choice-box-center',
