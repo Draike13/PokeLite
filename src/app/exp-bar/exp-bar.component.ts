@@ -14,4 +14,7 @@ export class ExpBarComponent {
   get pokemonExp() {
     return this.helperSerive.PlayerExp;
   }
+  get active() {
+    return this.helperSerive.activePokemon;
+  }
 }

@@ -13,6 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../modal-name-entry/modal-name-entry.component';
 import { MatCardModule } from '@angular/material/card';
+import { SpecialService } from '../special.service';
 @Component({
   selector: 'app-header',
   imports: [
@@ -27,10 +28,12 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(private helperService: HelperService) {}
+  constructor(
+    private helperService: HelperService,
+    private specialService: SpecialService
+  ) {}
   dialog = inject(MatDialog);
 
-  pokeball = 'assets/Pokeball.png';
   get playerName() {
     return this.helperService.playerName;
   }
@@ -44,19 +47,15 @@ export class HeaderComponent {
   openDialog(pokemon: Pokemon) {
     this.dialog.open(ModalNameEntryComponent, {
       data: { pokemon: pokemon },
-      height: '15vh',
-      width: '40vw',
+      height: '24vh',
+      width: '48vw',
       position: {
         top: '8vh',
       },
     });
   }
 
-  unlockEevee() {
-    this.helperService.fullPokeList().filter((eachPokemon) => {
-      if (eachPokemon.id === 5) {
-        eachPokemon.locked = false;
-      }
-    });
+  special() {
+    this.specialService.unlockEevee();
   }
 }

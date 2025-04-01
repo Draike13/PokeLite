@@ -1,5 +1,9 @@
+@if (active()) {
 <mat-progress-bar
-  class="footer"
+  class="exp"
   mode="determinate"
   value="{{ pokemonExp() }}"
 ></mat-progress-bar>
+} @else {
+<span class="footer"> Pokemon 2025</span>
+}

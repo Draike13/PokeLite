@@ -18,3 +18,16 @@ mat-icon {
 .image {
   margin: 0;
 }
+
+.menu {
+  display: flex;
+}
+.spacer {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.menu-spacer {
+  display: flex;
+  flex-grow: 1;
+}

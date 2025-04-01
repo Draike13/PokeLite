@@ -1,31 +1,26 @@
 <mat-toolbar class="header">
   <img
-    (click)="unlockEevee()"
+    (click)="special()"
     mat-card-avatar
     class="image"
     src="assets/Pokeball.png"
     alt=""
   />
-
-  <button
-    [matMenuTriggerFor]="menu"
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
+  <span>Pokemon Rogue Lite</span>
+  <span class="spacer"></span>
+  <span class="player-pokemon-name"
+    >{{ playerName() }} {{ pokemonName() }}</span
   >
+  <span class="menu-spacer"></span>
+  <button [matMenuTriggerFor]="menu" mat-icon-button class="menu">
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    @for (pokemon of pokemonList; track $index) {
+    @for (pokemon of pokemonList; track pokemon.id) {
 
     <button (click)="openDialog(pokemon)" class="menu-button" mat-menu-item>
       {{ pokemon.name }}
     </button>
     }
   </mat-menu>
-  <span>Pokemon Rogue Lite</span>
-  <span class="example-spacer"></span>
-  <span class="player-pokemon-name"
-    >{{ playerName() }} {{ pokemonName() }}</span
-  >
 </mat-toolbar>
