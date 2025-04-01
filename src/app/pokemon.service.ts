@@ -8,6 +8,7 @@ export class PokemonService {
   pokemon: WritableSignal<Pokemon[]> = signal([
     {
       id: 1,
+      commonId: 1,
       name: 'Bulbasaur',
       currentHealth: 25,
       maxHealth: 25,
@@ -20,6 +21,7 @@ export class PokemonService {
     },
     {
       id: 11,
+      commonId: 1,
       name: 'Ivysaur',
       currentHealth: 40,
       maxHealth: 65,
@@ -32,6 +34,7 @@ export class PokemonService {
     },
     {
       id: 111,
+      commonId: 1,
       name: 'Venusaur',
       currentHealth: 60,
       maxHealth: 125,
@@ -43,6 +46,7 @@ export class PokemonService {
     },
     {
       id: 1111,
+      commonId: 1,
       name: 'Mega Venusaur',
       currentHealth: 175,
       maxHealth: 300,
@@ -54,6 +58,7 @@ export class PokemonService {
     },
     {
       id: 2,
+      commonId: 2,
       name: 'Charmander',
       currentHealth: 20,
       maxHealth: 20,
@@ -66,6 +71,7 @@ export class PokemonService {
     },
     {
       id: 22,
+      commonId: 2,
       name: 'Charmeleon',
       currentHealth: 30,
       maxHealth: 50,
@@ -78,6 +84,7 @@ export class PokemonService {
     },
     {
       id: 222,
+      commonId: 2,
       name: 'Charizard',
       currentHealth: 50,
       maxHealth: 100,
@@ -89,6 +96,7 @@ export class PokemonService {
     },
     {
       id: 2222,
+      commonId: 2,
       name: 'Mega Charizard',
       currentHealth: 150,
       maxHealth: 250,
@@ -100,6 +108,7 @@ export class PokemonService {
     },
     {
       id: 3,
+      commonId: 3,
       name: 'Squirtle',
       currentHealth: 15,
       maxHealth: 15,
@@ -112,6 +121,7 @@ export class PokemonService {
     },
     {
       id: 33,
+      commonId: 3,
       name: 'Wartortle',
       currentHealth: 30,
       maxHealth: 45,
@@ -124,6 +134,7 @@ export class PokemonService {
     },
     {
       id: 333,
+      commonId: 3,
       name: 'Blastoise',
       currentHealth: 40,
       maxHealth: 85,
@@ -135,6 +146,7 @@ export class PokemonService {
     },
     {
       id: 3333,
+      commonId: 3,
       name: 'Mega Blastoise',
       currentHealth: 115,
       maxHealth: 200,
@@ -146,6 +158,7 @@ export class PokemonService {
     },
     {
       id: 4,
+      commonId: 4,
       name: 'Pikachu',
       currentHealth: 35,
       maxHealth: 35,
@@ -158,6 +171,7 @@ export class PokemonService {
     },
     {
       id: 44,
+      commonId: 4,
       name: 'Raichu',
       currentHealth: 55,
       maxHealth: 90,
@@ -169,6 +183,7 @@ export class PokemonService {
     },
     {
       id: 5,
+      commonId: 5,
       name: 'Eevee',
       currentHealth: 30,
       maxHealth: 30,

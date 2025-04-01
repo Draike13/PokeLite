@@ -1,5 +1,6 @@
 export interface Pokemon {
   id: number;
+  commonId: number;
   name: string;
   currentHealth: number;
   maxHealth: number;

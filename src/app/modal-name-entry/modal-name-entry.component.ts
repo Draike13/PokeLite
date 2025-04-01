@@ -53,7 +53,7 @@ export class ModalNameEntryComponent {
     if (name.length >= 3) {
       this.helperService.activePokemon.set(pokemon);
       this.helperService.playerName.set(`${name}'s`);
-      this.helperService.pokemonBaseId = pokemon.id;
+      this.helperService.pokemonBaseId = pokemon.commonId;
       this.dialogRef.close();
     }
   }
