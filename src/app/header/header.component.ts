@@ -11,7 +11,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogConfig,
 } from '@angular/material/dialog';
-import { ModalNameEntryComponent } from '../modal-name-entry/modal-name-entry.component';
+import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
 import { MatCardModule } from '@angular/material/card';
 import { SpecialService } from '../special.service';
 @Component({
@@ -45,7 +45,7 @@ export class HeaderComponent {
   }
 
   openDialog(pokemon: Pokemon) {
-    this.dialog.open(ModalNameEntryComponent, {
+    this.dialog.open(ModalPokemonSelectComponent, {
       data: { pokemon: pokemon },
       height: '24vh',
       width: '48vw',

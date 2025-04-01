@@ -8,16 +8,15 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HelperService } from '../helper.service';
-import { Pokemon } from '../pokemon.model';
+import { HelperService } from '../../helper.service';
+import { Pokemon } from '../../pokemon.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { SpecialService } from '../special.service';
-import { PokemonService } from '../pokemon.service';
-
+import { SpecialService } from '../../special.service';
+import { PokemonService } from '../../pokemon.service';
 @Component({
-  selector: 'app-modal-name-entry',
+  selector: 'app-modal-pokemon-select',
   imports: [
     MatDialogContent,
     MatDialogActions,
@@ -29,16 +28,16 @@ import { PokemonService } from '../pokemon.service';
 
     FormsModule,
   ],
-  templateUrl: './modal-name-entry.component.html',
-  styleUrl: './modal-name-entry.component.css',
+  templateUrl: './modal-pokemon-select.component.html',
+  styleUrl: './modal-pokemon-select.component.css',
 })
-export class ModalNameEntryComponent {
+export class ModalPokemonSelectComponent {
   userName = '';
   constructor(
     private pokemonService: PokemonService,
     private specialService: SpecialService,
     private helperService: HelperService,
-    private dialogRef: MatDialogRef<ModalNameEntryComponent>
+    private dialogRef: MatDialogRef<ModalPokemonSelectComponent>
   ) {
     this.countTracker();
   }

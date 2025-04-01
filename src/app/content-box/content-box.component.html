@@ -1,3 +1,20 @@
 <mat-card class="main-content-container" appearance="outlined">
-  <mat-card-content></mat-card-content>
+  <mat-card-content>
+    @if (saves === false) {
+
+    <div>
+      <p class="blurb">
+        Welcome to the game! Choose a save file and begin your adventure.
+      </p>
+      <button mat-button (click)="displaySaveFiles()" id="startGameBtn">
+        Start Game
+      </button>
+    </div>
+    } @for (save of saveFiles(); track save.slot) { @if (saves === true) {
+
+    <button mat-button (click)="nameSaveFile()">
+      {{ save.slot }} {{ save.playerName }}
+    </button>
+    } }
+  </mat-card-content>
 </mat-card>
