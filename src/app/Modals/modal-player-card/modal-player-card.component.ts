@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -27,9 +27,30 @@ import { HelperService } from '../../Services/helper.service';
 })
 export class ModalPlayerCardComponent {
   constructor(private helperService: HelperService) {}
-  data = inject(MAT_DIALOG_DATA);
+  ngOnInit() {
+    this.sortBadges();
+  }
+  badges: { badgeId: number; badgeName: string; badgeImage: string }[] = [];
 
   username() {
     return this.helperService.activeSave()?.playerName ?? 'Someone';
+  }
+
+  sortBadges() {
+    this.helperService.playerBadges().forEach((eachBadge) => {
+      if (eachBadge.acquired === true) {
+        this.badges!.push({
+          badgeId: eachBadge.badgeId,
+          badgeName: eachBadge.badgeName,
+          badgeImage: eachBadge.badgeImage,
+        });
+      } else {
+        this.badges!.push({
+          badgeId: eachBadge.badgeId,
+          badgeName: eachBadge.badgeName,
+          badgeImage: eachBadge.badgeImageBlank,
+        });
+      }
+    });
   }
 }

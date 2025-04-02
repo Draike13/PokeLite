@@ -7,9 +7,13 @@
 
 .content {
   display: flex;
+  flex-direction: column;
+  align-content: space-between;
   overflow: hidden !important;
 }
-.fill {
+
+.badge {
   display: flex;
-  flex-grow: 1;
+  align-self: center;
+  justify-content: center;
 }

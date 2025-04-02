@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { PokemonService } from './pokemon.service';
 import { Pokemon } from '../Models/pokemon.model';
+import { Badge } from '../Models/badge.model';
 import { SaveService } from './save.service';
 import { SaveFile } from '../Models/save.model';
 
@@ -33,6 +34,7 @@ export class HelperService {
   playerName: WritableSignal<string> = signal('');
   pokemonBaseId: number = 0;
   activeSave: WritableSignal<SaveFile | null> = signal(null);
+  playerBadges: WritableSignal<Badge[]> = signal([]);
 
   bonusHealth: WritableSignal<number> = signal(0);
   damage: WritableSignal<number> = signal(0);
@@ -56,6 +58,7 @@ export class HelperService {
   updateStats = effect(() => {
     if (this.activePokemon()) {
       this.buildStats();
+      this.buildTrainerCard();
     }
   });
 
@@ -147,5 +150,8 @@ export class HelperService {
     const CurrentHealth = untracked(() => this.activePokemon()!.currentHealth);
     const damageTaken = this.damage();
     this.playerCurrentHealth.set(CurrentHealth - damageTaken);
+  }
+  buildTrainerCard() {
+    this.playerBadges.set(this.activeSave()!.badges);
   }
 }

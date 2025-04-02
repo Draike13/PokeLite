@@ -1,6 +1,11 @@
 <h2 class="title" mat-dialog-title>{{ username() }}'s Trainer Card</h2>
-<mat-dialog-content class="content"
-  ><div class="fill"></div>
+<mat-dialog-content class="content">
+  @for (badge of badges; track badge.badgeId){
+  <div class="badge">
+    <div>{{ badge.badgeImage }}</div>
+    <span>{{ badge.badgeName }}</span>
+  </div>
+  }
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button [mat-dialog-close]>Close Card</button>
