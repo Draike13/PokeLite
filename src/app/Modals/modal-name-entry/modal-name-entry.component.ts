@@ -46,6 +46,22 @@ export class ModalNameEntryComponent {
       this.helperService.activeSave()!.playerName = name;
       this.saveService.saveGame(this.helperService.activeSave()!);
     }
+    if (name.toLocaleLowerCase().trim() === 'draike') {
+      this.helperService.activeSave()!.pokemonData.filter((lockedPokemon) => {
+        if (lockedPokemon.locked === false) {
+          lockedPokemon.locked = true;
+          this.saveService.saveGame(this.helperService.activeSave()!);
+        }
+        if (
+          lockedPokemon.id === 7 ||
+          lockedPokemon.id === 8 ||
+          lockedPokemon.id === 9
+        ) {
+          lockedPokemon.locked = false;
+          this.saveService.saveGame(this.helperService.activeSave()!);
+        }
+      });
+    }
     this.dialogRef.close();
   }
 }
