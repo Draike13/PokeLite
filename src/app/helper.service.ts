@@ -38,6 +38,7 @@ export class HelperService {
   damage: WritableSignal<number> = signal(0);
   bonusAtk: WritableSignal<number> = signal(0);
   minusAtk: WritableSignal<number> = signal(0);
+  gainedLevels: WritableSignal<number> = signal(0);
 
   playerId: WritableSignal<number> = signal(0);
   playerPokemonName: WritableSignal<string> = signal('');
@@ -66,7 +67,8 @@ export class HelperService {
       this.pokemonBaseId === 3 ||
       this.pokemonBaseId === 4
     ) {
-      if (level !== null && evoLevel !== undefined && level === evoLevel) {
+      if (this.activePokemon() && level === evoLevel) {
+        this.gainedLevels.set(0);
         if (
           this.playerId() !==
           Number(`${this.pokemonBaseId} + ${this.pokemonBaseId}`)
@@ -91,7 +93,7 @@ export class HelperService {
     if (
       this.playerId() === Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
     ) {
-      if (level !== null && evoLevel !== null && level === evoLevel) {
+      if (this.activePokemon() && level === evoLevel) {
         if (
           this.playerId() !==
           Number(
@@ -132,7 +134,9 @@ export class HelperService {
     console.log(attackLoss);
     this.playerAttack.set(baseAttack + attackGain - attackLoss);
     this.playerMaxHealth.set(this.activePokemon()!.maxHealth);
-    this.playerLevel.set(this.activePokemon()!.level);
+    const currentLevel = untracked(() => this.activePokemon()!.level);
+    const gainedLevels = this.gainedLevels();
+    this.playerLevel.set(currentLevel + gainedLevels);
     this.playerPokemonName.set(this.activePokemon()!.name);
     this.playerImage.set(this.activePokemon()!.image);
     this.PlayerExp.set(this.activePokemon()!.experience);

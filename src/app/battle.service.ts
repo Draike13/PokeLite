@@ -28,12 +28,12 @@ export class BattleService {
   }
   recoverHealth() {
     this.helperService.damage.set(this.helperService.damage() - 5);
-    if (this.helperService.damage()! <= 0) {
+    if (this.helperService.damage() <= 0) {
       this.helperService.damage.set(0);
     }
   }
   gainLevel() {
     this.experience.set(0);
-    this.level.set(this.level()! + 1);
+    this.helperService.gainedLevels.set(this.helperService.gainedLevels() + 1);
   }
 }
