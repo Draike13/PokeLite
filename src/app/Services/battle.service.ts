@@ -6,18 +6,14 @@ import { HelperService } from './helper.service';
 })
 export class BattleService {
   constructor(private helperService: HelperService) {}
-  get experience() {
-    return this.helperService.PlayerExp;
-  }
-  get level() {
-    return this.helperService.playerLevel;
-  }
 
   giveExp() {
-    this.experience.set(this.experience() + 7);
-    if (this.experience() >= 100) {
-      this.level.set(this.level()! + 1);
-      this.experience.set(this.experience()! - 100);
+    this.helperService.gainedExp.set(this.helperService.gainedExp() + 7);
+    if (this.helperService.gainedExp() >= 100) {
+      this.helperService.gainedLevels.set(
+        this.helperService.gainedLevels()! + 1
+      );
+      this.helperService.PlayerExp.set(this.helperService.PlayerExp() - 100);
     }
   }
   takeDamage() {
@@ -33,7 +29,7 @@ export class BattleService {
     }
   }
   gainLevel() {
-    this.experience.set(0);
+    this.helperService.gainedExp.set(0);
     this.helperService.gainedLevels.set(this.helperService.gainedLevels() + 1);
   }
 }
