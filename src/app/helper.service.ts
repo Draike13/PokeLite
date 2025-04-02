@@ -124,11 +124,14 @@ export class HelperService {
 
   buildStats() {
     this.playerId.set(this.activePokemon()!.id);
-    const currentAttack = untracked(() => this.activePokemon()!.attack);
+    const baseAttack = untracked(() => this.activePokemon()!.attack);
+    console.log(baseAttack);
     const attackGain = this.bonusAtk();
-    this.playerAttack.set(currentAttack + attackGain);
+    console.log(attackGain);
+    const attackLoss = this.minusAtk();
+    console.log(attackLoss);
+    this.playerAttack.set(baseAttack + attackGain - attackLoss);
     this.playerMaxHealth.set(this.activePokemon()!.maxHealth);
-    console.log(this.playerMaxHealth());
     this.playerLevel.set(this.activePokemon()!.level);
     this.playerPokemonName.set(this.activePokemon()!.name);
     this.playerImage.set(this.activePokemon()!.image);
