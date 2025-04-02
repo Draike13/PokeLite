@@ -17,6 +17,7 @@ export class StatBoxLeftComponent {
   health: null | number = null;
 
   checkHealth = effect(() => {
-    if (this.helperService.activePokemon()) this.health = this.currentHealth();
+    if (this.helperService.activePokemon())
+      this.health = this.helperService.playerCurrentHealth();
   });
 }

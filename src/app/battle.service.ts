@@ -6,13 +6,6 @@ import { HelperService } from './helper.service';
 })
 export class BattleService {
   constructor(private helperService: HelperService) {}
-
-  get currentHealth() {
-    return this.helperService.playerCurrentHealth;
-  }
-  get maxHealth() {
-    return this.helperService.playerMaxHealth;
-  }
   get experience() {
     return this.helperService.PlayerExp;
   }
@@ -28,15 +21,15 @@ export class BattleService {
     }
   }
   takeDamage() {
-    this.currentHealth.set(this.currentHealth()! - 3);
-    if (this.currentHealth()! <= 0) {
-      this.currentHealth.set(0);
+    this.helperService.damage.set(this.helperService.damage() + 3);
+    if (this.helperService.damage() >= this.helperService.playerMaxHealth()) {
+      this.helperService.damage.set(this.helperService.playerMaxHealth());
     }
   }
   recoverHealth() {
-    this.currentHealth.set(this.currentHealth()! + 5);
-    if (this.currentHealth()! > this.maxHealth()) {
-      this.currentHealth.set(this.maxHealth());
+    this.helperService.damage.set(this.helperService.damage() - 5);
+    if (this.helperService.damage()! <= 0) {
+      this.helperService.damage.set(0);
     }
   }
   gainLevel() {

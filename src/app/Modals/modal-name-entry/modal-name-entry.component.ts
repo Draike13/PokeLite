@@ -35,8 +35,6 @@ import { SaveService } from '../../save.service';
 export class ModalNameEntryComponent {
   userName = '';
   constructor(
-    private pokemonService: PokemonService,
-    private specialService: SpecialService,
     private helperService: HelperService,
     private saveService: SaveService,
     private dialogRef: MatDialogRef<ModalNameEntryComponent>
