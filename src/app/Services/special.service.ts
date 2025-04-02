@@ -1,6 +1,6 @@
 import { effect, Injectable, signal, WritableSignal } from '@angular/core';
 import { HelperService } from './helper.service';
-import { Pokemon } from './pokemon.model';
+import { Pokemon } from '../Models/pokemon.model';
 import { SaveService } from './save.service';
 
 @Injectable({

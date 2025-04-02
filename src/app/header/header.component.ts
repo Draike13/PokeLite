@@ -3,8 +3,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { HelperService } from '../helper.service';
-import { Pokemon } from '../pokemon.model';
+import { HelperService } from '../Services/helper.service';
+import { Pokemon } from '../Models/pokemon.model';
 import {
   MatDialog,
   MatDialogModule,
@@ -13,7 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
 import { MatCardModule } from '@angular/material/card';
-import { SpecialService } from '../special.service';
+import { SpecialService } from '../Services/special.service';
 @Component({
   selector: 'app-header',
   imports: [

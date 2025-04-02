@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SaveFile } from './save.model';
+import { SaveFile } from '../Models/save.model';
 import { PokemonService } from './pokemon.service';
 
 @Injectable({

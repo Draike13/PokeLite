@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { HelperService } from '../helper.service';
-import { SaveService } from '../save.service';
+import { HelperService } from '../Services/helper.service';
+import { SaveService } from '../Services/save.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -20,8 +20,8 @@ import {
 } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../Modals/modal-name-entry/modal-name-entry.component';
 import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
-import { SaveFile } from '../save.model';
-import { Pokemon } from '../pokemon.model';
+import { SaveFile } from '../Models/save.model';
+import { Pokemon } from '../Models/pokemon.model';
 
 @Component({
   selector: 'app-content-box',

@@ -8,13 +8,13 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HelperService } from '../../helper.service';
-import { Pokemon } from '../../pokemon.model';
+import { HelperService } from '../../Services/helper.service';
+import { Pokemon } from '../../Models/pokemon.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { SpecialService } from '../../special.service';
-import { PokemonService } from '../../pokemon.service';
+import { SpecialService } from '../../Services/special.service';
+import { PokemonService } from '../../Services/pokemon.service';
 @Component({
   selector: 'app-modal-pokemon-select',
   imports: [

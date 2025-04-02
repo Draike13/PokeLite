@@ -7,9 +7,9 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { PokemonService } from './pokemon.service';
-import { Pokemon } from './pokemon.model';
+import { Pokemon } from '../Models/pokemon.model';
 import { SaveService } from './save.service';
-import { SaveFile } from './save.model';
+import { SaveFile } from '../Models/save.model';
 
 @Injectable({
   providedIn: 'root',

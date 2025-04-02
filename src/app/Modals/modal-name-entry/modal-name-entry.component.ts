@@ -8,13 +8,13 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HelperService } from '../../helper.service';
+import { HelperService } from '../../Services/helper.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { SpecialService } from '../../special.service';
-import { PokemonService } from '../../pokemon.service';
-import { SaveService } from '../../save.service';
+import { SpecialService } from '../../Services/special.service';
+import { PokemonService } from '../../Services/pokemon.service';
+import { SaveService } from '../../Services/save.service';
 
 @Component({
   selector: 'app-modal-name-entry',
