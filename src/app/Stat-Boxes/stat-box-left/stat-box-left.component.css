@@ -1,4 +1,6 @@
 .container {
+  padding-top: 0.5vh;
+  padding-left: 1rem;
   width: 16vw;
   height: 6vh;
   z-index: 25;
@@ -15,7 +17,7 @@
 }
 
 .stat {
-  margin-top: 2vh;
+  margin-top: 1.5vh;
   align-self: flex-end;
   font-size: 2rem;
   color: #ffabf3;

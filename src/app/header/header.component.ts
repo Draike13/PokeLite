@@ -14,6 +14,7 @@ import {
 import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
 import { MatCardModule } from '@angular/material/card';
 import { SpecialService } from '../Services/special.service';
+import { ModalPlayerCardComponent } from '../Modals/modal-player-card/modal-player-card.component';
 @Component({
   selector: 'app-header',
   imports: [
@@ -46,5 +47,20 @@ export class HeaderComponent {
 
   special() {
     this.specialService.unlockEevee();
+  }
+
+  openPlayerCard() {
+    this.dialog.open(ModalPlayerCardComponent, {
+      height: '32vh',
+      width: '64vw',
+      maxWidth: 'none',
+      position: {
+        top: '16vh',
+      },
+    });
+  }
+
+  reloadPage() {
+    window.location.reload();
   }
 }

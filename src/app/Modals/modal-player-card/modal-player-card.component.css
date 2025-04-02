@@ -1,0 +1,15 @@
+.title {
+  display: flex;
+  justify-content: center;
+  color: #ffabf3;
+  margin-bottom: 2.5rem;
+}
+
+.content {
+  display: flex;
+  overflow: hidden !important;
+}
+.fill {
+  display: flex;
+  flex-grow: 1;
+}
