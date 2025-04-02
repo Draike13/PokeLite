@@ -58,14 +58,17 @@ export class HelperService {
     }
   });
 
-  evolveStarter = effect(() => {
+  standardEvolution = effect(() => {
     const level = this.playerLevel();
     const evoLevel = this.playerEvolutionLevel();
     if (
       this.pokemonBaseId === 1 ||
       this.pokemonBaseId === 2 ||
       this.pokemonBaseId === 3 ||
-      this.pokemonBaseId === 4
+      this.pokemonBaseId === 4 ||
+      this.pokemonBaseId === 7 ||
+      this.pokemonBaseId === 8 ||
+      this.pokemonBaseId === 9
     ) {
       if (this.activePokemon() && level === evoLevel) {
         this.gainedLevels.set(0);
