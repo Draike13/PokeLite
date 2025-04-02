@@ -19,16 +19,19 @@ export class SaveService {
           slot: 1,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
+          badges: [],
         },
         {
           slot: 2,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
+          badges: [],
         },
         {
           slot: 3,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
+          badges: [],
         },
       ];
       localStorage.setItem(this.SAVE_KEY, JSON.stringify(defaultSaves));
