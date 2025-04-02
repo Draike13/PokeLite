@@ -1,6 +1,6 @@
 .container {
   width: 16vw;
-  height: 8vh;
+  height: 6vh;
   z-index: 25;
   border-radius: 0;
   border-top: solid 1px#ffabf3;
@@ -15,8 +15,9 @@
 }
 
 .stat {
-  margin-top: 1vh;
+  margin-top: 2vh;
   align-self: flex-end;
   font-size: 2rem;
   color: #ffabf3;
+  padding-bottom: 0;
 }

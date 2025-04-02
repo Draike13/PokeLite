@@ -1,21 +1,25 @@
 .container {
   width: 12vw;
-  height: 8vh;
+  height: 6vh;
   z-index: 25;
   display: flex;
   border-top: solid 1px#ffabf3;
   border-left: solid 1px#ffabf3;
   border-right: solid 1px #ffabf3;
   border-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .name {
   font-size: 2rem;
   color: #ffabf3;
+  align-self: center;
 }
 
 .stat {
-  margin-top: 1vh;
-  align-self: flex-end;
+  margin-top: 2vh;
+  align-self: center;
   font-size: 2rem;
   color: #ffabf3;
+  padding-bottom: 0;
 }
