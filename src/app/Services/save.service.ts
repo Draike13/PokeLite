@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SaveFile } from '../Models/save.model';
 import { PokemonService } from './pokemon.service';
+import { BadgesService } from './badges.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,10 @@ import { PokemonService } from './pokemon.service';
 export class SaveService {
   private readonly SAVE_KEY = 'gameSaves';
 
-  constructor(private pokemonService: PokemonService) {
+  constructor(
+    private pokemonService: PokemonService,
+    private badgesService: BadgesService
+  ) {
     this.initializeSaves();
   }
 
@@ -19,19 +23,19 @@ export class SaveService {
           slot: 1,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
-          badges: [],
+          badges: this.badgesService.badges(),
         },
         {
           slot: 2,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
-          badges: [],
+          badges: this.badgesService.badges(),
         },
         {
           slot: 3,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
-          badges: [],
+          badges: this.badgesService.badges(),
         },
       ];
       localStorage.setItem(this.SAVE_KEY, JSON.stringify(defaultSaves));
