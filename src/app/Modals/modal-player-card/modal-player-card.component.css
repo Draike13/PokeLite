@@ -6,14 +6,26 @@
 }
 
 .content {
+  padding-left: 14rem;
+  padding-right: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-content: space-between;
   overflow: hidden !important;
 }
 
 .badge {
+  margin: 1rem;
+  height: 105px;
   display: flex;
   align-self: center;
+  flex-direction: column;
   justify-content: center;
+}
+.badge-name {
+  color: #ffabf3;
+  margin-top: 1rem;
+  display: flex;
+  align-self: center;
 }

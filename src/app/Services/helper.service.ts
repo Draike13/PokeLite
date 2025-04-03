@@ -58,7 +58,6 @@ export class HelperService {
   updateStats = effect(() => {
     if (this.activePokemon()) {
       this.buildStats();
-      this.buildTrainerCard();
     }
   });
 

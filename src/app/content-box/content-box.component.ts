@@ -60,6 +60,7 @@ export class ContentBoxComponent {
   }
   handleSaveClick(save: SaveFile) {
     this.selectedSave?.set(save);
+    this.helperService.buildTrainerCard();
     if (save.playerName === 'New Game') {
       this.openNameModal();
     } else {

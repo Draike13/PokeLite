@@ -2,8 +2,8 @@
 <mat-dialog-content class="content">
   @for (badge of badges; track badge.badgeId){
   <div class="badge">
-    <div>{{ badge.badgeImage }}</div>
-    <span>{{ badge.badgeName }}</span>
+    <img src="{{ badge.badgeImage }}" alt="Test" />
+    <span class="badge-name">{{ badge.badgeName }}</span>
   </div>
   }
 </mat-dialog-content>
