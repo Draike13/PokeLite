@@ -1,4 +1,5 @@
 .main-content-container {
+  overflow: hidden;
   height: 24vh;
   margin: 0;
   border-radius: 0;
@@ -6,4 +7,23 @@
 
 .blurb {
   color: #ffabf3;
+}
+
+.tabs {
+  height: 100%;
+  overflow: hidden;
+}
+
+.content {
+  height: 100%;
+  overflow: hidden;
+}
+
+.holder {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
 }

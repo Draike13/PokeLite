@@ -1,5 +1,5 @@
 <mat-card class="main-content-container" appearance="outlined">
-  <mat-card-content>
+  <mat-card-content class="content">
     <!-- blurb view -->
     @if (currentView() === 'blurb') {
 
@@ -14,16 +14,21 @@
     }
     <!-- save file view -->
     @if (currentView() === 'saves') {
-    <mat-tab-group (selectedTabChange)="handleSaveClick($event.index)">
+    <mat-tab-group
+      class="tabs"
+      (selectedTabChange)="handleSaveClick($event.index)"
+    >
       @for (save of saveFiles(); track save.slot) {
-      <mat-tab class="mat-tab-body" [label]="save.playerName">
+      <mat-tab [label]="save.playerName">
         <!-- show pokemon list only on selected tab -->
-        @if(selectedSave()?.slot === save.slot){ @for (pokemon of pokemonList();
-        track pokemon.id) {
-        <button mat-button (click)="selectPokemon(pokemon)">
-          {{ pokemon.name }}
-        </button>
-        } }
+        <div class="holder">
+          @if(selectedSave()?.slot === save.slot){ @for (pokemon of
+          pokemonList(); track pokemon.id) {
+          <button mat-button (click)="selectPokemon(pokemon)">
+            {{ pokemon.name }}
+          </button>
+          } }
+        </div>
       </mat-tab>
       }
     </mat-tab-group>
