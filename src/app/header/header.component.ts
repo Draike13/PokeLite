@@ -51,10 +51,9 @@ export class HeaderComponent {
 
   openPlayerCard() {
     this.dialog.open(ModalPlayerCardComponent, {
-      height: '32vh',
-      width: '64vw',
-      maxWidth: '835px',
-      minWidth: '600px',
+      height: 'min(50vh, 800px)',
+      width: 'min(80vw, 700px)',
+      maxWidth: '700px',
       position: {
         top: '16vh',
       },

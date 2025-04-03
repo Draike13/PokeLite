@@ -10,3 +10,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #231c21;
 }
+
+::ng-deep .mat-dialog-container {
+  max-width: none !important;
+  overflow: hidden !important;
+}
