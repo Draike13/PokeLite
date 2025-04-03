@@ -7,5 +7,13 @@
     <button (click)="level()" mat-button>Level Up!</button>
     <button (click)="aquireStone()" mat-button>Get Stone!</button>
     <button (click)="megaEvolve()" mat-button>Mega Evolve!</button>
+    <input
+      matInput
+      [(ngModel)]="acquireBadgeNumber"
+      type="number"
+      name="badge"
+      id="badge"
+    />
+    <button (click)="gainBadge()" mat-button>Gain Badge</button>
   </mat-card-content>
 </mat-card>

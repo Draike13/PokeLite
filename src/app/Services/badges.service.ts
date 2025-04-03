@@ -44,8 +44,8 @@ export class BadgesService {
     {
       badgeId: 6,
       badgeName: 'Marsh',
-      badgeImage: 'assets/badges/Soul.png',
-      badgeImageBlank: 'assets/badges/Soul-blank.png',
+      badgeImage: 'assets/badges/Marsh.png',
+      badgeImageBlank: 'assets/badges/Marsh-blank.png',
       acquired: false,
     },
     {

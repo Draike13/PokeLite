@@ -4,10 +4,12 @@ import { MatCardModule } from '@angular/material/card';
 import { HelperService } from '../../Services/helper.service';
 import { BattleService } from '../../Services/battle.service';
 import { PokemonService } from '../../Services/pokemon.service';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-choice-box-center',
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, FormsModule, MatInputModule],
   templateUrl: './choice-box-center.component.html',
   styleUrl: './choice-box-center.component.css',
 })
@@ -61,6 +63,11 @@ export class ChoiceBoxCenterComponent {
         }
       });
     }
+  }
+  acquireBadgeNumber?: number;
+
+  gainBadge() {
+    this.battleService.gainBadge(this.acquireBadgeNumber!);
   }
 
   aquireStone() {
