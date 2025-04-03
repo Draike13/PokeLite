@@ -22,10 +22,12 @@ import { ModalNameEntryComponent } from '../Modals/modal-name-entry/modal-name-e
 import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
 import { SaveFile } from '../Models/save.model';
 import { Pokemon } from '../Models/pokemon.model';
+import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-content-box',
   imports: [
+    MatTabsModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
@@ -51,6 +53,10 @@ export class ContentBoxComponent {
     private helperService: HelperService
   ) {}
 
+  ngAfterViewInit() {
+    this.handleSaveClick(0);
+  }
+
   pokemonList() {
     return this.helperService.pokemonList();
   }
@@ -58,13 +64,13 @@ export class ContentBoxComponent {
   displaySaveFiles() {
     this.currentView.set('saves');
   }
-  handleSaveClick(save: SaveFile) {
-    this.selectedSave?.set(save);
-    this.helperService.buildTrainerCard();
-    if (save.playerName === 'New Game') {
+  handleSaveClick(event: number) {
+    const selectedSave = this.saveFiles()[event];
+    this.selectedSave?.set(selectedSave);
+    if (selectedSave.playerName === 'New Game') {
       this.openNameModal();
-    } else {
-      this.currentView.set('pokemonSelection');
+    } else if (selectedSave.playerName !== 'New Game') {
+      this.helperService.buildTrainerCard();
     }
   }
 

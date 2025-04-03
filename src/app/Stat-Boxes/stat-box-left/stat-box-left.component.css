@@ -23,3 +23,13 @@
   color: #ffabf3;
   padding-bottom: 0;
 }
+
+@media (max-width: 2800px) {
+  .health {
+    font-size: 1.5rem;
+  }
+  .stat {
+    font-size: 1.5rem;
+    margin-top: 0.5vh;
+  }
+}
