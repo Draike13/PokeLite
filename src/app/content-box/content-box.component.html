@@ -59,7 +59,10 @@
       </mat-tab>
       }
     </mat-tab-group>
-    } @if (currentView() === 'pokemonSelection') {
+    }
+
+    <!--pokemon selection view-->
+    @if (currentView() === 'pokemonSelection') {
     <div class="pokemon-selection-container">
       @for (pokemon of pokemonList(); track pokemon.id) {
       <button mat-button (click)="selectPokemon(pokemon)">
@@ -67,6 +70,26 @@
       </button>
       }
     </div>
+    }
+
+    <!-- path selection view -->
+    @if (currentView() === 'battleSelect') { @for (boss of sortBosses(); track
+    boss.difficulty) {
+    <button mat-button (click)="selectRoute(boss)">Brock Route</button>
+
+    } }
+    <!-- active battle path view -->
+    @if (currentView() === 'battlePath'){
+    <span>Brock: You'll never make it to me!</span>
+    <button (click)="increaseRouteCount()" mat-button>
+      Incease Route Count
+    </button>
+    }
+
+    <!-- boss battle view -->
+    @if (currentView() === 'pathBoss') {
+    <span>I cant beleive you made it! Prepare yourself</span>
+
     }
   </mat-card-content>
 </mat-card>

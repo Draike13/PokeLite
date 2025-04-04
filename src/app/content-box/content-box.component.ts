@@ -1,5 +1,6 @@
 import {
   Component,
+  effect,
   inject,
   signal,
   Signal,
@@ -24,6 +25,9 @@ import { SaveFile } from '../Models/save.model';
 import { Pokemon } from '../Models/pokemon.model';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { Rank } from '../Models/rank.model';
+import { Boss } from '../Models/boss.model';
+import { BossService } from '../Services/boss.service';
+import { EncounterService } from '../Services/encounter.service';
 
 @Component({
   selector: 'app-content-box',
@@ -41,18 +45,60 @@ import { Rank } from '../Models/rank.model';
 })
 export class ContentBoxComponent {
   currentView: WritableSignal<
-    'saves' | 'blurb' | 'nameEntry' | 'pokemonSelection'
+    | 'saves'
+    | 'blurb'
+    | 'nameEntry'
+    | 'pokemonSelection'
+    | 'battleSelect'
+    | 'battlePath'
+    | 'pathBoss'
   > = signal('blurb');
 
   get selectedSave() {
     return this.helperService.activeSave;
   }
 
+  sortBosses() {
+    return this.bossService.Bosses();
+  }
+
   constructor(
     private dialog: MatDialog,
     private saveService: SaveService,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private bossService: BossService,
+    private encounterService: EncounterService
   ) {}
+
+  routeCounter: WritableSignal<number> = signal(0);
+
+  activeCheck = effect(() => {
+    if (this.helperService.activePokemon()) {
+      this.currentView.set('battleSelect');
+    }
+  });
+
+  bossCheck = effect(() => {
+    if (this.encounterService.activeBoss()) {
+      this.currentView.set('battlePath');
+    }
+  });
+
+  routeCheck = effect(() => {
+    if (this.routeCounter() === 5) {
+      this.currentView.set('pathBoss');
+      this.routeCounter.set(0);
+      console.log(this.routeCounter());
+    }
+  });
+
+  increaseRouteCount() {
+    this.routeCounter.set(this.routeCounter() + 1);
+  }
+
+  selectRoute(boss: Boss) {
+    this.encounterService.setBoss(boss);
+  }
 
   pokemonList() {
     return this.helperService.pokemonList();
