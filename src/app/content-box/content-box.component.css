@@ -34,6 +34,7 @@ mat-card-content {
 
 /* Main tab container */
 .tab-main {
+  margin-top: 1rem;
   border: solid 2px #ffabf3;
   border-radius: 10px;
   display: flex;
@@ -43,6 +44,7 @@ mat-card-content {
   height: 16vh;
   aspect-ratio: 4/1;
   overflow: hidden;
+  padding-bottom: 1rem;
 }
 
 /* Pokémon List (Top) */
@@ -50,9 +52,11 @@ mat-card-content {
   font-size: 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: flex-start;
   gap: 2rem;
   width: 100%;
+  padding-left: 2rem;
+  padding-top: 2rem;
 }
 
 /* Badges (Bottom Left) */
@@ -73,6 +77,7 @@ mat-card-content {
 
 /* Start Button (Bottom Right) */
 .start-button {
+  font-size: 1.5rem;
   position: absolute;
   bottom: 8px;
   right: 8px;
@@ -91,7 +96,7 @@ mat-card-content {
   overflow: hidden;
   max-width: 80%;
   display: grid;
-  align-self: center;
+  align-self: flex-start;
   grid-template-columns: repeat(8, minmax(60px, 1fr));
   gap: 8px;
   padding-left: 2rem;
@@ -101,6 +106,7 @@ mat-card-content {
   aspect-ratio: 1/1;
 }
 .rank-img {
+  margin: 1rem;
   width: 60px;
   aspect-ratio: 1/1;
 }
