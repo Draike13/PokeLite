@@ -125,4 +125,8 @@ export class ContentBoxComponent {
     });
     return badges;
   }
+
+  displayPokemonList() {
+    this.currentView.set('pokemonSelection')
+  }
 }
