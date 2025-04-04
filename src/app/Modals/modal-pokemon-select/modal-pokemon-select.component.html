@@ -7,5 +7,7 @@
   <button (click)="refusal(data.pokemon)" mat-button [mat-dialog-close]>
     {{ refusalText }}
   </button>
-  <button (click)="startGame(data.pokemon)" mat-button>Let's Go!</button>
+  <button cdkFocusInitial (click)="startGame(data.pokemon)" mat-button>
+    Let's Go!
+  </button>
 </mat-dialog-actions>

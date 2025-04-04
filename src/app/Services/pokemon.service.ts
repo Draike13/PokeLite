@@ -16,7 +16,7 @@ export class PokemonService {
       level: 1,
       experience: 0,
       evolutionLevel: 9,
-      image: 'assets/Bulbasaur.png',
+      image: 'assets/player-pokemon/Bulbasaur.png',
       locked: false,
     },
     {
@@ -29,7 +29,7 @@ export class PokemonService {
       level: 9,
       experience: 0,
       evolutionLevel: 20,
-      image: 'assets/Ivysaur.png',
+      image: 'assets/player-pokemon/Ivysaur.png',
       locked: true,
     },
     {
@@ -41,7 +41,7 @@ export class PokemonService {
       attack: 17,
       level: 20,
       experience: 0,
-      image: 'assets/Venusaur.jpg',
+      image: 'assets/player-pokemon/Venusaur.jpg',
       locked: true,
     },
     {
@@ -53,7 +53,7 @@ export class PokemonService {
       attack: 30,
       level: 9,
       experience: 0,
-      image: 'assets/MegaVenusaur.jpg',
+      image: 'assets/player-pokemon/MegaVenusaur.jpg',
       locked: true,
     },
     {
@@ -66,7 +66,7 @@ export class PokemonService {
       level: 1,
       experience: 0,
       evolutionLevel: 9,
-      image: 'assets/Charmander.jpg',
+      image: 'assets/player-pokemon/Charmander.jpg',
       locked: false,
     },
     {
@@ -79,7 +79,7 @@ export class PokemonService {
       level: 9,
       experience: 0,
       evolutionLevel: 20,
-      image: 'assets/Charmeleon.jpg',
+      image: 'assets/player-pokemon/Charmeleon.jpg',
       locked: true,
     },
     {
@@ -91,7 +91,7 @@ export class PokemonService {
       attack: 20,
       level: 20,
       experience: 0,
-      image: 'assets/Charizard.jpg',
+      image: 'assets/player-pokemon/Charizard.jpg',
       locked: true,
     },
     {
@@ -103,7 +103,7 @@ export class PokemonService {
       attack: 40,
       level: 0,
       experience: 0,
-      image: 'assets/MegaCharizard.png',
+      image: 'assets/player-pokemon/MegaCharizard.png',
       locked: true,
     },
     {
@@ -116,7 +116,7 @@ export class PokemonService {
       level: 1,
       experience: 0,
       evolutionLevel: 9,
-      image: 'assets/Squirtle.jpg',
+      image: 'assets/player-pokemon/Squirtle.jpg',
       locked: false,
     },
     {
@@ -129,7 +129,7 @@ export class PokemonService {
       level: 9,
       experience: 0,
       evolutionLevel: 20,
-      image: 'assets/Wartortle.jpg',
+      image: 'assets/player-pokemon/Wartortle.jpg',
       locked: true,
     },
     {
@@ -141,7 +141,7 @@ export class PokemonService {
       attack: 25,
       level: 20,
       experience: 0,
-      image: 'assets/Blastoise.jpg',
+      image: 'assets/player-pokemon/Blastoise.jpg',
       locked: true,
     },
     {
@@ -153,7 +153,7 @@ export class PokemonService {
       attack: 50,
       level: 0,
       experience: 0,
-      image: 'assets/MegaBlastoise.jpg',
+      image: 'assets/player-pokemon/MegaBlastoise.jpg',
       locked: true,
     },
     {
@@ -166,7 +166,7 @@ export class PokemonService {
       level: 1,
       experience: 0,
       evolutionLevel: 12,
-      image: 'assets/Pikachu.png',
+      image: 'assets/player-pokemon/Pikachu.png',
       locked: true,
     },
     {
@@ -178,7 +178,7 @@ export class PokemonService {
       attack: 30,
       level: 12,
       experience: 0,
-      image: 'assets/Raichu.jpg',
+      image: 'assets/player-pokemon/Raichu.jpg',
       locked: true,
     },
     {
@@ -190,7 +190,7 @@ export class PokemonService {
       attack: 10,
       level: 1,
       experience: 0,
-      image: 'assets/Eevee.png',
+      image: 'assets/player-pokemon/Eevee.png',
       locked: true,
     },
     // {
@@ -202,7 +202,7 @@ export class PokemonService {
     //   attack: 10,
     //   level: 1,
     //   experience: 0,
-    //   image: 'assets/Eevee.png',
+    //   image: 'assets/player-pokemon/Eevee.png',
     //   locked: true,
     // },
     {
@@ -215,7 +215,7 @@ export class PokemonService {
       level: 1,
       evolutionLevel: 18,
       experience: 0,
-      image: 'assets/Articuno.jpg',
+      image: 'assets/player-pokemon/Articuno.jpg',
       locked: true,
     },
     {
@@ -228,7 +228,7 @@ export class PokemonService {
       level: 1,
       experience: 0,
       evolutionLevel: 18,
-      image: 'assets/Zapdos.jpg',
+      image: 'assets/player-pokemon/Zapdos.jpg',
       locked: true,
     },
     {
@@ -241,7 +241,7 @@ export class PokemonService {
       level: 1,
       evolutionLevel: 18,
       experience: 0,
-      image: 'assets/Moltres.jpg',
+      image: 'assets/player-pokemon/Moltres.jpg',
       locked: true,
     },
   ]);
