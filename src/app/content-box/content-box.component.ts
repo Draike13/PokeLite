@@ -86,9 +86,11 @@ export class ContentBoxComponent {
 
   routeCheck = effect(() => {
     if (this.routeCounter() === 5) {
-      this.currentView.set('pathBoss');
+      this.encounterService.bossBattleStart.set(true);
       this.routeCounter.set(0);
-      console.log(this.routeCounter());
+      if (this.encounterService.bossBattleStart() === true) {
+        this.currentView.set('pathBoss');
+      }
     }
   });
 

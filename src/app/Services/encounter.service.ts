@@ -8,6 +8,8 @@ import { Boss } from '../Models/boss.model';
 export class EncounterService {
   constructor(private bossService: BossService) {}
 
+  bossBattleStart: WritableSignal<boolean> = signal(false);
+
   activeBoss: WritableSignal<Boss | null> = signal(null);
 
   setBoss(boss: Boss) {
