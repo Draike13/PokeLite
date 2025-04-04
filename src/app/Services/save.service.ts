@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SaveFile } from '../Models/save.model';
 import { PokemonService } from './pokemon.service';
 import { BadgesService } from './badges.service';
+import { RankService } from './rank.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class SaveService {
 
   constructor(
     private pokemonService: PokemonService,
-    private badgesService: BadgesService
+    private badgesService: BadgesService,
+    private rankService: RankService
   ) {
     this.initializeSaves();
   }
@@ -24,21 +26,21 @@ export class SaveService {
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
           badges: this.badgesService.badges(),
-          rank: 'assets/ranks/Pokeball-white.png',
+          rank: this.rankService.ranks(),
         },
         {
           slot: 2,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
           badges: this.badgesService.badges(),
-          rank: 'assets/ranks/Pokeball-white.png',
+          rank: this.rankService.ranks(),
         },
         {
           slot: 3,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
           badges: this.badgesService.badges(),
-          rank: 'assets/ranks/Pokeball-white.png',
+          rank: this.rankService.ranks(),
         },
       ];
       localStorage.setItem(this.SAVE_KEY, JSON.stringify(defaultSaves));
@@ -59,4 +61,5 @@ export class SaveService {
   previewPokemonList(save: SaveFile) {
     return save.pokemonData.filter((eachPokemon) => !eachPokemon.locked);
   }
+  
 }

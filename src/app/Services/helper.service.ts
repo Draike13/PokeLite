@@ -11,6 +11,7 @@ import { Pokemon } from '../Models/pokemon.model';
 import { Badge } from '../Models/badge.model';
 import { SaveService } from './save.service';
 import { SaveFile } from '../Models/save.model';
+import { Rank } from '../Models/rank.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class HelperService {
   pokemonBaseId: number = 0;
   activeSave: WritableSignal<SaveFile | null> = signal(null);
   playerBadges: WritableSignal<Badge[]> = signal([]);
-  playerRank: WritableSignal<string> = signal('');
+  playerRank: WritableSignal<Rank[]> = signal([]);
 
   bonusHealth: WritableSignal<number> = signal(0);
   damage: WritableSignal<number> = signal(0);

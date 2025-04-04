@@ -23,6 +23,7 @@ import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/moda
 import { SaveFile } from '../Models/save.model';
 import { Pokemon } from '../Models/pokemon.model';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { Rank } from '../Models/rank.model';
 
 @Component({
   selector: 'app-content-box',
@@ -104,6 +105,15 @@ export class ContentBoxComponent {
   previewPokeList(save: SaveFile) {
     return this.saveService.previewPokemonList(save);
   }
+  previewRank(save: SaveFile) {
+    let currentRank: Rank;
+    save.rank.forEach((eachRank) => {
+      if (eachRank.current === true) {
+        currentRank = eachRank;
+      }
+    });
+    return currentRank!.rankImage;
+  }
 
   sortBadges(save: SaveFile) {
     let badges: { badgeId: number; badgeName: string; badgeImage: string }[] =
@@ -127,6 +137,6 @@ export class ContentBoxComponent {
   }
 
   displayPokemonList() {
-    this.currentView.set('pokemonSelection')
+    this.currentView.set('pokemonSelection');
   }
 }

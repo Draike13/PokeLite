@@ -73,4 +73,8 @@ export class ChoiceBoxCenterComponent {
   aquireStone() {
     return (this.megaStone = true);
   }
+
+  goUpRank() {
+    return this.battleService.increaseRank();
+  }
 }

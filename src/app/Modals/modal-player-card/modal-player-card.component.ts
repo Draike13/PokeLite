@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { HelperService } from '../../Services/helper.service';
+import { Rank } from '../../Models/rank.model';
 
 @Component({
   selector: 'app-modal-player-card',
@@ -36,8 +37,14 @@ export class ModalPlayerCardComponent {
     return this.helperService.activeSave()?.playerName ?? 'Someone';
   }
 
-  rank(){
-    return this.helperService.playerRank()
+  rank() {
+    let currentRank: Rank;
+    this.helperService.playerRank().forEach((activeRank) => {
+      if (activeRank.current === true) {
+        currentRank = activeRank;
+      }
+    });
+    return currentRank!.rankImage;
   }
   sortBadges() {
     this.helperService.playerBadges().forEach((eachBadge) => {

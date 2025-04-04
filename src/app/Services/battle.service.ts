@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HelperService } from './helper.service';
 import { SaveService } from './save.service';
+import { RankService } from './rank.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,8 @@ import { SaveService } from './save.service';
 export class BattleService {
   constructor(
     private helperService: HelperService,
-    private saveService: SaveService
+    private saveService: SaveService,
+    private rankService: RankService
   ) {}
 
   giveExp() {
@@ -39,5 +41,24 @@ export class BattleService {
   gainBadge(badge: number) {
     this.helperService.playerBadges()[badge].acquired = true;
     this.saveService.saveGame(this.helperService.activeSave()!);
+  }
+
+  increaseRank() {
+    let currentRankId: number;
+    this.helperService.activeSave()!.rank.forEach((currentRank) => {
+      if (currentRank.rankId <= 4) {
+        if (currentRank.current === true) {
+          currentRankId = currentRank.rankId;
+        }
+        if (currentRankId < 4) {
+          currentRank.current = false;
+          this.saveService.saveGame(this.helperService.activeSave()!);
+          if (currentRank.rankId === currentRankId + 1) {
+            currentRank.current = true;
+            this.saveService.saveGame(this.helperService.activeSave()!);
+          }
+        }
+      }
+    });
   }
 }
