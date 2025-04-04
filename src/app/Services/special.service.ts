@@ -19,7 +19,6 @@ export class SpecialService {
     if (this.bRefusal()) count++;
     if (this.sRefusal()) count++;
     this.refusalCount.set(count);
-    console.log(this.refusalCount());
   });
 
   cRefusal: WritableSignal<boolean> = signal(false);

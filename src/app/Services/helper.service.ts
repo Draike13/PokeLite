@@ -35,6 +35,7 @@ export class HelperService {
   pokemonBaseId: number = 0;
   activeSave: WritableSignal<SaveFile | null> = signal(null);
   playerBadges: WritableSignal<Badge[]> = signal([]);
+  playerRank: WritableSignal<string> = signal('');
 
   bonusHealth: WritableSignal<number> = signal(0);
   damage: WritableSignal<number> = signal(0);
@@ -150,7 +151,9 @@ export class HelperService {
     const damageTaken = this.damage();
     this.playerCurrentHealth.set(CurrentHealth - damageTaken);
   }
+
   buildTrainerCard() {
     this.playerBadges.set(this.activeSave()!.badges);
+    this.playerRank.set(this.activeSave()!.rank);
   }
 }

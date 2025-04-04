@@ -24,18 +24,21 @@ export class SaveService {
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
           badges: this.badgesService.badges(),
+          rank: 'assets/ranks/Pokeball-white.png',
         },
         {
           slot: 2,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
           badges: this.badgesService.badges(),
+          rank: 'assets/ranks/Pokeball-white.png',
         },
         {
           slot: 3,
           playerName: 'New Game',
           pokemonData: this.pokemonService.pokemon(),
           badges: this.badgesService.badges(),
+          rank: 'assets/ranks/Pokeball-white.png',
         },
       ];
       localStorage.setItem(this.SAVE_KEY, JSON.stringify(defaultSaves));
@@ -51,5 +54,9 @@ export class SaveService {
     storedSaves[updatedSave.slot - 1] = updatedSave;
 
     localStorage.setItem(this.SAVE_KEY, JSON.stringify(storedSaves));
+  }
+
+  previewPokemonList(save: SaveFile) {
+    return save.pokemonData.filter((eachPokemon) => !eachPokemon.locked);
   }
 }

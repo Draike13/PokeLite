@@ -36,6 +36,9 @@ export class ModalPlayerCardComponent {
     return this.helperService.activeSave()?.playerName ?? 'Someone';
   }
 
+  rank(){
+    return this.helperService.playerRank()
+  }
   sortBadges() {
     this.helperService.playerBadges().forEach((eachBadge) => {
       if (eachBadge.acquired === true) {

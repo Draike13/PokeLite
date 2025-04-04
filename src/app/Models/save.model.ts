@@ -6,4 +6,5 @@ export interface SaveFile {
   playerName: string;
   pokemonData: Pokemon[];
   badges: Badge[];
+  rank: string;
 }

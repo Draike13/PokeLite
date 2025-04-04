@@ -53,10 +53,6 @@ export class ContentBoxComponent {
     private helperService: HelperService
   ) {}
 
-  ngAfterViewInit() {
-    this.handleSaveClick(0);
-  }
-
   pokemonList() {
     return this.helperService.pokemonList();
   }
@@ -64,12 +60,11 @@ export class ContentBoxComponent {
   displaySaveFiles() {
     this.currentView.set('saves');
   }
-  handleSaveClick(event: number) {
-    const selectedSave = this.saveFiles()[event];
-    this.selectedSave?.set(selectedSave);
-    if (selectedSave.playerName === 'New Game') {
+  handleSaveClick(save: SaveFile) {
+    this.helperService.activeSave.set(save);
+    if (this.helperService.activeSave()!.playerName === 'New Game') {
       this.openNameModal();
-    } else if (selectedSave.playerName !== 'New Game') {
+    } else if (this.helperService.activeSave()!.playerName !== 'New Game') {
       this.helperService.buildTrainerCard();
     }
   }
@@ -104,5 +99,30 @@ export class ContentBoxComponent {
         top: '8vh',
       },
     });
+  }
+
+  previewPokeList(save: SaveFile) {
+    return this.saveService.previewPokemonList(save);
+  }
+
+  sortBadges(save: SaveFile) {
+    let badges: { badgeId: number; badgeName: string; badgeImage: string }[] =
+      [];
+    save.badges.forEach((eachBadge) => {
+      if (eachBadge.acquired === true) {
+        badges!.push({
+          badgeId: eachBadge.badgeId,
+          badgeName: eachBadge.badgeName,
+          badgeImage: eachBadge.badgeImage,
+        });
+      } else {
+        badges!.push({
+          badgeId: eachBadge.badgeId,
+          badgeName: eachBadge.badgeName,
+          badgeImage: eachBadge.badgeImageBlank,
+        });
+      }
+    });
+    return badges;
   }
 }

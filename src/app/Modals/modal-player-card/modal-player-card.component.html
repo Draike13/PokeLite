@@ -1,6 +1,6 @@
 <h2 class="title" mat-dialog-title>{{ username() }}'s Trainer Card</h2>
 <mat-dialog-content class="content">
-  <div class="rank">show rank</div>
+  <div class="rank"><img src="{{ rank() }}" alt="" /></div>
   <div class="badges-container">
     @for (badge of badges; track badge.badgeId){
     <div class="badge-holder">

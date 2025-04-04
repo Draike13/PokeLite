@@ -4,6 +4,9 @@
   margin: 0;
   border-radius: 0;
 }
+mat-card-content {
+  overflow: hidden !important;
+}
 
 .blurb {
   color: #ffabf3;
@@ -13,17 +16,97 @@
   height: 100%;
   overflow: hidden;
 }
-
-.content {
+.each-tab {
   height: 100%;
   overflow: hidden;
 }
 
-.holder {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-  align-items: center;
+.content {
   height: 100%;
   overflow: hidden;
+  color: #ffabf3;
+}
+
+.name-holder {
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Main tab container */
+.tab-main {
+  border: solid 2px #ffabf3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: center;
+  position: relative;
+  height: 16vh;
+  aspect-ratio: 5/1;
+  overflow: hidden;
+}
+
+/* Pokémon List (Top) */
+.pokemon-container {
+  font-size: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Badges (Bottom Left) */
+.badge-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  gap: 6px;
+  justify-content: flex-start;
+  width: 70%;
+}
+
+/* Top Right Icon */
+.top-right-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+/* Start Button (Bottom Right) */
+.start-button {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.badge {
+  width: 100%;
+  max-width: 60px;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.badges-holder {
+  overflow: hidden;
+  max-width: 80%;
+  display: grid;
+  align-self: center;
+  grid-template-columns: repeat(8, minmax(60px, 1fr));
+  gap: 8px;
+  padding-left: 2rem;
+}
+.badge-img {
+  max-width: 60px;
+  aspect-ratio: 1/1;
+}
+.rank-img {
+  width: 60px;
+  aspect-ratio: 1/1;
+}
+.spacer {
+  background-color: blue;
+  display: flex;
+  width: 4vw;
 }
