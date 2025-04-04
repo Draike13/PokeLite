@@ -14,46 +14,47 @@
     }
     <!-- save file view -->
     @if (currentView() === 'saves') {
+
     <mat-tab-group class="tabs">
       @for (save of saveFiles(); track save.slot) {
       <mat-tab class="each-tab" [label]="save.playerName">
-        <div class="spacer"></div>
-        <div class="tab-main">
-          <!-- Top Right Icon -->
-          <div class="top-right-icon">
-            <img class="rank-img" src="{{ save.rank }}" alt="" />
-          </div>
-
-          <!-- Pokémon List -->
-          <div class="pokemon-container">
-            @for (pokemon of previewPokeList(save); track pokemon.id) {
-            <div class="name-holder">
-              {{ pokemon.name }}
+        <div class="fixer">
+          <div class="tab-main">
+            <!-- Top Right Icon -->
+            <div class="top-right-icon">
+              <img class="rank-img" src="{{ save.rank }}" alt="" />
             </div>
-            }
-          </div>
 
-          <!-- Badges -->
-          <div class="badges-holder">
-            @for (badge of sortBadges(save); track badge.badgeId) {
-            <div class="badge-container">
-              <div class="badge">
-                <img class="badge-img" src="{{ badge.badgeImage }}" />
+            <!-- Pokémon List -->
+            <div class="pokemon-container">
+              @for (pokemon of previewPokeList(save); track pokemon.id) {
+              <div class="name-holder">
+                {{ pokemon.name }}
               </div>
+              }
             </div>
-            }
-          </div>
 
-          <!-- Launch Button -->
-          <button
-            class="start-button"
-            mat-button
-            (click)="handleSaveClick(save)"
-          >
-            Launch Save File
-          </button>
+            <!-- Badges -->
+            <div class="badges-holder">
+              @for (badge of sortBadges(save); track badge.badgeId) {
+              <div class="badge-container">
+                <div class="badge">
+                  <img class="badge-img" src="{{ badge.badgeImage }}" />
+                </div>
+              </div>
+              }
+            </div>
+
+            <!-- Launch Button -->
+            <button
+              class="start-button"
+              mat-button
+              (click)="handleSaveClick(save)"
+            >
+              Launch Save File
+            </button>
+          </div>
         </div>
-        <div class="spacer"></div>
       </mat-tab>
       }
     </mat-tab-group>
