@@ -20,13 +20,18 @@
       <mat-tab class="each-tab" [label]="save.playerName">
         <div class="fixer">
           <div class="tab-main">
-            <!-- Top Right Icon -->
-
+            @if (save.playerName !== 'New Game') {
+            <!-- rank icon -->
             <div class="top-right-icon">
               <img class="rank-img" src="{{ previewRank(save) }}" alt="" />
             </div>
-
-            <!-- Pokémon List -->
+            } @else {
+            <div class="top-right-icon">
+              <img class="rank-img" src="{{ pokeballBlank }}" alt="" />
+            </div>
+            }
+            <!-- pokemon names container -->
+            @if (save.playerName !== 'New Game') {
             <div class="pokemon-container">
               @for (pokemon of previewPokeList(save); track pokemon.id) {
               <div class="name-holder">
@@ -34,8 +39,12 @@
               </div>
               }
             </div>
-
-            <!-- Badges -->
+            } @else {
+            <div class="pokemon-container">
+              <div class="name-holder">Begin a brand new Pokemon journey?</div>
+            </div>
+            }
+            <!-- badges -->
             <div class="badges-holder">
               @for (badge of sortBadges(save); track badge.badgeId) {
               <div class="badge-container">
@@ -45,8 +54,8 @@
               </div>
               }
             </div>
-
-            <!-- Launch Button -->
+            <!-- game button -->
+            @if (save.playerName !== 'New Game'){
             <button
               class="start-button"
               mat-button
@@ -54,6 +63,15 @@
             >
               Launch Save File
             </button>
+            } @else {
+            <button
+              class="start-button"
+              mat-button
+              (click)="handleSaveClick(save)"
+            >
+              Start New Game
+            </button>
+            }
           </div>
         </div>
       </mat-tab>
@@ -63,13 +81,19 @@
 
     <!--pokemon selection view-->
     @if (currentView() === 'pokemonSelection') {
-    <div class="pokemon-selection-container">
+    <app-pokemon-carousel></app-pokemon-carousel>
+
+    <!-- <div class="pokemon-selection-container">
       @for (pokemon of pokemonList(); track pokemon.id) {
-      <button mat-button (click)="selectPokemon(pokemon)">
+      <button
+        class="pokemon-button"
+        mat-button
+        (click)="selectPokemon(pokemon)"
+      >
         {{ pokemon.name }}
       </button>
       }
-    </div>
+    </div> -->
     }
 
     <!-- path selection view -->

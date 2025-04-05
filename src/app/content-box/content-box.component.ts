@@ -28,6 +28,7 @@ import { Rank } from '../Models/rank.model';
 import { Boss } from '../Models/boss.model';
 import { BossService } from '../Services/boss.service';
 import { EncounterService } from '../Services/encounter.service';
+import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.component';
 
 @Component({
   selector: 'app-content-box',
@@ -39,11 +40,13 @@ import { EncounterService } from '../Services/encounter.service';
     MatButtonModule,
     MatDialogModule,
     MatCardModule,
+    PokemonCarouselComponent,
   ],
   templateUrl: './content-box.component.html',
   styleUrl: './content-box.component.css',
 })
 export class ContentBoxComponent {
+  pokeballBlank = 'assets/ranks/Pokeball-blank.png';
   currentView: WritableSignal<
     | 'saves'
     | 'blurb'
@@ -134,21 +137,21 @@ export class ContentBoxComponent {
     dialogRef.afterClosed().subscribe((result: string) => {
       if (result) {
         this.selectedSave()!.playerName = result;
-        this.currentView.set('pokemonSelection');
+        this.currentView.set('saves');
       }
     });
   }
 
-  selectPokemon(selectedPokemon: Pokemon) {
-    this.dialog.open(ModalPokemonSelectComponent, {
-      data: { pokemon: selectedPokemon },
-      height: '24vh',
-      width: '48vw',
-      position: {
-        top: '8vh',
-      },
-    });
-  }
+  // selectPokemon(selectedPokemon: Pokemon) {
+  //   this.dialog.open(ModalPokemonSelectComponent, {
+  //     data: { pokemon: selectedPokemon },
+  //     height: '24vh',
+  //     width: '48vw',
+  //     position: {
+  //       top: '8vh',
+  //     },
+  //   });
+  // }
 
   previewPokeList(save: SaveFile) {
     return this.saveService.previewPokemonList(save);
