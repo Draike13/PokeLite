@@ -62,7 +62,7 @@ export class BossService {
         },
       ],
       hiddenItems: ['', ''],
-      heldBadgeId: 1,
+      heldBadgeIndex: 0,
       image: 'assets/bosses/trainers/Brock.jpg',
     },
   ]);

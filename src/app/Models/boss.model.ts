@@ -6,6 +6,6 @@ export interface Boss {
   bossName: string;
   pokemon: Pokemon[];
   hiddenItems: string[];
-  heldBadgeId: number;
+  heldBadgeIndex: number;
   image: string;
 }

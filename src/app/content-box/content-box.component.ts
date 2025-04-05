@@ -51,7 +51,7 @@ export class ContentBoxComponent {
   }
   get bossBadgeImage() {
     return this.helperService.activeSave()!.badges[
-      this.encounterService.activeBoss()!.heldBadgeId - 1
+      this.encounterService.activeBoss()!.heldBadgeIndex
     ].badgeImage;
   }
   pokeballBlank = 'assets/ranks/Pokeball-blank.png';
