@@ -112,7 +112,19 @@
 
     <!-- boss battle view -->
     @if (currentView() === 'pathBoss') {
-    <span>I cant beleive you made it! Prepare yourself</span>
+    <div class="boss-container">
+      <div class="chat-container">
+        <span class="boss-text"
+          >I cant beleive you made it! Prepare yourself</span
+        >
+      </div>
+      <div class="boss-image-container">
+        <img class="boss-image" src="{{ bossImage }}" alt="" />
+      </div>
+      <div class="boss-badge-container">
+        <img class="boss-badge" src="{{ bossBadgeImage }}" alt="" />
+      </div>
+    </div>
 
     }
   </mat-card-content>

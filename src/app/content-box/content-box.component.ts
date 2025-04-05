@@ -46,6 +46,14 @@ import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.c
   styleUrl: './content-box.component.css',
 })
 export class ContentBoxComponent {
+  get bossImage() {
+    return this.encounterService.activeBoss()!.image;
+  }
+  get bossBadgeImage() {
+    return this.helperService.activeSave()!.badges[
+      this.encounterService.activeBoss()!.heldBadgeId - 1
+    ].badgeImage;
+  }
   pokeballBlank = 'assets/ranks/Pokeball-blank.png';
   currentView: WritableSignal<
     | 'saves'
