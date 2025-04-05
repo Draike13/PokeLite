@@ -45,6 +45,7 @@ export class ChoiceBoxRightComponent {
     if (this.bossCurrentHealth() === 0) {
       this.activePokemon.set(null);
       this.currentView.set('empty');
+      this.encounterService.victoryRight.set(true);
     }
   });
 
