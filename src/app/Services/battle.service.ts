@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HelperService } from './helper.service';
 import { SaveService } from './save.service';
-import { RankService } from './rank.service';
+import { RankService } from '../Data/rank.service';
 
 @Injectable({
   providedIn: 'root',

@@ -3,12 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HelperService } from '../../Services/helper.service';
 import { BattleService } from '../../Services/battle.service';
-import { PokemonService } from '../../Services/pokemon.service';
+import { PokemonService } from '../../Data/pokemon.service';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { EncounterService } from '../../Services/encounter.service';
 import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
+import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 
 @Component({
   selector: 'app-choice-box-center',
@@ -27,7 +28,8 @@ export class ChoiceBoxCenterComponent {
     private helperService: HelperService,
     private battleService: BattleService,
     private pokemonService: PokemonService,
-    private encounterService: EncounterService
+    private encounterService: EncounterService,
+    private bossEncounterPokemonService: BossEncounterPokemonService
   ) {}
 
   megaStone: boolean = false;

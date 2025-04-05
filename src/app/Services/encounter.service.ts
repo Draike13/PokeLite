@@ -1,8 +1,9 @@
 import { effect, Injectable, signal, WritableSignal } from '@angular/core';
-import { BossService } from './boss.service';
+import { BossService } from '../Data/boss.service';
 import { Boss } from '../Models/boss.model';
 import { HelperService } from './helper.service';
 import { BattleService } from './battle.service';
+import { BossEncounterPokemonService } from './boss-encounter-pokemon.service';
 
 @Injectable({
   providedIn: 'root',

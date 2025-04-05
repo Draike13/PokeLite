@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SaveFile } from '../Models/save.model';
-import { PokemonService } from './pokemon.service';
-import { BadgesService } from './badges.service';
-import { RankService } from './rank.service';
+import { PokemonService } from '../Data/pokemon.service';
+import { BadgesService } from '../Data/badges.service';
+import { RankService } from '../Data/rank.service';
 
 @Injectable({
   providedIn: 'root',
@@ -61,5 +61,4 @@ export class SaveService {
   previewPokemonList(save: SaveFile) {
     return save.pokemonData.filter((eachPokemon) => !eachPokemon.locked);
   }
-  
 }

@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SpecialService } from '../../Services/special.service';
-import { PokemonService } from '../../Services/pokemon.service';
+import { PokemonService } from '../../Data/pokemon.service';
 import { SaveService } from '../../Services/save.service';
 
 @Component({

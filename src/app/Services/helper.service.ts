@@ -6,7 +6,7 @@ import {
   untracked,
   WritableSignal,
 } from '@angular/core';
-import { PokemonService } from './pokemon.service';
+import { PokemonService } from '../Data/pokemon.service';
 import { Pokemon } from '../Models/pokemon.model';
 import { Badge } from '../Models/badge.model';
 import { SaveService } from './save.service';

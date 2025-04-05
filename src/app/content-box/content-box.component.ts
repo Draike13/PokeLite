@@ -26,7 +26,7 @@ import { Pokemon } from '../Models/pokemon.model';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { Rank } from '../Models/rank.model';
 import { Boss } from '../Models/boss.model';
-import { BossService } from '../Services/boss.service';
+import { BossService } from '../Data/boss.service';
 import { EncounterService } from '../Services/encounter.service';
 import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.component';
 import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
