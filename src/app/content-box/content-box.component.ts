@@ -29,6 +29,7 @@ import { Boss } from '../Models/boss.model';
 import { BossService } from '../Services/boss.service';
 import { EncounterService } from '../Services/encounter.service';
 import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.component';
+import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
 
 @Component({
   selector: 'app-content-box',
@@ -41,6 +42,7 @@ import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.c
     MatDialogModule,
     MatCardModule,
     PokemonCarouselComponent,
+    BossCarouselComponent,
   ],
   templateUrl: './content-box.component.html',
   styleUrl: './content-box.component.css',
