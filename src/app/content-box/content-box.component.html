@@ -83,26 +83,16 @@
     @if (currentView() === 'pokemonSelection') {
     <app-pokemon-carousel></app-pokemon-carousel>
 
-    <!-- <div class="pokemon-selection-container">
-      @for (pokemon of pokemonList(); track pokemon.id) {
-      <button
-        class="pokemon-button"
-        mat-button
-        (click)="selectPokemon(pokemon)"
-      >
-        {{ pokemon.name }}
-      </button>
-      }
-    </div> -->
     }
 
     <!-- path selection view -->
     @if (currentView() === 'battleSelect') {
 
-    <!-- <app-boss-carousel></app-boss-carousel> -->
-    @for (boss of sortBosses(); track boss.difficulty) {
+    <app-boss-carousel></app-boss-carousel>
+    <!-- @for (boss of sortBosses(); track boss.difficulty) {
     <button mat-button (click)="selectRoute(boss)">{{ boss.bossName }}</button>
-    } }
+    } -->
+    }
     <!-- active battle path view -->
     @if (currentView() === 'battlePath'){
     <span>{{ bossTaunt() }}</span>

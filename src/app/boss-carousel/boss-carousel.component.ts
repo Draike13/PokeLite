@@ -1,6 +1,8 @@
 import { Component, computed, signal, WritableSignal } from '@angular/core';
 import { HelperService } from '../Services/helper.service';
 import { BossService } from '../Services/boss.service';
+import { Boss } from '../Models/boss.model';
+import { EncounterService } from '../Services/encounter.service';
 
 @Component({
   selector: 'app-boss-carousel',
@@ -10,6 +12,7 @@ import { BossService } from '../Services/boss.service';
 })
 export class BossCarouselComponent {
   constructor(
+    private encounterService: EncounterService,
     private bossService: BossService,
     private helperService: HelperService
   ) {}
@@ -18,6 +21,9 @@ export class BossCarouselComponent {
     return this.bossService.Bosses();
   }
 
+  setBossRoute(boss: Boss) {
+    this.encounterService.setBoss(boss);
+  }
   currentIndex: WritableSignal<number> = signal(0);
 
   selectedBoss = computed(() => this.bossList()[this.currentIndex()]);
