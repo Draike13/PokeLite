@@ -8,3 +8,12 @@
 .content {
   overflow: hidden;
 }
+mat-dialog-content {
+  display: flex;
+  justify-content: center;
+}
+img {
+  border-radius: 15px;
+  height: 12vh;
+  aspect-ratio: 4/3;
+}

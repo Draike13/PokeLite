@@ -2,18 +2,24 @@
   <button class="arrow left" (click)="rotateLeft()">&#10094;</button>
 
   <div class="carousel-track">
-    <div class="pokemon-card tilted left">
-      <img [src]="prev.image" [alt]="prev.name" />
+    <div
+      class="pokemon-card tilted left"
+      (click)="rotateLeft(); openPokemonModal(current)"
+    >
+      <img src="{{ prev.image }}" />
       <p>{{ prev.name }}</p>
     </div>
 
     <div class="pokemon-card center" (click)="openPokemonModal(current)">
-      <img [src]="current.image" [alt]="current.name" />
+      <img src="{{ current.image }}" />
       <p>{{ current.name }}</p>
     </div>
 
-    <div class="pokemon-card tilted right">
-      <img [src]="next.image" [alt]="next.name" />
+    <div
+      class="pokemon-card tilted right"
+      (click)="rotateRight(); openPokemonModal(current)"
+    >
+      <img src="{{ next.image }}" />
       <p>{{ next.name }}</p>
     </div>
   </div>
