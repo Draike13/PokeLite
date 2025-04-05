@@ -8,4 +8,5 @@ export interface Boss {
   hiddenItems: string[];
   heldBadgeIndex: number;
   image: string;
+  encounterCount: number;
 }

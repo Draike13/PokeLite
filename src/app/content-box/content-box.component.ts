@@ -96,11 +96,16 @@ export class ContentBoxComponent {
   });
 
   routeCheck = effect(() => {
-    if (this.routeCounter() === 5) {
-      this.encounterService.bossBattleStart.set(true);
-      this.routeCounter.set(0);
-      if (this.encounterService.bossBattleStart() === true) {
-        this.currentView.set('pathBoss');
+    if (this.encounterService.activeBoss()) {
+      if (
+        this.routeCounter() ===
+        this.encounterService.activeBoss()!.encounterCount
+      ) {
+        this.encounterService.bossBattleStart.set(true);
+        this.routeCounter.set(0);
+        if (this.encounterService.bossBattleStart() === true) {
+          this.currentView.set('pathBoss');
+        }
       }
     }
   });

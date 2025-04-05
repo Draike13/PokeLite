@@ -64,6 +64,7 @@ export class BossService {
       hiddenItems: ['', ''],
       heldBadgeIndex: 0,
       image: 'assets/bosses/trainers/Brock.jpg',
+      encounterCount: 5,
     },
   ]);
 }
