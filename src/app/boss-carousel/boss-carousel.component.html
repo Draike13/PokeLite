@@ -3,14 +3,19 @@
 
   <div class="carousel-track">
     <div
+      [class.locked]="prev.locked"
       class="pokemon-card tilted left"
-      (click)="rotateLeft(); setBossRoute(current)"
+      (click)="rotateLeft(); !prev.locked && setBossRoute(current)"
     >
       <img class="boss-image" src="{{ prev.image }}" />
       <p>{{ prev.bossName }}</p>
     </div>
 
-    <div class="pokemon-card center" (click)="setBossRoute(current)">
+    <div
+      (click)="!current.locked && setBossRoute(current)"
+      [class.locked]="current.locked"
+      class="pokemon-card center"
+    >
       <img class="boss-image" src="{{ current.image }}" />
       <p>{{ current.bossName }}</p>
       <img
@@ -20,8 +25,9 @@
     </div>
 
     <div
+      [class.locked]="next.locked"
       class="pokemon-card tilted right"
-      (click)="rotateRight(); setBossRoute(current)"
+      (click)="rotateRight(); !next.locked && setBossRoute(current)"
     >
       <img class="boss-image" src="{{ next.image }}" />
       <p>{{ next.bossName }}</p>

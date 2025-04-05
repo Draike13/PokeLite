@@ -9,4 +9,5 @@ export interface Boss {
   heldBadgeIndex: number;
   image: string;
   encounterCount: number;
+  locked: boolean;
 }

@@ -65,6 +65,7 @@ export class BossService {
       heldBadgeIndex: 0,
       image: 'assets/bosses/trainers/Brock.jpg',
       encounterCount: 5,
+      locked: false,
     },
     {
       difficulty: 2,
@@ -111,6 +112,7 @@ export class BossService {
       heldBadgeIndex: 1,
       image: 'assets/bosses/trainers/Misty.jpg',
       encounterCount: 5,
+      locked: false,
     },
     {
       difficulty: 3,
@@ -157,6 +159,7 @@ export class BossService {
       heldBadgeIndex: 2,
       image: 'assets/bosses/trainers/Surge.jpg',
       encounterCount: 6,
+      locked: true,
     },
     {
       difficulty: 4,
@@ -203,6 +206,7 @@ export class BossService {
       heldBadgeIndex: 3,
       image: 'assets/bosses/trainers/Erika.jpg',
       encounterCount: 6,
+      locked: true,
     },
     {
       difficulty: 5,
@@ -249,6 +253,7 @@ export class BossService {
       heldBadgeIndex: 4,
       image: 'assets/bosses/trainers/Koga.jpg',
       encounterCount: 7,
+      locked: true,
     },
     {
       difficulty: 6,
@@ -307,6 +312,7 @@ export class BossService {
       heldBadgeIndex: 5,
       image: 'assets/bosses/trainers/Sabrina.jpg',
       encounterCount: 7,
+      locked: true,
     },
     {
       difficulty: 7,
@@ -353,6 +359,7 @@ export class BossService {
       heldBadgeIndex: 6,
       image: 'assets/bosses/trainers/Blaine.jpg',
       encounterCount: 7,
+      locked: true,
     },
     {
       difficulty: 8,
@@ -411,6 +418,7 @@ export class BossService {
       heldBadgeIndex: 7,
       image: 'assets/bosses/trainers/Giovanni.jpg',
       encounterCount: 3,
+      locked: true,
     },
   ]);
 }

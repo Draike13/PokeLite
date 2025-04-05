@@ -1,4 +1,10 @@
-import { Component, computed, signal, WritableSignal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { HelperService } from '../Services/helper.service';
 import { BossService } from '../Services/boss.service';
 import { Boss } from '../Models/boss.model';
@@ -20,6 +26,39 @@ export class BossCarouselComponent {
   ngOnInit() {
     this.sortBadges();
   }
+  badgeCount = 0;
+  activeRoutes = effect(() => {
+    if (this.helperService.activePokemon()) {
+      if (this.badgeCount >= 7) {
+        this.bossList().forEach((boss) => {
+          if (boss.difficulty <= 8) {
+            boss.locked = false;
+          }
+        });
+      }
+      if (this.badgeCount >= 6) {
+        this.bossList().forEach((boss) => {
+          if (boss.difficulty <= 7) {
+            boss.locked = false;
+          }
+        });
+      }
+      if (this.badgeCount >= 4) {
+        this.bossList().forEach((boss) => {
+          if (boss.difficulty <= 6) {
+            boss.locked = false;
+          }
+        });
+      }
+      if (this.badgeCount >= 2) {
+        this.bossList().forEach((boss) => {
+          if (boss.difficulty <= 4) {
+            boss.locked = false;
+          }
+        });
+      }
+    }
+  });
 
   bossList() {
     return this.bossService.Bosses();
@@ -63,6 +102,7 @@ export class BossCarouselComponent {
           badgeName: eachBadge.badgeName,
           badgeImage: eachBadge.badgeImage,
         });
+        this.badgeCount++;
       } else {
         this.badges!.push({
           badgeId: eachBadge.badgeId,
