@@ -54,6 +54,15 @@ export class ContentBoxComponent {
       this.encounterService.activeBoss()!.heldBadgeIndex
     ].badgeImage;
   }
+
+  bossTaunt() {
+    if (this.encounterService.activeBoss()!.difficulty === 1) {
+      return 'Brock: Good luck ever reaching me!';
+    }
+    if (this.encounterService.activeBoss()!.difficulty === 2) {
+      return 'Misty: You really think you can swim that far? Hope you dont drown!';
+    } else return 'something broke, oh no!';
+  }
   pokeballBlank = 'assets/ranks/Pokeball-blank.png';
   currentView: WritableSignal<
     | 'saves'

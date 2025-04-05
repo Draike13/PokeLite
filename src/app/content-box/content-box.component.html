@@ -99,12 +99,12 @@
     <!-- path selection view -->
     @if (currentView() === 'battleSelect') { @for (boss of sortBosses(); track
     boss.difficulty) {
-    <button mat-button (click)="selectRoute(boss)">Brock Route</button>
+    <button mat-button (click)="selectRoute(boss)">{{ boss.bossName }}</button>
 
     } }
     <!-- active battle path view -->
     @if (currentView() === 'battlePath'){
-    <span>Brock: You'll never make it to me!</span>
+    <span>{{ bossTaunt() }}</span>
     <button (click)="increaseRouteCount()" mat-button>
       Incease Route Count
     </button>
