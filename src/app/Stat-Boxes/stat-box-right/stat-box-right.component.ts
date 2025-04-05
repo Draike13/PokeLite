@@ -21,5 +21,8 @@ export class StatBoxRightComponent {
 
   checkAttack = effect(() => {
     if (this.helperService.activePokemon()) this.attack = this.currentAttack();
+    else {
+      this.attack = null;
+    }
   });
 }

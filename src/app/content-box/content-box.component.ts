@@ -63,6 +63,7 @@ export class ContentBoxComponent {
     | 'battleSelect'
     | 'battlePath'
     | 'pathBoss'
+    | 'victory'
   > = signal('blurb');
 
   get selectedSave() {
@@ -155,17 +156,6 @@ export class ContentBoxComponent {
     });
   }
 
-  // selectPokemon(selectedPokemon: Pokemon) {
-  //   this.dialog.open(ModalPokemonSelectComponent, {
-  //     data: { pokemon: selectedPokemon },
-  //     height: '24vh',
-  //     width: '48vw',
-  //     position: {
-  //       top: '8vh',
-  //     },
-  //   });
-  // }
-
   previewPokeList(save: SaveFile) {
     return this.saveService.previewPokemonList(save);
   }
@@ -203,4 +193,16 @@ export class ContentBoxComponent {
   displayPokemonList() {
     this.currentView.set('pokemonSelection');
   }
+
+  changeToVictory = effect(() => {
+    if (this.encounterService.playerWin() === true) {
+      this.currentView.set('victory');
+      setTimeout(() => {
+        this.encounterService.setBoss(null);
+        this.encounterService.playerWin.set(false);
+        this.helperService.cleanup();
+        this.currentView.set('pokemonSelection');
+      }, 4000);
+    }
+  });
 }

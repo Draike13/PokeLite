@@ -43,10 +43,12 @@ export class ChoiceBoxLeftComponent {
   });
 
   kill = effect(() => {
-    if (this.bossCurrentHealth() === 0) {
-      this.activePokemon.set(null);
-      this.currentView.set('empty');
-      this.encounterService.victoryLeft.set(true);
+    if (this.currentView() === 'active') {
+      if (this.bossCurrentHealth() === 0) {
+        this.activePokemon.set(null);
+        this.currentView.set('empty');
+        this.encounterService.victoryLeft.set(true);
+      }
     }
   });
 

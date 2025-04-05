@@ -157,4 +157,14 @@ export class HelperService {
     this.playerBadges.set(this.activeSave()!.badges);
     this.playerRank.set(this.activeSave()!.rank);
   }
+
+  cleanup() {
+    this.playerAttack.set(0);
+    this.playerLevel.set(null);
+    this.playerPokemonName.set('');
+    this.playerImage.set('assets/Default.jpg');
+    this.PlayerExp.set(0);
+    this.playerCurrentHealth.set(0);
+    this.activePokemon.set(null);
+  }
 }

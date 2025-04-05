@@ -14,6 +14,7 @@ export class EncounterService {
     private battleService: BattleService
   ) {}
 
+  playerWin: WritableSignal<boolean> = signal(false);
   victoryCenter: WritableSignal<boolean> = signal(false);
   victoryRight: WritableSignal<boolean> = signal(false);
   victoryLeft: WritableSignal<boolean> = signal(false);
@@ -22,9 +23,8 @@ export class EncounterService {
 
   activeBoss: WritableSignal<Boss | null> = signal(null);
 
-  setBoss(boss: Boss) {
+  setBoss(boss: Boss | null) {
     this.activeBoss.set(boss);
-    console.log(boss.bossName);
   }
   victory = effect(() => {
     if (this.activeBoss()) {
@@ -34,9 +34,11 @@ export class EncounterService {
         this.victoryLeft() === true
       ) {
         this.battleService.gainBadge(this.activeBoss()!.heldBadgeIndex);
+        this.playerWin.set(true);
         this.victoryCenter.set(false);
         this.victoryRight.set(false);
         this.victoryLeft.set(false);
+        this.bossBattleStart.set(false);
       }
     }
   });
