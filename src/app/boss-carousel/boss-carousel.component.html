@@ -6,23 +6,27 @@
       class="pokemon-card tilted left"
       (click)="rotateLeft(); setBossRoute(current)"
     >
-      <img src="{{ prev.image }}" />
+      <img class="boss-image" src="{{ prev.image }}" />
       <p>{{ prev.bossName }}</p>
     </div>
 
     <div class="pokemon-card center" (click)="setBossRoute(current)">
-      <img src="{{ current.image }}" />
+      <img class="boss-image" src="{{ current.image }}" />
       <p>{{ current.bossName }}</p>
+      <img
+        class="badge-image"
+        src="{{ badges[current.heldBadgeIndex].badgeImage }}"
+      />
     </div>
 
     <div
       class="pokemon-card tilted right"
       (click)="rotateRight(); setBossRoute(current)"
     >
-      <img src="{{ next.image }}" />
+      <img class="boss-image" src="{{ next.image }}" />
       <p>{{ next.bossName }}</p>
     </div>
-  </div>
 
-  <button class="arrow right" (click)="rotateRight()">&#10095;</button>
+    <button class="arrow right" (click)="rotateRight()">&#10095;</button>
+  </div>
 </div>

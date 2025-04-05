@@ -3,6 +3,7 @@ import { HelperService } from '../Services/helper.service';
 import { BossService } from '../Services/boss.service';
 import { Boss } from '../Models/boss.model';
 import { EncounterService } from '../Services/encounter.service';
+import { Badge } from '../Models/badge.model';
 
 @Component({
   selector: 'app-boss-carousel',
@@ -16,6 +17,9 @@ export class BossCarouselComponent {
     private bossService: BossService,
     private helperService: HelperService
   ) {}
+  ngOnInit() {
+    this.sortBadges();
+  }
 
   bossList() {
     return this.bossService.Bosses();
@@ -47,5 +51,25 @@ export class BossCarouselComponent {
   get next() {
     const list = this.bossList();
     return list[(this.currentIndex() + 1) % list.length];
+  }
+
+  badges: { badgeId: number; badgeName: string; badgeImage: string }[] = [];
+
+  sortBadges() {
+    this.helperService.playerBadges().forEach((eachBadge) => {
+      if (eachBadge.acquired === true) {
+        this.badges!.push({
+          badgeId: eachBadge.badgeId,
+          badgeName: eachBadge.badgeName,
+          badgeImage: eachBadge.badgeImage,
+        });
+      } else {
+        this.badges!.push({
+          badgeId: eachBadge.badgeId,
+          badgeName: eachBadge.badgeName,
+          badgeImage: eachBadge.badgeImageBlank,
+        });
+      }
+    });
   }
 }
