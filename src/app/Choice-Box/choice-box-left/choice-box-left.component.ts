@@ -18,8 +18,7 @@ export class ChoiceBoxLeftComponent {
     private encounterService: EncounterService,
     private helperService: HelperService,
     private bossEncounterPokemonService: BossEncounterPokemonService
-  ) {
-  }
+  ) {}
 
   currentView() {
     return this.bossEncounterPokemonService.leftView();
@@ -44,6 +43,6 @@ export class ChoiceBoxLeftComponent {
   }
 
   attack() {
-    return this.bossEncounterPokemonService.attack();
+    return this.bossEncounterPokemonService.attackLeft();
   }
 }

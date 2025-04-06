@@ -5,6 +5,7 @@ import { HelperService } from '../../Services/helper.service';
 import { EncounterService } from '../../Services/encounter.service';
 import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
+import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 
 @Component({
   selector: 'app-choice-box-right',
@@ -14,64 +15,33 @@ import { NgStyle } from '@angular/common';
 })
 export class ChoiceBoxRightComponent {
   constructor(
+    private bossEncounterPokemonService: BossEncounterPokemonService,
     private helperService: HelperService,
     private encounterService: EncounterService
   ) {}
-  currentView: WritableSignal<'empty' | 'active'> = signal('empty');
-
-  activePokemon: WritableSignal<Pokemon | null> = signal(null);
-
-  bossAttack: WritableSignal<number> = signal(0);
-  bossMaxHealth: WritableSignal<number> = signal(0);
-  bossCurrentHealth: WritableSignal<number> = signal(0);
-  bossExp: WritableSignal<number> = signal(0);
-  bossPokemonName: WritableSignal<string> = signal('');
-  bossPokemonImage: WritableSignal<string> = signal('');
-  bossLevel: WritableSignal<number> = signal(0);
-
-  startBattle = effect(() => {
-    if (this.encounterService.bossBattleStart() === true) {
-      this.setActive();
-    }
-  });
-  buildCard = effect(() => {
-    if (this.activePokemon()) {
-      this.currentView.set('active');
-      this.buildBattleCard();
-    }
-  });
-
-  kill = effect(() => {
-    if (this.currentView() === 'active') {
-      if (this.bossCurrentHealth() === 0) {
-        this.activePokemon.set(null);
-        this.currentView.set('empty');
-        this.encounterService.victoryRight.set(true);
-      }
-    }
-  });
-
-  setActive() {
-    this.activePokemon.set(this.encounterService.activeBoss()!.pokemon[2]);
+  currentView() {
+    return this.bossEncounterPokemonService.rightView();
+  }
+  bossPokemonImage() {
+    return this.bossEncounterPokemonService.rightContainerPokemonImage();
+  }
+  bossPokemonName() {
+    return this.bossEncounterPokemonService.rightContainerPokemonName();
+  }
+  bossCurrentHealth() {
+    return this.bossEncounterPokemonService.rightContainerCurrentHealth();
+  }
+  bossLevel() {
+    return this.bossEncounterPokemonService.rightContainerLevel();
+  }
+  bossAttack() {
+    return this.bossEncounterPokemonService.rightContainerAttack();
+  }
+  bossExp() {
+    return this.bossEncounterPokemonService.rightContainerExp();
   }
 
-  buildBattleCard() {
-    this.bossAttack.set(this.activePokemon()!.attack);
-    this.bossMaxHealth.set(this.activePokemon()!.maxHealth);
-    this.bossCurrentHealth.set(this.activePokemon()!.currentHealth);
-    this.bossExp.set(this.activePokemon()!.experience);
-    this.bossPokemonName.set(this.activePokemon()!.name);
-    this.bossPokemonImage.set(this.activePokemon()!.image);
-    this.bossLevel.set(this.activePokemon()!.level);
-  }
   attack() {
-    if (this.bossCurrentHealth() > 0) {
-      this.bossCurrentHealth.set(
-        this.bossCurrentHealth() - this.helperService.playerAttack()
-      );
-    }
-    if (this.bossCurrentHealth() <= 0) {
-      this.bossCurrentHealth.set(0);
-    }
+    return this.bossEncounterPokemonService.attackRight();
   }
 }
