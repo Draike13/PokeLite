@@ -23,6 +23,11 @@ export class BossEncounterPokemonService {
   setActive() {
     this.activePokemon.set(this.encounterService.activeBoss()!.pokemon);
   }
+  resetActive = effect(() => {
+    if (this.encounterService.playerWin() === true) {
+      this.activePokemon.set([]);
+    }
+  });
 
   leftView: WritableSignal<'empty' | 'active'> = signal('empty');
   leftContainerAttack: WritableSignal<number> = signal(0);
@@ -142,7 +147,7 @@ export class BossEncounterPokemonService {
     if (this.rightView() === 'active') {
       if (this.rightContainerCurrentHealth() === 0) {
         this.rightView.set('empty');
-        this.encounterService.victoryCenter.set(true);
+        this.encounterService.victoryRight.set(true);
       }
     }
   });
