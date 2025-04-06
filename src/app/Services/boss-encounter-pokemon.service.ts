@@ -174,4 +174,34 @@ export class BossEncounterPokemonService {
       this.rightContainerCurrentHealth.set(0);
     }
   }
+
+  brockSpecial = effect(() => {
+    if (this.encounterService.activeBoss()) {
+      if (this.encounterService.activeBoss()!.difficulty === 1) {
+        let leftDead = false;
+        let centerDead = false;
+        if (this.rightView() === 'active') {
+          if (this.leftContainerCurrentHealth() === 0) {
+            leftDead = true;
+          }
+          if (this.centerContainerCurrentHealth() === 0) {
+            centerDead = true;
+          }
+          if (leftDead === true && centerDead === true) {
+            this.rightContainerAttack.set(this.activePokemon()![3].attack);
+            this.rightContainerMaxHealth.set(
+              this.activePokemon()![3].maxHealth
+            );
+            this.rightContainerCurrentHealth.set(
+              this.activePokemon()![3].currentHealth
+            );
+            this.rightContainerExp.set(this.activePokemon()![3].experience);
+            this.rightContainerPokemonName.set(this.activePokemon()![3].name);
+            this.rightContainerPokemonImage.set(this.activePokemon()![3].image);
+            this.rightContainerLevel.set(this.activePokemon()![3].level);
+          }
+        }
+      }
+    }
+  });
 }
