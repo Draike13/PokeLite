@@ -20,7 +20,7 @@
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-menu-item (click)="openPlayerCard()">
+    <button mat-menu-item (click)="openPlayerCard()" [disabled]="!activeSave">
       <mat-icon>person</mat-icon>
       <span>Trainer Card</span>
     </button>

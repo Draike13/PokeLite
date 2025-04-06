@@ -35,6 +35,10 @@ export class HeaderComponent {
   ) {}
   dialog = inject(MatDialog);
 
+  get activeSave() {
+    return this.helperService.activeSave();
+  }
+
   get playerName() {
     return this.helperService.playerName;
   }
