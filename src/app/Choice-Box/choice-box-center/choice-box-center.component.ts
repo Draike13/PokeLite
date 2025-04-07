@@ -90,6 +90,8 @@ export class ChoiceBoxCenterComponent {
   //   return this.battleService.increaseRank();
   // }
 
+  pokemonAttacked: WritableSignal<boolean> = signal(false);
+
   currentView() {
     return this.bossEncounterPokemonService.centerView();
   }
@@ -110,5 +112,12 @@ export class ChoiceBoxCenterComponent {
   }
   attack() {
     return this.bossEncounterPokemonService.attackCenter();
+  }
+
+  triggerAttackEffect() {
+    this.pokemonAttacked.set(true);
+    setTimeout(() => {
+      this.pokemonAttacked.set(false);
+    }, 300);
   }
 }

@@ -87,3 +87,43 @@ mat-card-content {
   margin-bottom: 1rem;
   margin-left: 1rem;
 }
+
+/* hit animation */
+
+.hit-effect {
+  animation: hitFlash 0.3s ease;
+}
+
+.container.attack-effect {
+  animation: attackPulse 0.3s ease;
+}
+
+@keyframes hitFlash {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(0.9);
+    filter: brightness(1.5);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes attackPulse {
+  0% {
+    transform: translate(0, -16%) scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: translate(0, -16%) scale(0.9);
+    filter: brightness(4.4);
+  }
+  100% {
+    transform: translate(0, -16%) scale(1);
+    filter: brightness(1);
+  }
+}

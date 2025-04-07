@@ -28,6 +28,7 @@
 <!-- active pokemon battle view -->
 @if (currentView() === 'active') {
 <mat-card
+  [class.attack-effect]="pokemonAttacked()"
   [ngStyle]="{ 'background-image': 'url(' + bossPokemonImage() + ')' }"
   class="container"
   appearance="outlined"
@@ -57,7 +58,11 @@
     </div>
   </mat-card-content>
   <mat-card-actions
-    ><button class="atk-button" mat-button (click)="attack()">
+    ><button
+      class="atk-button"
+      mat-button
+      (click)="attack(); triggerAttackEffect()"
+    >
       Attack
     </button></mat-card-actions
   >

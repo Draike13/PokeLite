@@ -104,11 +104,8 @@
     <!-- boss battle view -->
     @if (currentView() === 'pathBoss') {
     <div class="boss-container">
-      <div class="chat-container">
-        <span class="boss-text"
-          >I cant beleive you made it! Prepare yourself</span
-        >
-      </div>
+      <app-battle-log />
+
       <div class="boss-image-container">
         <img class="boss-image" src="{{ bossImage }}" alt="" />
       </div>

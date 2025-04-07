@@ -30,6 +30,7 @@ import { BossService } from '../Data/boss.service';
 import { EncounterService } from '../Services/encounter.service';
 import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.component';
 import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
+import { BattleLogComponent } from '../battle-log/battle-log.component';
 
 @Component({
   selector: 'app-content-box',
@@ -43,6 +44,7 @@ import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component'
     MatCardModule,
     PokemonCarouselComponent,
     BossCarouselComponent,
+    BattleLogComponent,
   ],
   templateUrl: './content-box.component.html',
   styleUrl: './content-box.component.css',

@@ -19,6 +19,9 @@ export class ChoiceBoxRightComponent {
     private helperService: HelperService,
     private encounterService: EncounterService
   ) {}
+
+  pokemonAttacked: WritableSignal<boolean> = signal(false);
+
   currentView() {
     return this.bossEncounterPokemonService.rightView();
   }
@@ -39,5 +42,12 @@ export class ChoiceBoxRightComponent {
   }
   attack() {
     return this.bossEncounterPokemonService.attackRight();
+  }
+
+  triggerAttackEffect() {
+    this.pokemonAttacked.set(true);
+    setTimeout(() => {
+      this.pokemonAttacked.set(false);
+    }, 300);
   }
 }

@@ -1,0 +1,27 @@
+.log-container {
+  height: 22vh;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+  border: solid 2px #ffabf3;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  font-family: monospace;
+}
+
+.log-line {
+  padding: 2px;
+  padding-left: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
