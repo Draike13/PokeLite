@@ -1,0 +1,19 @@
+.title {
+  display: flex;
+  justify-content: center;
+  color: #ffabf3;
+  margin-bottom: 2.5rem;
+}
+
+.content {
+  overflow: hidden;
+}
+mat-dialog-content {
+  display: flex;
+  justify-content: center;
+}
+img {
+  border-radius: 15px;
+  height: 12vh;
+  aspect-ratio: 4/3;
+}

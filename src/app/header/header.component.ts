@@ -15,6 +15,7 @@ import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/moda
 import { MatCardModule } from '@angular/material/card';
 import { SpecialService } from '../Services/special.service';
 import { ModalPlayerCardComponent } from '../Modals/modal-player-card/modal-player-card.component';
+import { ModalSettingsComponent } from '../Modals/modal-settings/modal-settings.component';
 @Component({
   selector: 'app-header',
   imports: [
@@ -66,5 +67,16 @@ export class HeaderComponent {
 
   reloadPage() {
     window.location.reload();
+  }
+
+  openSettings() {
+    this.dialog.open(ModalSettingsComponent, {
+      height: 'min(50vh, 500px)',
+      width: 'min(80vw, 700px)',
+      maxWidth: '700px',
+      position: {
+        top: '16vh',
+      },
+    });
   }
 }

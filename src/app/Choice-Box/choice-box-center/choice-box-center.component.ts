@@ -49,9 +49,9 @@ export class ChoiceBoxCenterComponent {
   //     }
   //   });
   // }
-  level() {
-    this.battleService.gainLevel();
-  }
+  // level() {
+  //   this.battleService.gainLevel();
+  // }
   // megaEvolve() {
   //   if (
   //     this.helperService.activePokemon()!.id ===

@@ -1,0 +1,12 @@
+<h2 class="title" mat-dialog-title>Delete a save file?</h2>
+<mat-dialog-content>
+  @for (save of saveFiles(); track $index) {
+  <button mat-button (click)="deleteSave(save)">{{ save.playerName }}</button>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button cdkFocusInitial mat-button [mat-dialog-close]>
+    Oh no! My mistake.
+  </button>
+</mat-dialog-actions>
