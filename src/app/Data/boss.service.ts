@@ -43,7 +43,7 @@ export class BossService {
           maxHealth: 25,
           attack: 3,
           level: 8,
-          experience: 80,
+          experience: 0,
           evolutionLevel: 9,
           image: 'assets/bosses/pokemon/Kabuto.jpg',
           locked: false,

@@ -37,10 +37,6 @@ export class ChoiceBoxRightComponent {
   bossAttack() {
     return this.bossEncounterPokemonService.rightContainerAttack();
   }
-  bossExp() {
-    return this.bossEncounterPokemonService.rightContainerExp();
-  }
-
   attack() {
     return this.bossEncounterPokemonService.attackRight();
   }

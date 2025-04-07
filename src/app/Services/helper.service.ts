@@ -139,9 +139,9 @@ export class HelperService {
     const attackLoss = this.minusAtk();
     this.playerAttack.set(baseAttack + attackGain - attackLoss);
     this.playerMaxHealth.set(this.activePokemon()!.maxHealth);
-    const currentLevel = untracked(() => this.activePokemon()!.level);
-    const gainedLevels = this.gainedLevels();
-    this.playerLevel.set(currentLevel + gainedLevels);
+    // const currentLevel = untracked(() => this.activePokemon()!.level);
+    // const gainedLevels = this.gainedLevels();
+    this.playerLevel.set(this.activePokemon()!.level);
     this.playerPokemonName.set(this.activePokemon()!.name);
     this.playerImage.set(this.activePokemon()!.image);
     const baseExp = untracked(() => this.activePokemon()!.experience);

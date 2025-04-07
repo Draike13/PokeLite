@@ -36,7 +36,13 @@ export class BattleService {
   }
   gainLevel() {
     this.helperService.gainedExp.set(0);
-    this.helperService.gainedLevels.set(this.helperService.gainedLevels() + 1);
+    this.helperService.activeSave()!.pokemonData.forEach((eachPokemon) => {
+      if (eachPokemon.id === this.helperService.activePokemon()!.id) {
+        eachPokemon.level += 1;
+        this.saveService.saveGame(this.helperService.activeSave()!);
+        this.helperService.playerLevel.set(eachPokemon.level);
+      }
+    });
   }
   gainBadge(badge: number) {
     this.helperService.playerBadges()[badge].acquired = true;

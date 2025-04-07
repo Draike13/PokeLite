@@ -49,9 +49,9 @@ export class ChoiceBoxCenterComponent {
   //     }
   //   });
   // }
-  // level() {
-  //   this.battleService.gainLevel();
-  // }
+  level() {
+    this.battleService.gainLevel();
+  }
   // megaEvolve() {
   //   if (
   //     this.helperService.activePokemon()!.id ===
@@ -108,10 +108,6 @@ export class ChoiceBoxCenterComponent {
   bossAttack() {
     return this.bossEncounterPokemonService.centerContainerAttack();
   }
-  bossExp() {
-    return this.bossEncounterPokemonService.centerContainerExp();
-  }
-
   attack() {
     return this.bossEncounterPokemonService.attackCenter();
   }

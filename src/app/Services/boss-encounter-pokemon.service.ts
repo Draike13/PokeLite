@@ -33,7 +33,6 @@ export class BossEncounterPokemonService {
   leftContainerAttack: WritableSignal<number> = signal(0);
   leftContainerMaxHealth: WritableSignal<number> = signal(0);
   leftContainerCurrentHealth: WritableSignal<number> = signal(0);
-  leftContainerExp: WritableSignal<number> = signal(0);
   leftContainerPokemonName: WritableSignal<string> = signal('');
   leftContainerPokemonImage: WritableSignal<string> = signal('');
   leftContainerLevel: WritableSignal<number> = signal(0);
@@ -60,7 +59,6 @@ export class BossEncounterPokemonService {
     this.leftContainerAttack.set(this.activePokemon()![0].attack);
     this.leftContainerMaxHealth.set(this.activePokemon()![0].maxHealth);
     this.leftContainerCurrentHealth.set(this.activePokemon()![0].currentHealth);
-    this.leftContainerExp.set(this.activePokemon()![0].experience);
     this.leftContainerPokemonName.set(this.activePokemon()![0].name);
     this.leftContainerPokemonImage.set(this.activePokemon()![0].image);
     this.leftContainerLevel.set(this.activePokemon()![0].level);
@@ -80,7 +78,6 @@ export class BossEncounterPokemonService {
   centerContainerAttack: WritableSignal<number> = signal(0);
   centerContainerMaxHealth: WritableSignal<number> = signal(0);
   centerContainerCurrentHealth: WritableSignal<number> = signal(0);
-  centerContainerExp: WritableSignal<number> = signal(0);
   centerContainerPokemonName: WritableSignal<string> = signal('');
   centerContainerPokemonImage: WritableSignal<string> = signal('');
   centerContainerLevel: WritableSignal<number> = signal(0);
@@ -109,7 +106,6 @@ export class BossEncounterPokemonService {
     this.centerContainerCurrentHealth.set(
       this.activePokemon()![1].currentHealth
     );
-    this.centerContainerExp.set(this.activePokemon()![1].experience);
     this.centerContainerPokemonName.set(this.activePokemon()![1].name);
     this.centerContainerPokemonImage.set(this.activePokemon()![1].image);
     this.centerContainerLevel.set(this.activePokemon()![1].level);
@@ -129,7 +125,6 @@ export class BossEncounterPokemonService {
   rightContainerAttack: WritableSignal<number> = signal(0);
   rightContainerMaxHealth: WritableSignal<number> = signal(0);
   rightContainerCurrentHealth: WritableSignal<number> = signal(0);
-  rightContainerExp: WritableSignal<number> = signal(0);
   rightContainerPokemonName: WritableSignal<string> = signal('');
   rightContainerPokemonImage: WritableSignal<string> = signal('');
   rightContainerLevel: WritableSignal<number> = signal(0);
@@ -158,7 +153,6 @@ export class BossEncounterPokemonService {
     this.rightContainerCurrentHealth.set(
       this.activePokemon()![2].currentHealth
     );
-    this.rightContainerExp.set(this.activePokemon()![2].experience);
     this.rightContainerPokemonName.set(this.activePokemon()![2].name);
     this.rightContainerPokemonImage.set(this.activePokemon()![2].image);
     this.rightContainerLevel.set(this.activePokemon()![2].level);
@@ -195,7 +189,6 @@ export class BossEncounterPokemonService {
             this.rightContainerCurrentHealth.set(
               this.activePokemon()![3].currentHealth
             );
-            this.rightContainerExp.set(this.activePokemon()![3].experience);
             this.rightContainerPokemonName.set(this.activePokemon()![3].name);
             this.rightContainerPokemonImage.set(this.activePokemon()![3].image);
             this.rightContainerLevel.set(this.activePokemon()![3].level);
