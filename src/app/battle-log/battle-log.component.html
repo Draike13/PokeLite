@@ -1,7 +1,17 @@
 <div class="log-container">
-  @for (line of log(); track $index) {
-  <div class="log-line" [ngClass]="line.type">
-    {{ line.text }}
+  <div class="log-wrapper">
+    @for (line of log(); track $index) {
+    <div class="log-line" [ngClass]="line.type">
+      {{ line.text }}
+    </div>
+    }
+    <!-- </div>
+  <div class="selection-bar">
+    <div>All</div>
+    |
+    <div>Player</div>
+    |
+    <div>Status</div>
+  </div> -->
   </div>
-  }
 </div>
