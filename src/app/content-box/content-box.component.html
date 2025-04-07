@@ -89,12 +89,7 @@
     @if (currentView() === 'battleSelect') {
 
     <app-boss-carousel></app-boss-carousel>
-    <!-- @for (boss of sortBosses(); track boss.difficulty) {
-    <button mat-button (click)="selectRoute(boss)">{{ boss.bossName }}</button>
-    } -->
-    }
-    <!-- active battle path view -->
-    @if (currentView() === 'battlePath'){
+    } @if (currentView() === 'battlePath'){
     <span>{{ bossTaunt() }}</span>
     <button (click)="increaseRouteCount()" mat-button>
       Incease Route Count

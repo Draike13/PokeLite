@@ -112,7 +112,6 @@ mat-card-content {
 }
 
 .fixer {
-  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: center;

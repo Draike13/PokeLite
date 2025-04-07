@@ -31,6 +31,7 @@ import { EncounterService } from '../Services/encounter.service';
 import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.component';
 import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
 import { BattleLogComponent } from '../battle-log/battle-log.component';
+import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
 
 @Component({
   selector: 'app-content-box',
@@ -92,7 +93,8 @@ export class ContentBoxComponent {
     private saveService: SaveService,
     private helperService: HelperService,
     private bossService: BossService,
-    private encounterService: EncounterService
+    private encounterService: EncounterService,
+    private bossEncounterpokemonService: BossEncounterPokemonService
   ) {}
 
   routeCounter: WritableSignal<number> = signal(0);
@@ -210,6 +212,7 @@ export class ContentBoxComponent {
   changeToVictory = effect(() => {
     if (this.encounterService.playerWin() === true) {
       this.currentView.set('victory');
+      this.bossEncounterpokemonService.battleLog.set([]);
       setTimeout(() => {
         this.encounterService.setBoss(null);
         this.encounterService.playerWin.set(false);

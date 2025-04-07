@@ -1,7 +1,7 @@
 <div class="log-container">
   @for (line of log(); track $index) {
-  <div class="log-line animate-in">
-    {{ line }}
+  <div class="log-line" [ngClass]="line.type">
+    {{ line.text }}
   </div>
   }
 </div>

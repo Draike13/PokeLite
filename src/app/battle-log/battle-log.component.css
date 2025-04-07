@@ -1,7 +1,7 @@
 .log-container {
   height: 22vh;
   aspect-ratio: 3/4;
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
   border: solid 2px #ffabf3;
   border-radius: 15px;
@@ -9,13 +9,27 @@
   flex-direction: column;
   justify-content: end;
   font-family: monospace;
+  scrollbar-width: thin;
+  scrollbar-color: #ffabf3 transparent;
+  scroll-behavior: smooth;
+}
+.log-container::-webkit-scrollbar {
+  width: 6px;
+}
+.log-container::-webkit-scrollbar-thumb {
+  background-color: #ffabf3;
+  border-radius: 4px;
+}
+
+.log-container::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .log-line {
+  min-height: 1.5rem;
   padding: 2px;
   padding-left: 8px;
   opacity: 0;
-  transform: translateY(10px);
   animation: fadeInUp 0.5s forwards;
 }
 
@@ -24,4 +38,20 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.log-line.player-damage {
+  color: green;
+}
+
+.log-line.enemy-damage {
+  color: red;
+}
+
+.log-line.status {
+  color: white;
+}
+
+.log-line.taunt {
+  color: #ffabf3;
 }
