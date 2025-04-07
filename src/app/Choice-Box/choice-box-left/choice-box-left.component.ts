@@ -53,4 +53,7 @@ export class ChoiceBoxLeftComponent {
       this.pokemonAttacked.set(false);
     }, 300);
   }
+  declareAttack() {
+    this.bossEncounterPokemonService.playerDeclareAttack.set(true);
+  }
 }
