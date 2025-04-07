@@ -43,6 +43,9 @@ export class ChoiceBoxRightComponent {
   attack() {
     return this.bossEncounterPokemonService.attackRight();
   }
+  dead() {
+    return this.bossEncounterPokemonService.rightDead();
+  }
 
   triggerAttackEffect() {
     this.pokemonAttacked.set(true);
@@ -50,4 +53,10 @@ export class ChoiceBoxRightComponent {
       this.pokemonAttacked.set(false);
     }, 300);
   }
+  brockEvolveEffect: WritableSignal<boolean> = signal(false);
+  brockEvolve = effect(() => {
+    this.brockEvolveEffect.set(
+      this.bossEncounterPokemonService.brockEvolveEffect()
+    );
+  });
 }

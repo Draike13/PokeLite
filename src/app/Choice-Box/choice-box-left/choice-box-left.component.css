@@ -127,3 +127,9 @@ mat-card-content {
     filter: brightness(1);
   }
 }
+
+.container.dead {
+  filter: grayscale(1) brightness(0.7);
+  cursor: not-allowed;
+  pointer-events: none;
+}

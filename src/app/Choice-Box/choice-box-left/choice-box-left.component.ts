@@ -43,6 +43,9 @@ export class ChoiceBoxLeftComponent {
   attack() {
     return this.bossEncounterPokemonService.attackLeft();
   }
+  dead() {
+    return this.bossEncounterPokemonService.leftDead();
+  }
 
   triggerAttackEffect() {
     this.pokemonAttacked.set(true);

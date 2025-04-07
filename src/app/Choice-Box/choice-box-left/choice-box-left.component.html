@@ -7,6 +7,7 @@
 <!-- active pokemon battle view -->
 @if (currentView() === 'active') {
 <mat-card
+  [class.dead]="dead()"
   [class.attack-effect]="pokemonAttacked()"
   [ngStyle]="{ 'background-image': 'url(' + bossPokemonImage() + ')' }"
   class="container"

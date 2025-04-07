@@ -54,10 +54,11 @@ export class BossEncounterPokemonService {
       }
     }
   });
-
+  leftDead: WritableSignal<boolean> = signal(false);
   killLeft = effect(() => {
     if (this.leftView() === 'active') {
       if (this.leftContainerCurrentHealth() === 0) {
+        this.leftDead.set(true);
         setTimeout(() => {
           this.leftView.set('empty');
           this.encounterService.victoryLeft.set(true);
@@ -107,10 +108,11 @@ export class BossEncounterPokemonService {
       }
     }
   });
-
+  centerDead: WritableSignal<boolean> = signal(false);
   killCenter = effect(() => {
     if (this.centerView() === 'active') {
       if (this.centerContainerCurrentHealth() === 0) {
+        this.centerDead.set(true);
         setTimeout(() => {
           this.centerView.set('empty');
           this.encounterService.victoryCenter.set(true);
@@ -162,10 +164,11 @@ export class BossEncounterPokemonService {
       }
     }
   });
-
+  rightDead: WritableSignal<boolean> = signal(false);
   killRight = effect(() => {
     if (this.rightView() === 'active') {
       if (this.rightContainerCurrentHealth() === 0) {
+        this.rightDead.set(true);
         setTimeout(() => {
           this.rightView.set('empty');
           this.encounterService.victoryRight.set(true);
@@ -202,9 +205,14 @@ export class BossEncounterPokemonService {
     }
   }
 
+  brockEvolveEffect: WritableSignal<boolean> = signal(false);
+  brockRan = false;
   brockSpecial = effect(() => {
     if (this.encounterService.activeBoss()) {
-      if (this.encounterService.activeBoss()!.difficulty === 1) {
+      if (
+        this.encounterService.activeBoss()!.difficulty === 1 &&
+        this.brockRan === false
+      ) {
         let leftDead = false;
         let centerDead = false;
         if (this.rightView() === 'active') {
@@ -215,16 +223,29 @@ export class BossEncounterPokemonService {
             centerDead = true;
           }
           if (leftDead === true && centerDead === true) {
-            this.rightContainerAttack.set(this.activePokemon()![3].attack);
-            this.rightContainerMaxHealth.set(
-              this.activePokemon()![3].maxHealth
-            );
-            this.rightContainerCurrentHealth.set(
-              this.activePokemon()![3].currentHealth
-            );
-            this.rightContainerPokemonName.set(this.activePokemon()![3].name);
-            this.rightContainerPokemonImage.set(this.activePokemon()![3].image);
-            this.rightContainerLevel.set(this.activePokemon()![3].level);
+            this.brockRan = true;
+            this.addToBattleLog(`What?...`);
+            setTimeout(() => {
+              this.addToBattleLog(
+                `Oh no! ${this.rightContainerPokemonName()} is evolving!`
+              );
+              this.brockEvolveEffect.set(true);
+            }, 700);
+            setTimeout(() => {
+              this.rightContainerAttack.set(this.activePokemon()![3].attack);
+              this.rightContainerMaxHealth.set(
+                this.activePokemon()![3].maxHealth
+              );
+              this.rightContainerCurrentHealth.set(
+                this.activePokemon()![3].currentHealth
+              );
+              this.rightContainerPokemonName.set(this.activePokemon()![3].name);
+              this.rightContainerPokemonImage.set(
+                this.activePokemon()![3].image
+              );
+              this.rightContainerLevel.set(this.activePokemon()![3].level);
+              this.brockEvolveEffect.set(false);
+            }, 3200);
           }
         }
       }

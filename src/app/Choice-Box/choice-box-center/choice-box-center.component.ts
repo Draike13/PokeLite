@@ -113,6 +113,9 @@ export class ChoiceBoxCenterComponent {
   attack() {
     return this.bossEncounterPokemonService.attackCenter();
   }
+  dead() {
+    return this.bossEncounterPokemonService.centerDead();
+  }
 
   triggerAttackEffect() {
     this.pokemonAttacked.set(true);

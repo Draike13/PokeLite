@@ -127,3 +127,50 @@ mat-card-content {
     filter: brightness(1);
   }
 }
+
+.evolve-effect {
+  animation: evolveFlash 2.5s ease-in-out forwards;
+}
+
+@keyframes evolveFlash {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  10% {
+    filter: brightness(3);
+  }
+  20% {
+    filter: brightness(0.3);
+  }
+  30% {
+    filter: brightness(3);
+  }
+  40% {
+    filter: brightness(0.3);
+  }
+  50% {
+    filter: brightness(3);
+  }
+  60% {
+    filter: brightness(0.3);
+  }
+  70% {
+    filter: brightness(3);
+  }
+  80% {
+    filter: brightness(1);
+  }
+  90% {
+    filter: brightness(8) contrast(8);
+  }
+  100% {
+    filter: brightness(1) contrast(1);
+  }
+}
+
+.container.dead {
+  filter: grayscale(1) brightness(0.7);
+  cursor: not-allowed;
+  pointer-events: none;
+}
