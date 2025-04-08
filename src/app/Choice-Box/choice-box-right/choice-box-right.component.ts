@@ -21,6 +21,7 @@ export class ChoiceBoxRightComponent {
   ) {}
 
   pokemonAttacked: WritableSignal<boolean> = signal(false);
+  pokemonHit: WritableSignal<boolean> = signal(false);
 
   currentView() {
     return this.bossEncounterPokemonService.rightView();
@@ -47,12 +48,33 @@ export class ChoiceBoxRightComponent {
     return this.bossEncounterPokemonService.rightDead();
   }
 
-  triggerAttackEffect() {
+  triggerAttackedEffect() {
     this.pokemonAttacked.set(true);
     setTimeout(() => {
       this.pokemonAttacked.set(false);
     }, 300);
   }
+  hitListener = effect(() => {
+    if (this.bossEncounterPokemonService.rightAttacking() === true) {
+      this.triggerHitEffect();
+      this.bossEncounterPokemonService.rightAttacking.set(false);
+    }
+  });
+  triggerHitEffect() {
+    this.pokemonHit.set(true);
+    setTimeout(() => {
+      this.pokemonHit.set(false);
+    }, 1000);
+  }
+
+  declareAttack() {
+    this.bossEncounterPokemonService.playerDeclareAttack.set(true);
+  }
+
+  playerLoss() {
+    return this.helperService.playerLoss();
+  }
+
   brockEvolveEffect: WritableSignal<boolean> = signal(false);
   brockEvolve = effect(() => {
     this.brockEvolveEffect.set(

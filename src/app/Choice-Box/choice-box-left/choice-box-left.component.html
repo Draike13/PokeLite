@@ -9,6 +9,7 @@
 <mat-card
   [class.dead]="dead()"
   [class.attack-effect]="pokemonAttacked()"
+  [class.hit-effect]="pokemonHit()"
   [ngStyle]="{ 'background-image': 'url(' + bossPokemonImage() + ')' }"
   class="container"
   appearance="outlined"
@@ -39,9 +40,10 @@
   </mat-card-content>
   <mat-card-actions
     ><button
+      [disabled]="playerLoss()"
       class="atk-button"
       mat-button
-      (click)="attack(); triggerAttackEffect(); declareAttack()"
+      (click)="attack(); triggerAttackedEffect(); declareAttack()"
     >
       Attack
     </button></mat-card-actions

@@ -10,6 +10,7 @@ import { EncounterService } from '../../Services/encounter.service';
 import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
+import { single } from 'rxjs';
 
 @Component({
   selector: 'app-choice-box-center',
@@ -92,6 +93,7 @@ export class ChoiceBoxCenterComponent {
 
   pokemonAttacked: WritableSignal<boolean> = signal(false);
 
+  pokemonHit: WritableSignal<boolean> = signal(false);
   currentView() {
     return this.bossEncounterPokemonService.centerView();
   }
@@ -117,10 +119,30 @@ export class ChoiceBoxCenterComponent {
     return this.bossEncounterPokemonService.centerDead();
   }
 
-  triggerAttackEffect() {
+  triggerAttackedEffect() {
     this.pokemonAttacked.set(true);
     setTimeout(() => {
       this.pokemonAttacked.set(false);
     }, 300);
+  }
+
+  hitListener = effect(() => {
+    if (this.bossEncounterPokemonService.centerAttacking() === true) {
+      this.triggerHitEffect();
+      this.bossEncounterPokemonService.centerAttacking.set(false);
+    }
+  });
+  triggerHitEffect() {
+    this.pokemonHit.set(true);
+    setTimeout(() => {
+      this.pokemonHit.set(false);
+    }, 1000);
+  }
+
+  declareAttack() {
+    this.bossEncounterPokemonService.playerDeclareAttack.set(true);
+  }
+  playerLoss() {
+    return this.helperService.playerLoss();
   }
 }

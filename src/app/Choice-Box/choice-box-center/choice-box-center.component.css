@@ -8,7 +8,7 @@ mat-card {
   width: 28vw;
   height: 48vh;
   z-index: 25;
-  transform: translate(0, -16%);
+  transform: translate(0, -22%);
   border: solid 1px #ffabf3;
   background-color: #161215e4;
   background-size: cover;
@@ -87,42 +87,64 @@ mat-card-content {
   margin-right: 1rem;
 }
 
-/* hit animation */
-
-.hit-effect {
-  animation: hitFlash 0.3s ease;
-}
-
 .container.attack-effect {
   animation: attackPulse 0.3s ease;
 }
 
+/* hit animation */
+.hit-effect {
+  animation: hitFlash 1s ease;
+}
+
 @keyframes hitFlash {
   0% {
-    transform: scale(1);
+    transform: scale(1) rotateZ(0deg) translateY(-22%);
     filter: brightness(1);
   }
-  50% {
-    transform: scale(0.9);
-    filter: brightness(1.5);
+
+  /* Wiggle (tilt left-right-center) */
+  10% {
+    transform: rotateZ(-4deg) translateY(-22%);
   }
+  20% {
+    transform: rotateZ(4deg) translateY(-22%);
+  }
+  30% {
+    transform: rotateZ(0deg) translateY(-22%);
+  }
+
+  /* Small delay (steady before attack) */
+  40% {
+    transform: rotateZ(0deg) translateY(-22%);
+  }
+  70% {
+    transform: rotateZ(0deg) translateY(-22%);
+  }
+
+  /* Move down slightly + grow + flash */
+  85% {
+    transform: scale(1.1) translateY(-16%);
+    filter: brightness(2);
+  }
+
+  /* Reset to normal */
   100% {
-    transform: scale(1);
+    transform: scale(1) translateY(-22%);
     filter: brightness(1);
   }
 }
 
 @keyframes attackPulse {
   0% {
-    transform: translate(0, -16%) scale(1);
+    transform: translate(0, -22%) scale(1);
     filter: brightness(1);
   }
   50% {
-    transform: translate(0, -16%) scale(0.9);
+    transform: translate(0, -22%) scale(0.9);
     filter: brightness(4.4);
   }
   100% {
-    transform: translate(0, -16%) scale(1);
+    transform: translate(0, -22%) scale(1);
     filter: brightness(1);
   }
 }

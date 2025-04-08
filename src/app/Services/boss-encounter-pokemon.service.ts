@@ -16,37 +16,50 @@ export class BossEncounterPokemonService {
   battleLog: WritableSignal<BattleLog[]> = signal([]);
 
   playerDeclareAttack: WritableSignal<boolean> = signal(false);
-
+  leftAttacking: WritableSignal<boolean> = signal(false);
+  centerAttacking: WritableSignal<boolean> = signal(false);
+  rightAttacking: WritableSignal<boolean> = signal(false);
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {
       let randomAttacker = Math.floor(Math.random() * 3);
-      if (randomAttacker === 0) {
-        const attack = this.leftContainerAttack();
-        this.helperService.damage.update((current) => current + attack);
-        this.addToBattleLog({
-          text: `${this.leftContainerPokemonName()} dealt ${this.leftContainerAttack()} to ${this.helperService.playerPokemonName()}`,
-          type: 'enemy-damage',
-        });
-        this.playerDeclareAttack.set(false);
-      }
-      if (randomAttacker === 1) {
-        const attack = this.centerContainerAttack();
-        this.helperService.damage.update((current) => current + attack);
-        this.addToBattleLog({
-          text: `${this.centerContainerPokemonName()} dealt ${this.centerContainerAttack()} to ${this.helperService.playerPokemonName()}`,
-          type: 'enemy-damage',
-        });
-        this.playerDeclareAttack.set(false);
-      }
-      if (randomAttacker === 2) {
-        const attack = this.rightContainerAttack();
-        this.helperService.damage.update((current) => current + attack);
-        this.addToBattleLog({
-          text: `${this.rightContainerPokemonName()} dealt ${this.rightContainerAttack()} to ${this.helperService.playerPokemonName()}`,
-          type: 'enemy-damage',
-        });
-        this.playerDeclareAttack.set(false);
-      }
+      setTimeout(() => {
+        if (randomAttacker === 0) {
+          this.leftAttacking.set(true);
+          setTimeout(() => {
+            const attack = this.leftContainerAttack();
+            this.helperService.damage.update((current) => current + attack);
+            this.addToBattleLog({
+              text: `${this.leftContainerPokemonName()} dealt ${this.leftContainerAttack()} to ${this.helperService.playerPokemonName()}`,
+              type: 'enemy-damage',
+            });
+            this.playerDeclareAttack.set(false);
+          }, 1100);
+        }
+        if (randomAttacker === 1) {
+          this.centerAttacking.set(true);
+          setTimeout(() => {
+            const attack = this.centerContainerAttack();
+            this.helperService.damage.update((current) => current + attack);
+            this.addToBattleLog({
+              text: `${this.centerContainerPokemonName()} dealt ${this.centerContainerAttack()} to ${this.helperService.playerPokemonName()}`,
+              type: 'enemy-damage',
+            });
+            this.playerDeclareAttack.set(false);
+          }, 1100);
+        }
+        if (randomAttacker === 2) {
+          this.rightAttacking.set(true);
+          setTimeout(() => {
+            const attack = this.rightContainerAttack();
+            this.helperService.damage.update((current) => current + attack);
+            this.addToBattleLog({
+              text: `${this.rightContainerPokemonName()} dealt ${this.rightContainerAttack()} to ${this.helperService.playerPokemonName()}`,
+              type: 'enemy-damage',
+            });
+            this.playerDeclareAttack.set(false);
+          }, 1100);
+        }
+      }, 300);
     }
   });
 

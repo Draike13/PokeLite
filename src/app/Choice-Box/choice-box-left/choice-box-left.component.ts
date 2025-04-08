@@ -21,6 +21,7 @@ export class ChoiceBoxLeftComponent {
   ) {}
 
   pokemonAttacked: WritableSignal<boolean> = signal(false);
+  pokemonHit: WritableSignal<boolean> = signal(false);
 
   currentView() {
     return this.bossEncounterPokemonService.leftView();
@@ -47,13 +48,30 @@ export class ChoiceBoxLeftComponent {
     return this.bossEncounterPokemonService.leftDead();
   }
 
-  triggerAttackEffect() {
+  triggerAttackedEffect() {
     this.pokemonAttacked.set(true);
     setTimeout(() => {
       this.pokemonAttacked.set(false);
     }, 300);
   }
+
+  hitListener = effect(() => {
+    if (this.bossEncounterPokemonService.leftAttacking() === true) {
+      this.triggerHitEffect();
+      this.bossEncounterPokemonService.leftAttacking.set(false);
+    }
+  });
+  triggerHitEffect() {
+    this.pokemonHit.set(true);
+    setTimeout(() => {
+      this.pokemonHit.set(false);
+    }, 1000);
+  }
   declareAttack() {
     this.bossEncounterPokemonService.playerDeclareAttack.set(true);
+  }
+
+  playerLoss() {
+    return this.helperService.playerLoss();
   }
 }
