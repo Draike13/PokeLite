@@ -75,6 +75,10 @@ export class ChoiceBoxRightComponent {
     return this.helperService.playerLoss();
   }
 
+  currentlyAttacking() {
+    return this.bossEncounterPokemonService.playerDeclareAttack();
+  }
+
   brockEvolveEffect: WritableSignal<boolean> = signal(false);
   brockEvolve = effect(() => {
     this.brockEvolveEffect.set(

@@ -88,22 +88,14 @@ mat-card-content {
   margin-right: 1rem;
 }
 
-.container.attack-effect {
-  animation: attackPulse 0.3s ease;
-}
-
-/* hit animation */
 .hit-effect {
   animation: hitFlash 1s ease;
 }
-
 @keyframes hitFlash {
   0% {
     transform: scale(1) rotateZ(0deg) translateY(-22%);
     filter: brightness(1);
   }
-
-  /* Wiggle (tilt left-right-center) */
   10% {
     transform: rotateZ(-4deg) translateY(-22%);
   }
@@ -113,28 +105,25 @@ mat-card-content {
   30% {
     transform: rotateZ(0deg) translateY(-22%);
   }
-
-  /* Small delay (steady before attack) */
   40% {
     transform: rotateZ(0deg) translateY(-22%);
   }
   70% {
     transform: rotateZ(0deg) translateY(-22%);
   }
-
-  /* Move down slightly + grow + flash */
   85% {
     transform: scale(1.1) translateY(-16%);
     filter: brightness(2);
   }
-
-  /* Reset to normal */
   100% {
     transform: scale(1) translateY(-22%);
     filter: brightness(1);
   }
 }
 
+.container.attack-effect {
+  animation: attackPulse 0.3s ease;
+}
 @keyframes attackPulse {
   0% {
     transform: translate(0, -22%) scale(1);
@@ -154,4 +143,9 @@ mat-card-content {
   filter: grayscale(1) brightness(0.7);
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.atk-button.attacking {
+  pointer-events: none;
+  cursor: not-allowed;
 }

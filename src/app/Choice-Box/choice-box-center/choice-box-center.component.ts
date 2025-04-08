@@ -145,4 +145,7 @@ export class ChoiceBoxCenterComponent {
   playerLoss() {
     return this.helperService.playerLoss();
   }
+  currentlyAttacking() {
+    return this.bossEncounterPokemonService.playerDeclareAttack();
+  }
 }
