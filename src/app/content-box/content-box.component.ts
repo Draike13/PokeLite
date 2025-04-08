@@ -32,6 +32,7 @@ import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.c
 import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
 import { BattleLogComponent } from '../battle-log/battle-log.component';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
+import { ItemsService } from '../Services/items.service';
 
 @Component({
   selector: 'app-content-box',
@@ -59,6 +60,15 @@ export class ContentBoxComponent {
       this.encounterService.activeBoss()!.heldBadgeIndex
     ].badgeImage;
   }
+  currentItems = [];
+  sortBossItems = effect(() => {
+    this.itemService.items().forEach((eachItem) => {
+      if (this.encounterService.activeBoss()?.difficulty === 1) {
+        {
+        }
+      }
+    });
+  });
 
   bossTaunt() {
     if (this.encounterService.activeBoss()!.difficulty === 1) {
@@ -90,6 +100,7 @@ export class ContentBoxComponent {
   }
 
   constructor(
+    private itemService: ItemsService,
     private dialog: MatDialog,
     private saveService: SaveService,
     private helperService: HelperService,

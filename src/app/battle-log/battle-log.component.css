@@ -1,21 +1,7 @@
-/* .log-container {
-  height: 22vh;
-  aspect-ratio: 3/4;
-  overflow-y: scroll;
-  position: relative;
-  border: solid 2px #ffabf3;
-  border-radius: 15px;
-  flex-direction: column;
-  justify-content: end;
-  font-family: monospace;
-  scrollbar-width: thin;
-  scrollbar-color: #ffabf3 transparent;
-} */
-
 .log-container {
   display: flex;
   flex-direction: column-reverse;
-  height: 20vh;
+  height: 22vh;
   aspect-ratio: 3/4;
 
   border: solid 2px #ffabf3;
