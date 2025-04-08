@@ -43,4 +43,14 @@ export class EncounterService {
       }
     }
   });
+
+  cleanBoss = effect(() => {
+    if (this.activeBoss()) {
+      if (this.helperService.cleanBoss() === true) {
+        this.setBoss(null);
+        this.bossBattleStart.set(false);
+        this.helperService.cleanBoss.set(false);
+      }
+    }
+  });
 }

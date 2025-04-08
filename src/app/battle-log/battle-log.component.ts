@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, viewChild, ViewChild } from '@angular/core';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
 import { NgClass } from '@angular/common';
 
@@ -12,7 +12,6 @@ export class BattleLogComponent {
   constructor(
     private bossEncounterPokemonService: BossEncounterPokemonService
   ) {}
-
   ngAfterViewChecked() {
     const container = document.querySelector('.log-wrapper');
     if (container) {

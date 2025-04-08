@@ -1,4 +1,5 @@
 <mat-card
+  [class.player-loss]="playerLoss()"
   [ngStyle]="{ 'background-image': 'url(' + selectedImage() + ')' }"
   class="player-display"
   appearance="outlined"

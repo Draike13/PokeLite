@@ -68,7 +68,10 @@ export class BossEncounterPokemonService {
     this.activePokemon.set(this.encounterService.activeBoss()!.pokemon);
   }
   resetActive = effect(() => {
-    if (this.encounterService.playerWin() === true) {
+    if (
+      this.encounterService.playerWin() === true ||
+      this.helperService.playerLoss() === true
+    ) {
       this.activePokemon.set([]);
     }
   });
@@ -146,6 +149,7 @@ export class BossEncounterPokemonService {
       }
     }
   });
+
   centerDead: WritableSignal<boolean> = signal(false);
   killCenter = effect(() => {
     if (this.centerView() === 'active') {

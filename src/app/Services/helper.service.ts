@@ -139,8 +139,6 @@ export class HelperService {
     const attackLoss = this.minusAtk();
     this.playerAttack.set(baseAttack + attackGain - attackLoss);
     this.playerMaxHealth.set(this.activePokemon()!.maxHealth);
-    // const currentLevel = untracked(() => this.activePokemon()!.level);
-    // const gainedLevels = this.gainedLevels();
     this.playerLevel.set(this.activePokemon()!.level);
     this.playerPokemonName.set(this.activePokemon()!.name);
     this.playerImage.set(this.activePokemon()!.image);
@@ -158,6 +156,7 @@ export class HelperService {
     this.playerRank.set(this.activeSave()!.rank);
   }
 
+  cleanBoss: WritableSignal<boolean> = signal(false);
   cleanup() {
     this.playerAttack.set(0);
     this.playerLevel.set(null);
@@ -165,6 +164,16 @@ export class HelperService {
     this.playerImage.set('assets/Default.jpg');
     this.PlayerExp.set(0);
     this.playerCurrentHealth.set(0);
+    this.damage.set(0);
     this.activePokemon.set(null);
+    this.cleanBoss.set(true);
   }
+  playerLoss: WritableSignal<boolean> = signal(false);
+  gameLoss = effect(() => {
+    if (this.activePokemon()) {
+      if (this.playerCurrentHealth() <= 0) {
+        this.playerLoss.set(true);
+      }
+    }
+  });
 }

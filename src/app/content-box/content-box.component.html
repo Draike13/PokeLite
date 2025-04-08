@@ -109,6 +109,11 @@
       </div>
     </div>
 
+    <!-- victory view -->
     } @if (currentView() === 'victory') { Congratulations you completed a run! }
   </mat-card-content>
+
+  <!-- loss view -->
+  @if (currentView() === 'loss'){ Oh no! You were defeated. Better luck next
+  time. }
 </mat-card>

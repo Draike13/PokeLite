@@ -16,4 +16,7 @@ export class PlayerCardComponent {
   get selectedImage() {
     return this.helperService.playerImage;
   }
+  playerLoss() {
+    return this.helperService.playerLoss();
+  }
 }

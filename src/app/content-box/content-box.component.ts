@@ -78,6 +78,7 @@ export class ContentBoxComponent {
     | 'battlePath'
     | 'pathBoss'
     | 'victory'
+    | 'loss'
   > = signal('blurb');
 
   get selectedSave() {
@@ -123,6 +124,21 @@ export class ContentBoxComponent {
           this.currentView.set('pathBoss');
         }
       }
+    }
+  });
+
+  lossCheck = effect(() => {
+    if (this.helperService.playerLoss() === true) {
+      this.currentView.set('loss');
+      setTimeout(() => {
+        this.bossEncounterpokemonService.leftView.set('empty');
+        this.bossEncounterpokemonService.centerView.set('empty');
+        this.bossEncounterpokemonService.rightView.set('empty');
+        this.bossEncounterpokemonService.battleLog.set([]);
+        this.helperService.cleanup();
+        this.currentView.set('pokemonSelection');
+        this.helperService.playerLoss.set(false);
+      }, 3000);
     }
   });
 
