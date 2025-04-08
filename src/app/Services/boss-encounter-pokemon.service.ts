@@ -21,9 +21,15 @@ export class BossEncounterPokemonService {
   rightAttacking: WritableSignal<boolean> = signal(false);
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {
-      let randomAttacker = Math.floor(Math.random() * 3);
+      const activeAttackers = [];
+      if (this.leftContainerCurrentHealth() > 0) activeAttackers.push(0);
+      if (this.centerContainerCurrentHealth() > 0) activeAttackers.push(1);
+      if (this.rightContainerCurrentHealth() > 0) activeAttackers.push(2);
+      if (activeAttackers.length < 1) this.playerDeclareAttack.set(false);
+      let randomAttacker = Math.floor(Math.random() * activeAttackers.length);
+      const selectedAttacker = activeAttackers[randomAttacker];
       setTimeout(() => {
-        if (randomAttacker === 0) {
+        if (selectedAttacker === 0) {
           this.leftAttacking.set(true);
           setTimeout(() => {
             const attack = this.leftContainerAttack();
@@ -35,7 +41,7 @@ export class BossEncounterPokemonService {
             this.playerDeclareAttack.set(false);
           }, 1100);
         }
-        if (randomAttacker === 1) {
+        if (selectedAttacker === 1) {
           this.centerAttacking.set(true);
           setTimeout(() => {
             const attack = this.centerContainerAttack();
@@ -47,7 +53,7 @@ export class BossEncounterPokemonService {
             this.playerDeclareAttack.set(false);
           }, 1100);
         }
-        if (randomAttacker === 2) {
+        if (selectedAttacker === 2) {
           this.rightAttacking.set(true);
           setTimeout(() => {
             const attack = this.rightContainerAttack();
@@ -284,30 +290,35 @@ export class BossEncounterPokemonService {
             centerDead = true;
           }
           if (leftDead === true && centerDead === true) {
-            this.brockRan = true;
-            this.addToBattleLog({ text: `What?...`, type: 'status' });
             setTimeout(() => {
-              this.addToBattleLog({
-                text: `Oh no! ${this.rightContainerPokemonName()} is evolving!`,
-                type: 'status',
-              });
-              this.brockEvolveEffect.set(true);
-            }, 700);
-            setTimeout(() => {
-              this.rightContainerAttack.set(this.activePokemon()![3].attack);
-              this.rightContainerMaxHealth.set(
-                this.activePokemon()![3].maxHealth
-              );
-              this.rightContainerCurrentHealth.set(
-                this.activePokemon()![3].currentHealth
-              );
-              this.rightContainerPokemonName.set(this.activePokemon()![3].name);
-              this.rightContainerPokemonImage.set(
-                this.activePokemon()![3].image
-              );
-              this.rightContainerLevel.set(this.activePokemon()![3].level);
-              this.brockEvolveEffect.set(false);
-            }, 3200);
+              this.brockRan = true;
+              this.addToBattleLog({ text: `What?...`, type: 'status' });
+              setTimeout(() => {
+                this.addToBattleLog({
+                  text: `Oh no! ${this.rightContainerPokemonName()} is evolving!`,
+                  type: 'status',
+                });
+                this.brockEvolveEffect.set(true);
+              }, 700);
+              setTimeout(() => {
+                this.rightContainerAttack.set(this.activePokemon()![3].attack);
+                this.rightContainerMaxHealth.set(
+                  this.activePokemon()![3].maxHealth
+                );
+                this.rightContainerCurrentHealth.set(
+                  this.activePokemon()![3].currentHealth
+                );
+                this.rightContainerPokemonName.set(
+                  this.activePokemon()![3].name
+                );
+                this.rightContainerPokemonImage.set(
+                  this.activePokemon()![3].image
+                );
+                this.rightContainerLevel.set(this.activePokemon()![3].level);
+                this.brockEvolveEffect.set(false);
+                this.brockRan = false;
+              }, 3200);
+            }, 1700);
           }
         }
       }
