@@ -150,7 +150,8 @@ mat-card-content {
   border: solid 2px #ffabf3;
   border-radius: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-content: space-evenly;
   justify-content: center;
 }
 .boss-badge {
@@ -158,8 +159,20 @@ mat-card-content {
   aspect-ratio: 1/1;
   display: flex;
   margin-top: 1.5rem;
+  margin: auto;
   padding-bottom: 1.5rem;
   border-bottom: solid 2px #ffabf3;
+}
+.items {
+  margin: auto;
+  height: 4vh;
+  aspect-ratio: 1/1;
+}
+.item-holder {
+  display: flex;
+  flex-direction: row;
+  align-items: space-evenly;
+  margin-bottom: 1rem;
 }
 
 @media (max-height: 1200px) {

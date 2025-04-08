@@ -60,11 +60,12 @@ export class ContentBoxComponent {
       this.encounterService.activeBoss()!.heldBadgeIndex
     ].badgeImage;
   }
-  currentItems = [];
+  currentItems: { name: string; id: number; image: string }[] = [];
   sortBossItems = effect(() => {
     this.itemService.items().forEach((eachItem) => {
       if (this.encounterService.activeBoss()?.difficulty === 1) {
-        {
+        if (eachItem.id === 1 || eachItem.id === 2) {
+          this.currentItems.push(eachItem);
         }
       }
     });
@@ -146,6 +147,7 @@ export class ContentBoxComponent {
         this.bossEncounterpokemonService.centerView.set('empty');
         this.bossEncounterpokemonService.rightView.set('empty');
         this.bossEncounterpokemonService.battleLog.set([]);
+        this.currentItems = [];
         this.helperService.cleanup();
         this.currentView.set('pokemonSelection');
         this.helperService.playerLoss.set(false);
@@ -239,6 +241,7 @@ export class ContentBoxComponent {
   changeToVictory = effect(() => {
     if (this.encounterService.playerWin() === true) {
       this.currentView.set('victory');
+      this.currentItems = [];
       this.bossEncounterpokemonService.battleLog.set([]);
       setTimeout(() => {
         this.encounterService.setBoss(null);
