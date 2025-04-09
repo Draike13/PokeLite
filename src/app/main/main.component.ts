@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  signal,
+  ViewChild,
+  WritableSignal,
+} from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { ContentBoxComponent } from '../content-box/content-box.component';
 import { ChoiceBoxLeftComponent } from '../Choice-Box/choice-box-left/choice-box-left.component';
@@ -9,6 +15,8 @@ import { StatBoxCenterComponent } from '../Stat-Boxes/stat-box-center/stat-box-c
 import { StatBoxLeftComponent } from '../Stat-Boxes/stat-box-left/stat-box-left.component';
 import { PlayerCardComponent } from '../player-card/player-card.component';
 import { ExpBarComponent } from '../exp-bar/exp-bar.component';
+import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-main',
@@ -27,4 +35,18 @@ import { ExpBarComponent } from '../exp-bar/exp-bar.component';
   templateUrl: './main.component.html',
   styleUrl: './main.component.css',
 })
-export class MainComponent {}
+export class MainComponent {
+  pulseEffect() {
+    return this.bossEncounterPokemonService.pulseEffect();
+  }
+  constructor(
+    private bossEncounterPokemonService: BossEncounterPokemonService
+  ) {}
+
+  triggerPulseEffect() {
+    this.bossEncounterPokemonService.pulseEffect.set(true);
+    setTimeout(() => {
+      this.bossEncounterPokemonService.pulseEffect.set(false);
+    }, 800);
+  }
+}

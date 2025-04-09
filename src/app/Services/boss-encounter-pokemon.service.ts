@@ -380,7 +380,7 @@ export class BossEncounterPokemonService {
 
   mistyAttackEffect: WritableSignal<boolean> = signal(false);
   mistyAttackCooldown = false; // just a local class field
-
+  pulseEffect: WritableSignal<boolean> = signal(false);
   mistySpecialSetter = effect(() => {
     const boss = this.encounterService.activeBoss();
     const misty = boss?.difficulty === 2;
@@ -400,6 +400,7 @@ export class BossEncounterPokemonService {
     const shouldRun = this.mistyAttackEffect();
     const attackTriggered = this.playerDeclareAttack();
     const psyduckAlive = this.rightContainerCurrentHealth() > 0;
+    let rampageTriggered = false;
 
     if (
       shouldRun &&
@@ -410,10 +411,13 @@ export class BossEncounterPokemonService {
       this.mistyAttackCooldown = true;
 
       this.rightAttacking.set(true);
-      this.addToBattleLog({
-        text: 'Oh no! Psyduck is on a psychic rampage!',
-        type: 'status',
-      });
+      if (!rampageTriggered) {
+        this.addToBattleLog({
+          text: 'Oh no! Psyduck is on a psychic rampage!',
+          type: 'status',
+        });
+        rampageTriggered = true;
+      }
 
       setTimeout(() => {
         const attack = this.rightContainerAttack();
@@ -423,18 +427,25 @@ export class BossEncounterPokemonService {
           type: 'enemy-damage',
         });
         this.rightAttacking.set(false);
+        this.pulseEffect.set(true);
 
-        // Now safe: delayed logic outside of reactive loop
-        this.rightContainerAttack.update((atk) => atk + 2);
-        this.addToBattleLog({
-          text: 'Psyduck is getting stronger...',
-          type: 'status',
-        });
+        setTimeout(() => {
+          this.pulseEffect.set(false);
+          // stat boost happens here
+
+          this.leftContainerAttack.update((atk) => atk + 2);
+          this.centerContainerAttack.update((atk) => atk + 2);
+          this.rightContainerAttack.update((atk) => atk + 2);
+          this.addToBattleLog({
+            text: `Misty's Pokemon are getting stronger...`,
+            type: 'status',
+          });
+        }, 1000); // adjust to match the animation duration
 
         // Cooldown resets AFTER the action cycle completes
         setTimeout(() => {
           this.mistyAttackCooldown = false;
-        }, 100); // adjust this value if needed
+        }, 2000); // adjust this value if needed
       }, 1100);
     }
   });
