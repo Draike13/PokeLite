@@ -1,8 +1,10 @@
 <mat-card
+  [class.paralyze-effect]="surgeEffect()"
   [class.player-loss]="playerLoss()"
   [ngStyle]="{ 'background-image': 'url(' + selectedImage() + ')' }"
   class="player-display"
   appearance="outlined"
 >
+  <div class="paralyze-overlay"></div>
   <ng-content></ng-content>
 </mat-card>

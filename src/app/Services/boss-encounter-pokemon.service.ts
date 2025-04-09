@@ -449,4 +449,37 @@ export class BossEncounterPokemonService {
       }, 1100);
     }
   });
+
+  surgeEffect: WritableSignal<boolean> = signal(false);
+
+  surgeSpecial = effect(() => {
+    const boss = this.encounterService.activeBoss();
+    const surge = boss?.difficulty === 3;
+
+    if (boss && surge) {
+      if (
+        (this.leftAttacking() === true ||
+          this.centerAttacking() === true ||
+          this.rightAttacking() === true) &&
+        this.surgeEffect() === false
+      ) {
+        const chance = Math.floor(Math.random() * 100);
+        if (chance <= 60) {
+          setTimeout(() => {
+            this.surgeEffect.set(true);
+            this.addToBattleLog({
+              text: `Oh no! Your Pokemon was paralyzed!`,
+              type: 'status',
+            });
+            setTimeout(() => {
+              this.playerDeclareAttack.set(true);
+              setTimeout(() => {
+                this.surgeEffect.set(false);
+              }, 1000);
+            }, 1100);
+          }, 1100);
+        }
+      }
+    }
+  });
 }
