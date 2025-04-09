@@ -377,4 +377,65 @@ export class BossEncounterPokemonService {
       }
     }
   });
+
+  mistyAttackEffect: WritableSignal<boolean> = signal(false);
+  mistyAttackCooldown = false; // just a local class field
+
+  mistySpecialSetter = effect(() => {
+    const boss = this.encounterService.activeBoss();
+    const misty = boss?.difficulty === 2;
+    const psyduckAlive = this.rightContainerCurrentHealth() > 0;
+    const psyduckBonusState =
+      this.rightContainerCurrentHealth() <= this.rightContainerMaxHealth() / 2;
+
+    const isActive = !!(boss && misty && psyduckAlive && psyduckBonusState);
+
+    // Only set if changed to avoid triggering new effect unnecessarily
+    if (this.mistyAttackEffect() !== isActive) {
+      this.mistyAttackEffect.set(isActive);
+    }
+  });
+
+  mistySpecial = effect(() => {
+    const shouldRun = this.mistyAttackEffect();
+    const attackTriggered = this.playerDeclareAttack();
+    const psyduckAlive = this.rightContainerCurrentHealth() > 0;
+
+    if (
+      shouldRun &&
+      attackTriggered &&
+      psyduckAlive &&
+      !this.mistyAttackCooldown
+    ) {
+      this.mistyAttackCooldown = true;
+
+      this.rightAttacking.set(true);
+      this.addToBattleLog({
+        text: 'Oh no! Psyduck is on a psychic rampage!',
+        type: 'status',
+      });
+
+      setTimeout(() => {
+        const attack = this.rightContainerAttack();
+        this.helperService.damage.update((current) => current + attack);
+        this.addToBattleLog({
+          text: `${this.rightContainerPokemonName()} dealt ${attack} bonus damage to ${this.helperService.playerPokemonName()}`,
+          type: 'enemy-damage',
+        });
+        this.rightAttacking.set(false);
+
+        // Now safe: delayed logic outside of reactive loop
+        this.rightContainerAttack.update((atk) => atk + 2);
+        this.addToBattleLog({
+          text: 'Psyduck is getting stronger...',
+          type: 'status',
+        });
+
+        // Cooldown resets AFTER the action cycle completes
+        setTimeout(() => {
+          this.mistyAttackCooldown = false;
+        }, 100); // adjust this value if needed
+      }, 1100);
+    }
+  });
 }

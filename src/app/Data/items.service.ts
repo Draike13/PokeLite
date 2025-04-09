@@ -43,9 +43,9 @@ export class ItemsService {
     {
       name: 'Mega Stone',
       id: 5,
-      image: '',
+      image: 'assets/items/MegaStone.png',
       baseWeight: 10,
-      minDifficulty: 8,
+      minDifficulty: 1,
       maxDifficulty: 8,
       unlockCondition: () =>
         this.bossService.Bosses()[7].pokemon[3].locked === false,
