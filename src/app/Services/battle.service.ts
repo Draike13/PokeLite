@@ -74,6 +74,8 @@ export class BattleService {
       this.gainLevel();
     } else if (item.id === 2) {
       this.recoverHealth(10);
+    } else if (item.id === 3) {
+      this.helperService.playerAttack.update((atk) => atk + 5);
     }
   }
 }
