@@ -149,3 +149,22 @@ mat-card-content {
   pointer-events: none;
   cursor: not-allowed;
 }
+
+.title {
+  margin: 1rem;
+  color: #ffabf3;
+  font-size: 2rem;
+}
+.item-holder {
+  display: flex;
+}
+.item-image {
+  height: 12vh;
+  aspect-ratio: 1/1;
+}
+.item-button {
+  background-color: #161215;
+  font-size: 1.5rem;
+  margin: 1rem;
+  display: flex;
+}

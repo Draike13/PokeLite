@@ -6,6 +6,8 @@ import { EncounterService } from '../../Services/encounter.service';
 import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
+import { Item } from '../../Models/item.model';
+import { BattleService } from '../../Services/battle.service';
 
 @Component({
   selector: 'app-choice-box-right',
@@ -15,6 +17,7 @@ import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokem
 })
 export class ChoiceBoxRightComponent {
   constructor(
+    private battleService: BattleService,
     private bossEncounterPokemonService: BossEncounterPokemonService,
     private helperService: HelperService,
     private encounterService: EncounterService
@@ -77,6 +80,23 @@ export class ChoiceBoxRightComponent {
 
   currentlyAttacking() {
     return this.bossEncounterPokemonService.playerDeclareAttack();
+  }
+
+  availableItems() {
+    return this.encounterService.availableBossItems();
+  }
+  itemFind() {
+    return this.encounterService.getRandomItem();
+  }
+  discoveredItem() {
+    return this.bossEncounterPokemonService.rightFoundItem();
+  }
+  useItem(item: Item) {
+    return this.battleService.useItem(item);
+  }
+  clearItem() {
+    this.bossEncounterPokemonService.rightFoundItem.set(null);
+    this.bossEncounterPokemonService.rightView.set('empty');
   }
 
   brockEvolveEffect: WritableSignal<boolean> = signal(false);

@@ -72,4 +72,22 @@
   >
   <!-- <button (click)="level()" mat-button>Level Up!</button> -->
 </mat-card>
+} @if (currentView() === 'item') {
+<mat-card class="container" appearance="outlined">
+  <mat-card-title class="title">You Found a Hidden Item!</mat-card-title>
+  <mat-card-content>
+    <div class="item-holder">
+      <img class="item-image" src="{{ discoveredItem()!.image }}" />
+    </div>
+  </mat-card-content>
+  <mat-card-actions
+    ><button
+      class="item-button"
+      (click)="useItem(discoveredItem()!); clearItem()"
+      mat-button
+    >
+      Take Item?
+    </button></mat-card-actions
+  >
+</mat-card>
 }

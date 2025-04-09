@@ -32,7 +32,7 @@ import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.c
 import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
 import { BattleLogComponent } from '../battle-log/battle-log.component';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
-import { ItemsService } from '../Services/items.service';
+import { ItemsService } from '../Data/items.service';
 
 @Component({
   selector: 'app-content-box',
@@ -60,16 +60,9 @@ export class ContentBoxComponent {
       this.encounterService.activeBoss()!.heldBadgeIndex
     ].badgeImage;
   }
-  currentItems: { name: string; id: number; image: string }[] = [];
-  sortBossItems = effect(() => {
-    this.itemService.items().forEach((eachItem) => {
-      if (this.encounterService.activeBoss()?.difficulty === 1) {
-        if (eachItem.id === 1 || eachItem.id === 2) {
-          this.currentItems.push(eachItem);
-        }
-      }
-    });
-  });
+  currentItems() {
+    return this.encounterService.availableBossItems();
+  }
 
   bossTaunt() {
     if (this.encounterService.activeBoss()!.difficulty === 1) {
@@ -147,7 +140,7 @@ export class ContentBoxComponent {
         this.bossEncounterpokemonService.centerView.set('empty');
         this.bossEncounterpokemonService.rightView.set('empty');
         this.bossEncounterpokemonService.battleLog.set([]);
-        this.currentItems = [];
+        this.encounterService.currentItems.set([]);
         this.helperService.cleanup();
         this.currentView.set('pokemonSelection');
         this.helperService.playerLoss.set(false);
@@ -241,7 +234,7 @@ export class ContentBoxComponent {
   changeToVictory = effect(() => {
     if (this.encounterService.playerWin() === true) {
       this.currentView.set('victory');
-      this.currentItems = [];
+      this.encounterService.currentItems.set([]);
       this.bossEncounterpokemonService.battleLog.set([]);
       setTimeout(() => {
         this.encounterService.setBoss(null);

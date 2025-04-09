@@ -11,6 +11,7 @@ import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 import { single } from 'rxjs';
+import { Item } from '../../Models/item.model';
 
 @Component({
   selector: 'app-choice-box-center',
@@ -147,5 +148,22 @@ export class ChoiceBoxCenterComponent {
   }
   currentlyAttacking() {
     return this.bossEncounterPokemonService.playerDeclareAttack();
+  }
+
+  availableItems() {
+    return this.encounterService.availableBossItems();
+  }
+  itemFind() {
+    return this.encounterService.getRandomItem();
+  }
+  discoveredItem() {
+    return this.bossEncounterPokemonService.centerFoundItem();
+  }
+  useItem(item: Item) {
+    return this.battleService.useItem(item);
+  }
+  clearItem() {
+    this.bossEncounterPokemonService.centerFoundItem.set(null);
+    this.bossEncounterPokemonService.centerView.set('empty');
   }
 }

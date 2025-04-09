@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HelperService } from './helper.service';
 import { SaveService } from './save.service';
 import { RankService } from '../Data/rank.service';
+import { Item } from '../Models/item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +29,8 @@ export class BattleService {
       this.helperService.damage.set(this.helperService.playerMaxHealth());
     }
   }
-  recoverHealth() {
-    this.helperService.damage.set(this.helperService.damage() - 5);
+  recoverHealth(heal: number) {
+    this.helperService.damage.set(this.helperService.damage() - heal);
     if (this.helperService.damage() <= 0) {
       this.helperService.damage.set(0);
     }
@@ -66,5 +67,13 @@ export class BattleService {
         }
       }
     });
+  }
+
+  useItem(item: Item) {
+    if (item.id === 1) {
+      this.gainLevel();
+    } else if (item.id === 2) {
+      this.recoverHealth(10);
+    }
   }
 }

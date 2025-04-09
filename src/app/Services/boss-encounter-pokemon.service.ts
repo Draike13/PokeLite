@@ -3,6 +3,7 @@ import { EncounterService } from './encounter.service';
 import { HelperService } from './helper.service';
 import { Pokemon } from '../Models/pokemon.model';
 import { BattleLog } from '../Models/battle-log.model';
+import { Item } from '../Models/item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class BossEncounterPokemonService {
   leftAttacking: WritableSignal<boolean> = signal(false);
   centerAttacking: WritableSignal<boolean> = signal(false);
   rightAttacking: WritableSignal<boolean> = signal(false);
+
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {
       const activeAttackers = [];
@@ -95,13 +97,14 @@ export class BossEncounterPokemonService {
     }
   });
 
-  leftView: WritableSignal<'empty' | 'active'> = signal('empty');
+  leftView: WritableSignal<'empty' | 'active' | 'item'> = signal('empty');
   leftContainerAttack: WritableSignal<number> = signal(0);
   leftContainerMaxHealth: WritableSignal<number> = signal(0);
   leftContainerCurrentHealth: WritableSignal<number> = signal(0);
   leftContainerPokemonName: WritableSignal<string> = signal('');
   leftContainerPokemonImage: WritableSignal<string> = signal('');
   leftContainerLevel: WritableSignal<number> = signal(0);
+  leftFoundItem: WritableSignal<Item | null> = signal(null);
 
   buildLeftCard = effect(() => {
     if (this.activePokemon().length > 0) {
@@ -117,9 +120,25 @@ export class BossEncounterPokemonService {
       if (this.leftContainerCurrentHealth() === 0) {
         this.leftDead.set(true);
         setTimeout(() => {
-          this.leftView.set('empty');
-          this.encounterService.victoryLeft.set(true);
-          this.leftDead.set(false);
+          if (
+            (this.centerView() === 'empty' || this.centerView() === 'item') &&
+            (this.rightView() === 'empty' || this.rightView() === 'item')
+          ) {
+            this.leftView.set('empty');
+            this.centerView.set('empty');
+            this.rightView.set('empty');
+            this.encounterService.victoryLeft.set(true);
+            this.leftDead.set(false);
+          } else {
+            const id = this.encounterService.getRandomItem();
+            const item = this.encounterService
+              .availableBossItems()
+              .find((i) => i.id === id);
+            this.leftFoundItem.set(item || null);
+            this.leftView.set('item');
+            this.encounterService.victoryLeft.set(true);
+            this.leftDead.set(false);
+          }
         }, 1250);
       }
     }
@@ -152,13 +171,14 @@ export class BossEncounterPokemonService {
       this.leftContainerCurrentHealth.set(0);
     }
   }
-  centerView: WritableSignal<'empty' | 'active'> = signal('empty');
+  centerView: WritableSignal<'empty' | 'active' | 'item'> = signal('empty');
   centerContainerAttack: WritableSignal<number> = signal(0);
   centerContainerMaxHealth: WritableSignal<number> = signal(0);
   centerContainerCurrentHealth: WritableSignal<number> = signal(0);
   centerContainerPokemonName: WritableSignal<string> = signal('');
   centerContainerPokemonImage: WritableSignal<string> = signal('');
   centerContainerLevel: WritableSignal<number> = signal(0);
+  centerFoundItem: WritableSignal<Item | null> = signal(null);
 
   buildCenterCard = effect(() => {
     if (this.activePokemon().length > 0) {
@@ -175,9 +195,25 @@ export class BossEncounterPokemonService {
       if (this.centerContainerCurrentHealth() === 0) {
         this.centerDead.set(true);
         setTimeout(() => {
-          this.centerView.set('empty');
-          this.encounterService.victoryCenter.set(true);
-          this.centerDead.set(false);
+          if (
+            (this.leftView() === 'empty' || this.leftView() === 'item') &&
+            (this.rightView() === 'empty' || this.rightView() === 'item')
+          ) {
+            this.leftView.set('empty');
+            this.centerView.set('empty');
+            this.rightView.set('empty');
+            this.encounterService.victoryCenter.set(true);
+            this.centerDead.set(false);
+          } else {
+            const id = this.encounterService.getRandomItem();
+            const item = this.encounterService
+              .availableBossItems()
+              .find((i) => i.id === id);
+            this.centerFoundItem.set(item || null);
+            this.centerView.set('item');
+            this.encounterService.victoryCenter.set(true);
+            this.centerDead.set(false);
+          }
         }, 1250);
       }
     }
@@ -212,13 +248,14 @@ export class BossEncounterPokemonService {
       this.centerContainerCurrentHealth.set(0);
     }
   }
-  rightView: WritableSignal<'empty' | 'active'> = signal('empty');
+  rightView: WritableSignal<'empty' | 'active' | 'item'> = signal('empty');
   rightContainerAttack: WritableSignal<number> = signal(0);
   rightContainerMaxHealth: WritableSignal<number> = signal(0);
   rightContainerCurrentHealth: WritableSignal<number> = signal(0);
   rightContainerPokemonName: WritableSignal<string> = signal('');
   rightContainerPokemonImage: WritableSignal<string> = signal('');
   rightContainerLevel: WritableSignal<number> = signal(0);
+  rightFoundItem: WritableSignal<Item | null> = signal(null);
 
   buildRightCard = effect(() => {
     if (this.activePokemon().length > 0) {
@@ -234,9 +271,25 @@ export class BossEncounterPokemonService {
       if (this.rightContainerCurrentHealth() === 0) {
         this.rightDead.set(true);
         setTimeout(() => {
-          this.rightView.set('empty');
-          this.encounterService.victoryRight.set(true);
-          this.rightDead.set(false);
+          if (
+            (this.leftView() === 'empty' || this.leftView() === 'item') &&
+            (this.centerView() === 'empty' || this.centerView() === 'item')
+          ) {
+            this.leftView.set('empty');
+            this.centerView.set('empty');
+            this.rightView.set('empty');
+            this.encounterService.victoryRight.set(true);
+            this.rightDead.set(false);
+          } else {
+            const id = this.encounterService.getRandomItem();
+            const item = this.encounterService
+              .availableBossItems()
+              .find((i) => i.id === id);
+            this.rightFoundItem.set(item || null);
+            this.rightView.set('item');
+            this.encounterService.victoryRight.set(true);
+            this.rightDead.set(false);
+          }
         }, 1250);
       }
     }

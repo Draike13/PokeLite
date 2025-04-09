@@ -6,6 +6,8 @@ import { HelperService } from '../../Services/helper.service';
 import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
+import { Item } from '../../Models/item.model';
+import { BattleService } from '../../Services/battle.service';
 
 @Component({
   selector: 'app-choice-box-left',
@@ -15,6 +17,7 @@ import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokem
 })
 export class ChoiceBoxLeftComponent {
   constructor(
+    private battleService: BattleService,
     private encounterService: EncounterService,
     private helperService: HelperService,
     private bossEncounterPokemonService: BossEncounterPokemonService
@@ -77,5 +80,22 @@ export class ChoiceBoxLeftComponent {
 
   currentlyAttacking() {
     return this.bossEncounterPokemonService.playerDeclareAttack();
+  }
+
+  availableItems() {
+    return this.encounterService.availableBossItems();
+  }
+  itemFind() {
+    return this.encounterService.getRandomItem();
+  }
+  discoveredItem() {
+    return this.bossEncounterPokemonService.leftFoundItem();
+  }
+  useItem(item: Item) {
+    return this.battleService.useItem(item);
+  }
+  clearItem() {
+    this.bossEncounterPokemonService.leftFoundItem.set(null);
+    this.bossEncounterPokemonService.leftView.set('empty');
   }
 }
