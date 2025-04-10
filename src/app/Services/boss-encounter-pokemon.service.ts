@@ -13,13 +13,30 @@ export class BossEncounterPokemonService {
     private encounterService: EncounterService,
     private helperService: HelperService
   ) {}
-
+  encounterToggle: WritableSignal<boolean> = signal(false);
   battleLog: WritableSignal<BattleLog[]> = signal([]);
 
   playerDeclareAttack: WritableSignal<boolean> = signal(false);
   leftAttacking: WritableSignal<boolean> = signal(false);
   centerAttacking: WritableSignal<boolean> = signal(false);
   rightAttacking: WritableSignal<boolean> = signal(false);
+
+
+  encounterRun = effect(()=>{
+    if(this.encounterToggle()=== true){
+      this.leftView.set('encounter')
+      this.centerView.set('encounter')
+      this.rightView.set('encounter')
+      setTimeout(() => {
+        this.encounterToggle.set(false)
+      }, 300);
+    }
+  })
+
+
+
+
+
 
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {

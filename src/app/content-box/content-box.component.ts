@@ -111,31 +111,45 @@ export class ContentBoxComponent {
     }
   });
 
-  bossCheck = effect(() => {
-    if (this.encounterService.activeBoss()) {
+  routeCheck = effect(() => {
+    if (
+      this.encounterService.activeBoss() &&
+      this.routeCounter() <
+        this.encounterService.activeBoss()!.encounterCount &&
+      this.bossEncounterpokemonService.encounterToggle() === false
+    ) {
       this.currentView.set('battlePath');
+      this.bossEncounterpokemonService.encounterToggle.set(true);
+    }
+    if (
+      this.encounterService.activeBoss() &&
+      this.routeCounter() === this.encounterService.activeBoss()!.encounterCount
+    ) {
+      this.encounterService.bossBattleStart.set(true);
+      this.currentView.set('pathBoss');
     }
   });
 
-  routeCheck = effect(() => {
-    if (this.encounterService.activeBoss()) {
-      if (
-        this.routeCounter() ===
-        this.encounterService.activeBoss()!.encounterCount
-      ) {
-        this.encounterService.bossBattleStart.set(true);
-        this.routeCounter.set(0);
-        if (this.encounterService.bossBattleStart() === true) {
-          this.currentView.set('pathBoss');
-        }
-      }
-    }
-  });
+  // routeCheck = effect(() => {
+  //   if (this.encounterService.activeBoss()) {
+  //     if (
+  //       this.routeCounter() ===
+  //       this.encounterService.activeBoss()!.encounterCount
+  //     ) {
+  //       this.encounterService.bossBattleStart.set(true);
+  //       this.routeCounter.set(0);
+  //       if (this.encounterService.bossBattleStart() === true) {
+  //         this.currentView.set('pathBoss');
+  //       }
+  //     }
+  //   }
+  // });
 
   lossCheck = effect(() => {
     if (this.helperService.playerLoss() === true) {
       this.currentView.set('loss');
       setTimeout(() => {
+        this.routeCounter.set(0);
         this.bossEncounterpokemonService.leftView.set('empty');
         this.bossEncounterpokemonService.centerView.set('empty');
         this.bossEncounterpokemonService.rightView.set('empty');
@@ -237,6 +251,7 @@ export class ContentBoxComponent {
       this.encounterService.currentItems.set([]);
       this.bossEncounterpokemonService.battleLog.set([]);
       setTimeout(() => {
+        this.routeCounter.set(0);
         this.encounterService.setBoss(null);
         this.encounterService.playerWin.set(false);
         this.helperService.cleanup();
