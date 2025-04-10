@@ -13,6 +13,7 @@ import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokem
 import { single } from 'rxjs';
 import { Item } from '../../Models/item.model';
 import { RandomEcounterService } from '../../Data/random-ecounter.service';
+import { RandomEncounter } from '../../Models/random-encounter.model';
 
 @Component({
   selector: 'app-choice-box-center',
@@ -110,4 +111,19 @@ export class ChoiceBoxCenterComponent {
     this.bossEncounterPokemonService.centerFoundItem.set(null);
     this.bossEncounterPokemonService.centerView.set('empty');
   }
+  currentRandomEncounter: WritableSignal<RandomEncounter | null> = signal(null);
+
+  loadEncounter = effect(() => {
+    if (
+      this.bossEncounterPokemonService.encounterToggle() === true &&
+      this.currentRandomEncounter() === null
+    ) {
+      const randomEncounterIndex = Math.floor(
+        Math.random() * this.randomEncounterService.expEncounters().length
+      );
+      this.currentRandomEncounter.set(
+        this.randomEncounterService.expEncounters()[randomEncounterIndex]
+      );
+    }
+  });
 }

@@ -74,8 +74,12 @@
 <!-- random encounter view -->
 @if (currentView() === 'encounter') {
 <mat-card class="container" appearance="outlined">
-  <mat-card-title class="title">[event title]</mat-card-title>
-  <mat-card-content> </mat-card-content>
+  <mat-card-title class="title">{{
+    currentRandomEncounter()!.name
+  }}</mat-card-title>
+  <mat-card-content
+    ><p>{{ currentRandomEncounter()!.description }}</p>
+  </mat-card-content>
   <mat-card-actions
     ><button class="encounter-selection-button" mat-button>
       Go This Way

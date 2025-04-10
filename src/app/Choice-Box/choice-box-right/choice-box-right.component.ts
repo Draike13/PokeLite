@@ -8,6 +8,8 @@ import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 import { Item } from '../../Models/item.model';
 import { BattleService } from '../../Services/battle.service';
+import { RandomEncounter } from '../../Models/random-encounter.model';
+import { RandomEcounterService } from '../../Data/random-ecounter.service';
 
 @Component({
   selector: 'app-choice-box-right',
@@ -17,6 +19,7 @@ import { BattleService } from '../../Services/battle.service';
 })
 export class ChoiceBoxRightComponent {
   constructor(
+    private randomEncounterService: RandomEcounterService,
     private battleService: BattleService,
     private bossEncounterPokemonService: BossEncounterPokemonService,
     private helperService: HelperService,
@@ -105,4 +108,25 @@ export class ChoiceBoxRightComponent {
       this.bossEncounterPokemonService.brockEvolveEffect()
     );
   });
+
+  currentRandomEncounter: WritableSignal<RandomEncounter | null> = signal(null);
+
+  loadEncounter = effect(() => {
+    if (
+      this.bossEncounterPokemonService.encounterToggle() === true &&
+      this.currentRandomEncounter() === null
+    ) {
+      const randomEncounterIndex = Math.floor(
+        Math.random() * this.randomEncounterService.hiddenEncounters().length
+      );
+      this.currentRandomEncounter.set(
+        this.randomEncounterService.hiddenEncounters()[randomEncounterIndex]
+      );
+    }
+  });
+  hidden: WritableSignal<boolean> = signal(true);
+
+  uncover() {
+    this.hidden.set(false);
+  }
 }

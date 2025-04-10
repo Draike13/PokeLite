@@ -208,3 +208,38 @@ mat-card-content {
   margin: 1rem;
   display: flex;
 }
+
+.container.blur-wrap {
+  transition: filter 0.4s ease;
+  z-index: 1;
+}
+
+.blurred {
+  filter: blur(7px);
+  pointer-events: none;
+}
+
+mat-card-actions {
+  z-index: 2;
+}
+.encounter-selection-button {
+  background-color: #161215;
+  z-index: 2;
+}
+
+.container.background-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(80px);
+  z-index: 1; /* Place it below the content */
+  transition: filter 0.4s ease;
+}
+
+.background-blur.blurred {
+  filter: blur(8px);
+}

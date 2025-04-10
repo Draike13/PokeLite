@@ -8,6 +8,8 @@ import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 import { Item } from '../../Models/item.model';
 import { BattleService } from '../../Services/battle.service';
+import { RandomEncounter } from '../../Models/random-encounter.model';
+import { RandomEcounterService } from '../../Data/random-ecounter.service';
 
 @Component({
   selector: 'app-choice-box-left',
@@ -17,6 +19,7 @@ import { BattleService } from '../../Services/battle.service';
 })
 export class ChoiceBoxLeftComponent {
   constructor(
+    private randomEncounterService: RandomEcounterService,
     private battleService: BattleService,
     private encounterService: EncounterService,
     private helperService: HelperService,
@@ -98,4 +101,20 @@ export class ChoiceBoxLeftComponent {
     this.bossEncounterPokemonService.leftFoundItem.set(null);
     this.bossEncounterPokemonService.leftView.set('empty');
   }
+
+  currentRandomEncounter: WritableSignal<RandomEncounter | null> = signal(null);
+
+  loadEncounter = effect(() => {
+    if (
+      this.bossEncounterPokemonService.encounterToggle() === true &&
+      this.currentRandomEncounter() === null
+    ) {
+      const randomEncounterIndex = Math.floor(
+        Math.random() * this.randomEncounterService.knownEncounters().length
+      );
+      this.currentRandomEncounter.set(
+        this.randomEncounterService.knownEncounters()[randomEncounterIndex]
+      );
+    }
+  });
 }
