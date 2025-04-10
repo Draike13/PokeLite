@@ -12,6 +12,7 @@ import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 import { single } from 'rxjs';
 import { Item } from '../../Models/item.model';
+import { RandomEcounterService } from '../../Data/random-ecounter.service';
 
 @Component({
   selector: 'app-choice-box-center',
@@ -27,70 +28,13 @@ import { Item } from '../../Models/item.model';
 })
 export class ChoiceBoxCenterComponent {
   constructor(
+    private randomEncounterService: RandomEcounterService,
     private helperService: HelperService,
     private battleService: BattleService,
     private pokemonService: PokemonService,
     private encounterService: EncounterService,
     private bossEncounterPokemonService: BossEncounterPokemonService
   ) {}
-
-  // megaStone: boolean = false;
-  // giveExp() {
-  //   this.battleService.giveExp();
-  // }
-  // takeDamage() {
-  //   this.battleService.takeDamage();
-  // }
-  // heal() {
-  //   this.battleService.recoverHealth();
-  // }
-  // unlock() {
-  //   this.pokemonService.pokemon().forEach((eachPokemon) => {
-  //     if (eachPokemon.id === 4) {
-  //       eachPokemon.locked = false;
-  //     }
-  //   });
-  // }
-  // level() {
-  //   this.battleService.gainLevel();
-  // }
-  // megaEvolve() {
-  //   if (
-  //     this.helperService.activePokemon()!.id ===
-  //       Number(
-  //         `${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}`
-  //       ) &&
-  //     this.megaStone === true
-  //   ) {
-  //     let currentLevel = this.helperService.playerLevel();
-  //     this.helperService.fullPokeList().forEach((eachPokemon) => {
-  //       if (
-  //         eachPokemon.id ===
-  //         Number(
-  //           `${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}${this.helperService.pokemonBaseId}`
-  //         )
-  //       ) {
-  //         this.helperService.activePokemon.set(eachPokemon);
-  //         setTimeout(() => {
-  //           this.helperService.playerLevel.set(currentLevel);
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
-  // acquireBadgeNumber?: number;
-
-  // gainBadge() {
-  //   this.battleService.gainBadge(this.acquireBadgeNumber!);
-  // }
-
-  // aquireStone() {
-  //   return (this.megaStone = true);
-  // }
-
-  // goUpRank() {
-  //   return this.battleService.increaseRank();
-  // }
 
   pokemonAttacked: WritableSignal<boolean> = signal(false);
 

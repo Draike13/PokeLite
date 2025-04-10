@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  signal,
-  ViewChild,
-  WritableSignal,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { ContentBoxComponent } from '../content-box/content-box.component';
 import { ChoiceBoxLeftComponent } from '../Choice-Box/choice-box-left/choice-box-left.component';

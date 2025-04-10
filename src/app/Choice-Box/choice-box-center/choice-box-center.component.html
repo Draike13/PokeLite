@@ -1,24 +1,3 @@
-<!-- <mat-card class="container" appearance="outlined">
-  <mat-card-content>
-    <button (click)="giveExp()" mat-button>Give EXP!</button>
-    <button (click)="takeDamage()" mat-button>Damage!</button>
-    <button (click)="heal()" mat-button>Heal!</button>
-    <button (click)="unlock()" mat-button>Unlock!</button>
-
-    <button (click)="aquireStone()" mat-button>Get Stone!</button>
-    <button (click)="megaEvolve()" mat-button>Mega Evolve!</button>
-    <input
-      matInput
-      [(ngModel)]="acquireBadgeNumber"
-      type="number"
-      name="badge"
-      id="badge"
-    />
-    <button (click)="gainBadge()" mat-button>Gain Badge</button>
-    <button (click)="goUpRank()" mat-button>Increase Rank</button>
-  </mat-card-content>
-</mat-card> -->
-
 @if (currentView() === 'empty') {
 <mat-card class="container" appearance="outlined">
   <mat-card-content></mat-card-content>
@@ -70,9 +49,10 @@
       Attack
     </button></mat-card-actions
   >
-  <!-- <button (click)="level()" mat-button>Level Up!</button> -->
 </mat-card>
-} @if (currentView() === 'item') {
+}
+<!-- item view -->
+@if (currentView() === 'item') {
 <mat-card class="container" appearance="outlined">
   <mat-card-title class="title">You Found a Hidden Item!</mat-card-title>
   <mat-card-content>
@@ -90,7 +70,9 @@
     </button></mat-card-actions
   >
 </mat-card>
-} @if (currentView() === 'encounter') {
+}
+<!-- random encounter view -->
+@if (currentView() === 'encounter') {
 <mat-card class="container" appearance="outlined">
   <mat-card-title class="title">[event title]</mat-card-title>
   <mat-card-content> </mat-card-content>
