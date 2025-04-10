@@ -5,6 +5,7 @@ export interface RandomEncounter {
   name: string;
   description: string;
   image: string;
-  reward?: Item;
+  reward: string;
+  failure?: string;
   hidden: boolean;
 }

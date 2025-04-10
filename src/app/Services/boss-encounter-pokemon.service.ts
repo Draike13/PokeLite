@@ -97,7 +97,8 @@ export class BossEncounterPokemonService {
     }
   });
 
-  leftView: WritableSignal<'empty' | 'active' | 'item'> = signal('empty');
+  leftView: WritableSignal<'empty' | 'active' | 'item' | 'encounter'> =
+    signal('empty');
   leftContainerAttack: WritableSignal<number> = signal(0);
   leftContainerMaxHealth: WritableSignal<number> = signal(0);
   leftContainerCurrentHealth: WritableSignal<number> = signal(0);
@@ -171,7 +172,8 @@ export class BossEncounterPokemonService {
       this.leftContainerCurrentHealth.set(0);
     }
   }
-  centerView: WritableSignal<'empty' | 'active' | 'item'> = signal('empty');
+  centerView: WritableSignal<'empty' | 'active' | 'item' | 'encounter'> =
+    signal('empty');
   centerContainerAttack: WritableSignal<number> = signal(0);
   centerContainerMaxHealth: WritableSignal<number> = signal(0);
   centerContainerCurrentHealth: WritableSignal<number> = signal(0);
@@ -248,7 +250,8 @@ export class BossEncounterPokemonService {
       this.centerContainerCurrentHealth.set(0);
     }
   }
-  rightView: WritableSignal<'empty' | 'active' | 'item'> = signal('empty');
+  rightView: WritableSignal<'empty' | 'active' | 'item' | 'encounter'> =
+    signal('empty');
   rightContainerAttack: WritableSignal<number> = signal(0);
   rightContainerMaxHealth: WritableSignal<number> = signal(0);
   rightContainerCurrentHealth: WritableSignal<number> = signal(0);
