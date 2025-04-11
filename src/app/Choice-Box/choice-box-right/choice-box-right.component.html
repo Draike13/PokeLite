@@ -73,23 +73,27 @@
 <!-- random encounter view -->
 @if (currentView() === 'encounter') {
 <mat-card
+  [class.dead]="choice() === true"
   [ngStyle]="{
-    'background-image': 'url(' + currentRandomEncounter()!.image + ')'
+    'background-image': 'url(' + backgroundImage + ')'
   }"
   class="container"
   appearance="outlined"
 >
-  <div class="background-blur" [class.blurred]="hidden() === true"></div>
   <div class="blur-wrap" [class.blurred]="hidden() === true">
-    <mat-card-title class="title">{{
+    <mat-card-title class="title choice-title">{{
       currentRandomEncounter()!.name
     }}</mat-card-title>
     <mat-card-content
-      ><p>{{ currentRandomEncounter()!.description }}</p>
+      ><p class="description">{{ currentRandomEncounter()!.description }}</p>
     </mat-card-content>
   </div>
   <mat-card-actions
-    ><button (click)="uncover()" class="encounter-selection-button" mat-button>
+    ><button
+      (click)="uncover(); choose()"
+      class="encounter-selection-button"
+      mat-button
+    >
       Go This Way
     </button></mat-card-actions
   >

@@ -117,4 +117,13 @@ export class ChoiceBoxLeftComponent {
       );
     }
   });
+
+  choose() {
+    this.bossEncounterPokemonService.rightDisable.set(true);
+    this.bossEncounterPokemonService.centerDisable.set(true);
+  }
+
+  choice() {
+    return this.bossEncounterPokemonService.leftDisable();
+  }
 }

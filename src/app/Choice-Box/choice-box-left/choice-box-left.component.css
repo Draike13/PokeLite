@@ -168,3 +168,14 @@ mat-card-content {
   margin: 1rem;
   display: flex;
 }
+
+.encounter-selection-button {
+  background-color: #161215e4;
+  z-index: 2;
+}
+
+.description {
+  margin: 1rem;
+  background-color: #161215e4;
+  color: #ffabf3;
+}

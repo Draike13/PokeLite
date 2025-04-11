@@ -21,22 +21,16 @@ export class BossEncounterPokemonService {
   centerAttacking: WritableSignal<boolean> = signal(false);
   rightAttacking: WritableSignal<boolean> = signal(false);
 
-
-  encounterRun = effect(()=>{
-    if(this.encounterToggle()=== true){
-      this.leftView.set('encounter')
-      this.centerView.set('encounter')
-      this.rightView.set('encounter')
+  encounterRun = effect(() => {
+    if (this.encounterToggle() === true) {
+      this.leftView.set('encounter');
+      this.centerView.set('encounter');
+      this.rightView.set('encounter');
       setTimeout(() => {
-        this.encounterToggle.set(false)
+        this.encounterToggle.set(false);
       }, 300);
     }
-  })
-
-
-
-
-
+  });
 
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {
@@ -113,7 +107,7 @@ export class BossEncounterPokemonService {
       this.activePokemon.set([]);
     }
   });
-
+  leftDisable: WritableSignal<boolean> = signal(false);
   leftView: WritableSignal<'empty' | 'active' | 'item' | 'encounter'> =
     signal('empty');
   leftContainerAttack: WritableSignal<number> = signal(0);
@@ -189,6 +183,7 @@ export class BossEncounterPokemonService {
       this.leftContainerCurrentHealth.set(0);
     }
   }
+  centerDisable: WritableSignal<boolean> = signal(false);
   centerView: WritableSignal<'empty' | 'active' | 'item' | 'encounter'> =
     signal('empty');
   centerContainerAttack: WritableSignal<number> = signal(0);
@@ -267,6 +262,8 @@ export class BossEncounterPokemonService {
       this.centerContainerCurrentHealth.set(0);
     }
   }
+
+  rightDisable: WritableSignal<boolean> = signal(false);
   rightView: WritableSignal<'empty' | 'active' | 'item' | 'encounter'> =
     signal('empty');
   rightContainerAttack: WritableSignal<number> = signal(0);

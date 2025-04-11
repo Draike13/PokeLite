@@ -128,5 +128,15 @@ export class ChoiceBoxRightComponent {
 
   uncover() {
     this.hidden.set(false);
+    this.backgroundImage = this.currentRandomEncounter()!.image;
+  }
+  backgroundImage = 'assets/effects/QuestionEvent.jpg';
+
+  choose() {
+    this.bossEncounterPokemonService.leftDisable.set(true);
+    this.bossEncounterPokemonService.centerDisable.set(true);
+  }
+  choice() {
+    return this.bossEncounterPokemonService.rightDisable();
   }
 }
