@@ -56,7 +56,7 @@ export class BattleService {
   }
 
   gainAttack(atk: number) {
-    this.helperService.playerAttack.update((current) => current + atk);
+    this.helperService.bonusAtk.update((current) => current + atk);
   }
   gainLevel() {
     this.helperService.activeSave()!.pokemonData.forEach((eachPokemon) => {
@@ -97,7 +97,7 @@ export class BattleService {
     } else if (item.id === 2) {
       this.recoverHealth(10);
     } else if (item.id === 3) {
-      this.helperService.playerAttack.update((atk) => atk + 5);
+      this.helperService.bonusAtk.update((atk) => atk + 5);
     }
   }
 }

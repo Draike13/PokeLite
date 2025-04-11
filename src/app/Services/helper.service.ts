@@ -42,8 +42,6 @@ export class HelperService {
   damage: WritableSignal<number> = signal(0);
   bonusAtk: WritableSignal<number> = signal(0);
   minusAtk: WritableSignal<number> = signal(0);
-  gainedLevels: WritableSignal<number> = signal(0);
-  gainedExp: WritableSignal<number> = signal(0);
 
   playerId: WritableSignal<number> = signal(0);
   playerPokemonName: WritableSignal<string> = signal('');
@@ -76,7 +74,6 @@ export class HelperService {
       this.pokemonBaseId === 9
     ) {
       if (this.activePokemon() && level === evoLevel) {
-        this.gainedLevels.set(0);
         if (
           this.playerId() !==
           Number(`${this.pokemonBaseId} + ${this.pokemonBaseId}`)

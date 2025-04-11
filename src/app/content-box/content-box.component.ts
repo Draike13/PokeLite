@@ -65,10 +65,13 @@ export class ContentBoxComponent {
   }
 
   bossTaunt() {
-    if (this.encounterService.activeBoss()!.difficulty === 1) {
+    const boss = this.encounterService.activeBoss();
+    if (!boss) return ''; // or return a loading message, or null
+
+    if (boss.difficulty === 1) {
       return 'Brock: Good luck ever reaching me!';
     }
-    if (this.encounterService.activeBoss()!.difficulty === 2) {
+    if (boss.difficulty === 2) {
       return 'Misty: You really think you can swim that far? Hope you dont drown!';
     } else return 'something broke, oh no!';
   }
@@ -236,13 +239,16 @@ export class ContentBoxComponent {
     if (this.encounterService.playerWin() === true) {
       this.currentView.set('victory');
       this.encounterService.currentItems.set([]);
-      this.bossEncounterpokemonService.battleLog.set([]);
       setTimeout(() => {
         this.encounterService.routeCounter.set(0);
-        this.encounterService.setBoss(null);
-        this.encounterService.playerWin.set(false);
+        this.bossEncounterpokemonService.leftView.set('empty');
+        this.bossEncounterpokemonService.centerView.set('empty');
+        this.bossEncounterpokemonService.rightView.set('empty');
+        this.bossEncounterpokemonService.battleLog.set([]);
+        this.encounterService.currentItems.set([]);
         this.helperService.cleanup();
         this.currentView.set('pokemonSelection');
+        this.encounterService.playerWin.set(false);
       }, 4000);
     }
   });

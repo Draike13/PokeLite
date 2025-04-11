@@ -211,7 +211,7 @@ mat-card-content {
 }
 
 .blurred {
-  filter: blur(7px);
+  filter: blur(6px);
   pointer-events: none;
 }
 
@@ -232,4 +232,9 @@ mat-card-actions {
   margin: 1rem;
   background-color: #161215e4;
   color: #ffabf3;
+}
+
+.encounter-selection-button.disable-button {
+  pointer-events: none;
+  cursor: not-allowed;
 }

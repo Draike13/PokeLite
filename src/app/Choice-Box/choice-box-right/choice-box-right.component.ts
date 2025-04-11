@@ -146,11 +146,13 @@ export class ChoiceBoxRightComponent {
   choose() {
     this.bossEncounterPokemonService.leftDisable.set(true);
     this.bossEncounterPokemonService.centerDisable.set(true);
+    this.encounterService.choosingEvent.set(true);
     setTimeout(() => {
       this.bossEncounterPokemonService.resetEncounters.set(true);
       this.bossEncounterPokemonService.encounterToggle.set(true);
       this.hidden.set(false);
       this.backgroundImage = 'assets/effects/QuestionEvent.jpg';
+      this.encounterService.choosingEvent.set(false);
     }, 2400);
   }
   choice() {

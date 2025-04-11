@@ -131,9 +131,11 @@ export class ChoiceBoxLeftComponent {
   choose() {
     this.bossEncounterPokemonService.rightDisable.set(true);
     this.bossEncounterPokemonService.centerDisable.set(true);
+    this.encounterService.choosingEvent.set(true);
     setTimeout(() => {
       this.bossEncounterPokemonService.resetEncounters.set(true);
       this.bossEncounterPokemonService.encounterToggle.set(true);
+      this.encounterService.choosingEvent.set(false);
     }, 2400);
   }
 

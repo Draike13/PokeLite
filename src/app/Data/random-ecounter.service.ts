@@ -34,7 +34,7 @@ export class RandomEcounterService {
             category: 1,
             name: 'Celadon Dept. Store',
             description: `You may have spent a little to much on X-Attacks...`,
-            image: '',
+            image: 'assets/encounters/Dept.jpg',
             reward: `${activePokemon} feels a lot stronger!`,
             hidden: false,
           },
