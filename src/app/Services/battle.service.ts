@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable } from '@angular/core';
 import { HelperService } from './helper.service';
 import { SaveService } from './save.service';
 import { RankService } from '../Data/rank.service';
@@ -15,14 +15,24 @@ export class BattleService {
   ) {}
 
   giveExp(exp: number) {
-    this.helperService.gainedExp.set(this.helperService.gainedExp() + exp);
-    if (this.helperService.gainedExp() >= 100) {
-      this.helperService.gainedLevels.set(
-        this.helperService.gainedLevels()! + 1
-      );
-      this.helperService.PlayerExp.set(this.helperService.PlayerExp() - 100);
-    }
+    this.helperService.activeSave()!.pokemonData.forEach((eachPokemon) => {
+      if (eachPokemon.id === this.helperService.activePokemon()!.id) {
+        eachPokemon.experience += exp;
+        this.saveService.saveGame(this.helperService.activeSave()!);
+        this.helperService.PlayerExp.set(eachPokemon.experience);
+      }
+    });
   }
+
+  levelUp = effect(() => {
+    let currentExp = this.helperService.PlayerExp();
+    while (currentExp >= 100) {
+      this.helperService.PlayerExp.set(currentExp - 100);
+      this.gainLevel();
+      currentExp -= 100;
+    }
+  });
+
   takeDamage() {
     this.helperService.damage.set(this.helperService.damage() + 3);
     if (this.helperService.damage() >= this.helperService.playerMaxHealth()) {
@@ -36,7 +46,6 @@ export class BattleService {
     }
   }
   gainLevel() {
-    this.helperService.gainedExp.set(0);
     this.helperService.activeSave()!.pokemonData.forEach((eachPokemon) => {
       if (eachPokemon.id === this.helperService.activePokemon()!.id) {
         eachPokemon.level += 1;

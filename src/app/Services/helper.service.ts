@@ -142,9 +142,7 @@ export class HelperService {
     this.playerLevel.set(this.activePokemon()!.level);
     this.playerPokemonName.set(this.activePokemon()!.name);
     this.playerImage.set(this.activePokemon()!.image);
-    const baseExp = untracked(() => this.activePokemon()!.experience);
-    const gainedExp = this.gainedExp();
-    this.PlayerExp.set(baseExp + gainedExp);
+    this.PlayerExp.set(this.activePokemon()!.experience);
     this.playerEvolutionLevel.set(this.activePokemon()?.evolutionLevel);
     const CurrentHealth = untracked(() => this.activePokemon()!.currentHealth);
     const damageTaken = this.damage();
