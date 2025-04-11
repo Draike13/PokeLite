@@ -261,10 +261,14 @@ export class ContentBoxComponent {
         this.currentView.set('battlePath');
         this.encounterService.selectedEvent.set(null);
         this.encounterService.increaseRouteCount();
+        this.encounterService.rewardChecker.set(false);
       }, 2400);
     }
   });
 
+  rewardChecker() {
+    return this.encounterService.rewardChecker();
+  }
   selectedEvent() {
     return this.encounterService.selectedEvent();
   }

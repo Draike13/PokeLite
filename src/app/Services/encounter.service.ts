@@ -19,7 +19,7 @@ export class EncounterService {
   ) {}
 
   bossSelected: WritableSignal<boolean> = signal(false);
-
+  rewardChecker: WritableSignal<boolean> = signal(false);
   selectedEvent: WritableSignal<RandomEncounter | null> = signal(null);
 
   runEvent = effect(() => {
@@ -45,9 +45,18 @@ export class EncounterService {
     }
     if (event.category === 2 && event.id === 1) {
       console.log('heres joey!');
-      setTimeout(() => {
-        this.battleService.giveExp(20);
-      }, 300);
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 80) {
+        setTimeout(() => {
+          this.battleService.giveExp(20);
+        }, 300);
+      }
+      if (chance > 80) {
+        this.rewardChecker.set(true);
+        setTimeout(() => {
+          this.battleService.takeDamage(3);
+        }, 300);
+      }
     }
     if (event.category === 2 && event.id === 2) {
       console.log('get the shorts');

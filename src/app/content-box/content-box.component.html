@@ -95,10 +95,12 @@
     }
 
     <!-- event active view -->
-    @if (currentView() === 'eventSelected') {
+    @if (currentView() === 'eventSelected') { @if (rewardChecker()===false) {
 
     <div>{{ selectedEvent()!.reward }}</div>
-    }
+    } @if (rewardChecker() ===true) {
+    <div>{{ selectedEvent()!.failure }}</div>
+    } }
 
     <!-- boss battle view -->
     @if (currentView() === 'pathBoss') {
