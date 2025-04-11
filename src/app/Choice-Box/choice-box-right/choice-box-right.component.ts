@@ -151,12 +151,17 @@ export class ChoiceBoxRightComponent {
       this.bossEncounterPokemonService.encounterToggle.set(true);
       this.hidden.set(false);
       this.backgroundImage = 'assets/effects/QuestionEvent.jpg';
-    }, 1200);
+    }, 2400);
   }
   choice() {
     return this.bossEncounterPokemonService.rightDisable();
   }
   choosingDisable() {
     return this.encounterService.choosingEvent();
+  }
+
+  selectedEvent() {
+    const encounter = this.currentRandomEncounter();
+    this.encounterService.selectedEvent.set(encounter);
   }
 }

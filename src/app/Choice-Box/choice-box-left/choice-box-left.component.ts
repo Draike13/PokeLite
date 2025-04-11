@@ -134,7 +134,7 @@ export class ChoiceBoxLeftComponent {
     setTimeout(() => {
       this.bossEncounterPokemonService.resetEncounters.set(true);
       this.bossEncounterPokemonService.encounterToggle.set(true);
-    }, 1200);
+    }, 2400);
   }
 
   choice() {
@@ -142,5 +142,10 @@ export class ChoiceBoxLeftComponent {
   }
   choosingDisable() {
     return this.encounterService.choosingEvent();
+  }
+
+  selectedEvent() {
+    const encounter = this.currentRandomEncounter();
+    this.encounterService.selectedEvent.set(encounter);
   }
 }

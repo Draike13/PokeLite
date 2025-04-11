@@ -19,7 +19,6 @@ export class EncounterService {
   ) {}
 
   bossSelected: WritableSignal<boolean> = signal(false);
-  centerRandomEncounter: WritableSignal<RandomEncounter | null> = signal(null);
 
   selectedEvent: WritableSignal<RandomEncounter | null> = signal(null);
 
@@ -28,6 +27,10 @@ export class EncounterService {
     if (!event) return;
     if (event.category === 1 && event.id === 1) {
       console.log('healing center');
+      setTimeout(() => {}, 300);
+    }
+    if (event.category === 1 && event.id === 2) {
+      console.log('time to shop');
       setTimeout(() => {}, 300);
     }
     if (event.category === 2 && event.id === 1) {

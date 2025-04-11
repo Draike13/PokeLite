@@ -255,7 +255,7 @@ export class ContentBoxComponent {
         this.currentView.set('battlePath');
         this.encounterService.selectedEvent.set(null);
         this.encounterService.increaseRouteCount();
-      }, 1200);
+      }, 2400);
     }
   });
 
