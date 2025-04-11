@@ -25,16 +25,25 @@ export class BattleService {
   }
 
   levelUp = effect(() => {
+    const activePokemon = this.helperService.activePokemon();
+    if (!activePokemon) return;
     let currentExp = this.helperService.PlayerExp();
+    let leveledUp = false;
     while (currentExp >= 100) {
-      this.helperService.PlayerExp.set(currentExp - 100);
-      this.gainLevel();
       currentExp -= 100;
+      activePokemon.level += 1;
+      leveledUp = true;
+    }
+    if (leveledUp) {
+      activePokemon.experience = currentExp;
+      this.helperService.PlayerExp.set(currentExp);
+      this.helperService.playerLevel.set(activePokemon.level);
+      this.saveService.saveGame(this.helperService.activeSave()!);
     }
   });
 
-  takeDamage() {
-    this.helperService.damage.set(this.helperService.damage() + 3);
+  takeDamage(damage: number) {
+    this.helperService.damage.set(this.helperService.damage() + damage);
     if (this.helperService.damage() >= this.helperService.playerMaxHealth()) {
       this.helperService.damage.set(this.helperService.playerMaxHealth());
     }
@@ -44,6 +53,10 @@ export class BattleService {
     if (this.helperService.damage() <= 0) {
       this.helperService.damage.set(0);
     }
+  }
+
+  gainAttack(atk: number) {
+    this.helperService.playerAttack.update((current) => current + atk);
   }
   gainLevel() {
     this.helperService.activeSave()!.pokemonData.forEach((eachPokemon) => {

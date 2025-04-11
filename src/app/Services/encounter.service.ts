@@ -27,11 +27,15 @@ export class EncounterService {
     if (!event) return;
     if (event.category === 1 && event.id === 1) {
       console.log('healing center');
-      setTimeout(() => {}, 300);
+      setTimeout(() => {
+        this.battleService.recoverHealth(10);
+      }, 300);
     }
     if (event.category === 1 && event.id === 2) {
       console.log('time to shop');
-      setTimeout(() => {}, 300);
+      setTimeout(() => {
+        this.battleService.gainAttack(2);
+      }, 300);
     }
     if (event.category === 2 && event.id === 1) {
       console.log('heres joey!');
@@ -41,15 +45,27 @@ export class EncounterService {
     }
     if (event.category === 2 && event.id === 2) {
       console.log('get the shorts');
-      setTimeout(() => {}, 300);
+      setTimeout(() => {
+        this.battleService.giveExp(15);
+      }, 300);
     }
     if (event.category === 2 && event.id === 3) {
       console.log('Its a shaking bush');
-      setTimeout(() => {}, 300);
+      setTimeout(() => {
+        this.battleService.giveExp(25);
+      }, 300);
     }
     if (event.category === 2 && event.id === 4) {
       console.log('stop rocket!');
-      setTimeout(() => {}, 300);
+      setTimeout(() => {
+        this.battleService.giveExp(30);
+      }, 300);
+    }
+    if (event.category === 3 && event.id === 1) {
+      console.log('Spearow Attack!');
+      setTimeout(() => {
+        this.battleService.takeDamage(5);
+      }, 300);
     }
   });
 
