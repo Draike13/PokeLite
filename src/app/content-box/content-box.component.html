@@ -94,6 +94,12 @@
     <button (click)="('')" mat-button>Incease Route Count</button>
     }
 
+    <!-- event active view -->
+    @if (currentView() === 'eventSelected') {
+
+    <div>{{ selectedEvent()!.reward }}</div>
+    }
+
     <!-- boss battle view -->
     @if (currentView() === 'pathBoss') {
     <div class="boss-container">

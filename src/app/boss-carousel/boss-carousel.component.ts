@@ -66,6 +66,7 @@ export class BossCarouselComponent {
 
   setBossRoute(boss: Boss) {
     this.encounterService.setBoss(boss);
+    this.encounterService.bossSelected.set(true);
   }
   currentIndex: WritableSignal<number> = signal(0);
 

@@ -18,10 +18,35 @@ export class EncounterService {
     private battleService: BattleService
   ) {}
 
+  bossSelected: WritableSignal<boolean> = signal(false);
+  centerRandomEncounter: WritableSignal<RandomEncounter | null> = signal(null);
+
   selectedEvent: WritableSignal<RandomEncounter | null> = signal(null);
 
   runEvent = effect(() => {
-    if (this.selectedEvent() !== null) {
+    const event = this.selectedEvent();
+    if (!event) return;
+    if (event.category === 1 && event.id === 1) {
+      console.log('healing center');
+      setTimeout(() => {}, 300);
+    }
+    if (event.category === 2 && event.id === 1) {
+      console.log('heres joey!');
+      setTimeout(() => {
+        this.battleService.giveExp(20);
+      }, 300);
+    }
+    if (event.category === 2 && event.id === 2) {
+      console.log('get the shorts');
+      setTimeout(() => {}, 300);
+    }
+    if (event.category === 2 && event.id === 3) {
+      console.log('Its a shaking bush');
+      setTimeout(() => {}, 300);
+    }
+    if (event.category === 2 && event.id === 4) {
+      console.log('stop rocket!');
+      setTimeout(() => {}, 300);
     }
   });
 

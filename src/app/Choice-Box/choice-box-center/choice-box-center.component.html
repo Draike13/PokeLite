@@ -90,7 +90,7 @@
   <mat-card-actions
     ><button
       [class.disable-button]="choosingDisable() === true"
-      (click)="choose(); selectedEvent()"
+      (click)="selectedEvent(); choose()"
       class="encounter-selection-button"
       mat-button
     >

@@ -111,7 +111,9 @@ export class ChoiceBoxCenterComponent {
     this.bossEncounterPokemonService.centerFoundItem.set(null);
     this.bossEncounterPokemonService.centerView.set('empty');
   }
-  currentRandomEncounter: WritableSignal<RandomEncounter | null> = signal(null);
+  currentRandomEncounter() {
+    return this.encounterService.centerRandomEncounter();
+  }
 
   loadEncounter = effect(() => {
     if (
@@ -121,7 +123,7 @@ export class ChoiceBoxCenterComponent {
       const randomEncounterIndex = Math.floor(
         Math.random() * this.randomEncounterService.expEncounters().length
       );
-      this.currentRandomEncounter.set(
+      this.encounterService.centerRandomEncounter.set(
         this.randomEncounterService.expEncounters()[randomEncounterIndex]
       );
     }
@@ -130,9 +132,8 @@ export class ChoiceBoxCenterComponent {
   resetEncounter = effect(() => {
     if (this.bossEncounterPokemonService.resetEncounters() === true) {
       this.bossEncounterPokemonService.centerDisable.set(false);
-      this.currentRandomEncounter.set(null);
+      this.encounterService.centerRandomEncounter.set(null);
       setTimeout(() => {
-        this.encounterService.increaseRouteCount();
         this.bossEncounterPokemonService.resetEncounters.set(false);
       }, 300);
     }
@@ -157,6 +158,7 @@ export class ChoiceBoxCenterComponent {
   }
 
   selectedEvent() {
-    this.encounterService.selectedEvent.set(this.currentRandomEncounter());
+    const encounter = this.encounterService.centerRandomEncounter();
+    this.encounterService.selectedEvent.set(encounter);
   }
 }

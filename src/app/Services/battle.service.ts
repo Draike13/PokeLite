@@ -14,8 +14,8 @@ export class BattleService {
     private rankService: RankService
   ) {}
 
-  giveExp() {
-    this.helperService.gainedExp.set(this.helperService.gainedExp() + 7);
+  giveExp(exp: number) {
+    this.helperService.gainedExp.set(this.helperService.gainedExp() + exp);
     if (this.helperService.gainedExp() >= 100) {
       this.helperService.gainedLevels.set(
         this.helperService.gainedLevels()! + 1

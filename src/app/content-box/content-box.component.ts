@@ -80,6 +80,7 @@ export class ContentBoxComponent {
     | 'pokemonSelection'
     | 'battleSelect'
     | 'battlePath'
+    | 'eventSelected'
     | 'pathBoss'
     | 'victory'
     | 'loss'
@@ -109,6 +110,13 @@ export class ContentBoxComponent {
     }
   });
 
+  bossActiveCheck = effect(() => {
+    if (this.encounterService.bossSelected() === true) {
+      this.currentView.set('battlePath');
+      this.encounterService.bossSelected.set(false);
+    }
+  });
+
   routeCheck = effect(() => {
     if (
       this.encounterService.activeBoss() &&
@@ -116,7 +124,6 @@ export class ContentBoxComponent {
         this.encounterService.activeBoss()!.encounterCount &&
       this.bossEncounterpokemonService.encounterToggle() === false
     ) {
-      this.currentView.set('battlePath');
       this.bossEncounterpokemonService.encounterToggle.set(true);
     }
     if (
@@ -128,21 +135,6 @@ export class ContentBoxComponent {
       this.currentView.set('pathBoss');
     }
   });
-
-  // routeCheck = effect(() => {
-  //   if (this.encounterService.activeBoss()) {
-  //     if (
-  //       this.routeCounter() ===
-  //       this.encounterService.activeBoss()!.encounterCount
-  //     ) {
-  //       this.encounterService.bossBattleStart.set(true);
-  //       this.routeCounter.set(0);
-  //       if (this.encounterService.bossBattleStart() === true) {
-  //         this.currentView.set('pathBoss');
-  //       }
-  //     }
-  //   }
-  // });
 
   lossCheck = effect(() => {
     if (this.helperService.playerLoss() === true) {
@@ -254,4 +246,20 @@ export class ContentBoxComponent {
       }, 4000);
     }
   });
+
+  responseToEvent = effect(() => {
+    if (this.encounterService.selectedEvent()) {
+      this.encounterService.bossBattleStart.set(false);
+      this.currentView.set('eventSelected');
+      setTimeout(() => {
+        this.currentView.set('battlePath');
+        this.encounterService.selectedEvent.set(null);
+        this.encounterService.increaseRouteCount();
+      }, 1200);
+    }
+  });
+
+  selectedEvent() {
+    return this.encounterService.selectedEvent();
+  }
 }
