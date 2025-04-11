@@ -88,7 +88,12 @@
     ><p class="description">{{ currentRandomEncounter()!.description }}</p>
   </mat-card-content>
   <mat-card-actions
-    ><button (click)="choose()" class="encounter-selection-button" mat-button>
+    ><button
+      [class.disable-button]="choosingDisable() === true"
+      (click)="choose(); selectedEvent()"
+      class="encounter-selection-button"
+      mat-button
+    >
       Go This Way
     </button></mat-card-actions
   >

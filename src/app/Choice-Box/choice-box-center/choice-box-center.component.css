@@ -180,3 +180,8 @@ mat-card-content {
   background-color: #161215e4;
   color: #ffabf3;
 }
+
+.encounter-selection-button.disable-button {
+  pointer-events: none;
+  cursor: not-allowed;
+}

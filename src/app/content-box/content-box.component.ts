@@ -103,8 +103,6 @@ export class ContentBoxComponent {
     private bossEncounterpokemonService: BossEncounterPokemonService
   ) {}
 
-  routeCounter: WritableSignal<number> = signal(0);
-
   activeCheck = effect(() => {
     if (this.helperService.activePokemon()) {
       this.currentView.set('battleSelect');
@@ -114,7 +112,7 @@ export class ContentBoxComponent {
   routeCheck = effect(() => {
     if (
       this.encounterService.activeBoss() &&
-      this.routeCounter() <
+      this.encounterService.routeCounter() <
         this.encounterService.activeBoss()!.encounterCount &&
       this.bossEncounterpokemonService.encounterToggle() === false
     ) {
@@ -123,7 +121,8 @@ export class ContentBoxComponent {
     }
     if (
       this.encounterService.activeBoss() &&
-      this.routeCounter() === this.encounterService.activeBoss()!.encounterCount
+      this.encounterService.routeCounter() ===
+        this.encounterService.activeBoss()!.encounterCount
     ) {
       this.encounterService.bossBattleStart.set(true);
       this.currentView.set('pathBoss');
@@ -149,7 +148,7 @@ export class ContentBoxComponent {
     if (this.helperService.playerLoss() === true) {
       this.currentView.set('loss');
       setTimeout(() => {
-        this.routeCounter.set(0);
+        this.encounterService.routeCounter.set(0);
         this.bossEncounterpokemonService.leftView.set('empty');
         this.bossEncounterpokemonService.centerView.set('empty');
         this.bossEncounterpokemonService.rightView.set('empty');
@@ -161,10 +160,6 @@ export class ContentBoxComponent {
       }, 3000);
     }
   });
-
-  increaseRouteCount() {
-    this.routeCounter.set(this.routeCounter() + 1);
-  }
 
   selectRoute(boss: Boss) {
     this.encounterService.setBoss(boss);
@@ -251,7 +246,7 @@ export class ContentBoxComponent {
       this.encounterService.currentItems.set([]);
       this.bossEncounterpokemonService.battleLog.set([]);
       setTimeout(() => {
-        this.routeCounter.set(0);
+        this.encounterService.routeCounter.set(0);
         this.encounterService.setBoss(null);
         this.encounterService.playerWin.set(false);
         this.helperService.cleanup();

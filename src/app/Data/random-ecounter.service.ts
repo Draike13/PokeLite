@@ -13,6 +13,7 @@ export class RandomEcounterService {
         this.knownEncounters.set([
           {
             id: 1,
+            category: 1,
             name: 'Pokemon Center',
             description: `Restore some of your Pokemon's health!`,
             image: 'assets/encounters/PokemonCenter.jpg',
@@ -21,6 +22,7 @@ export class RandomEcounterService {
           },
           {
             id: 2,
+            category: 1,
             name: 'PokeMart',
             description: `Alright! You picked up a new TM at the PokeMart. This is a great new move!`,
             image: '',
@@ -32,6 +34,7 @@ export class RandomEcounterService {
         this.hiddenEncounters.set([
           {
             id: 1,
+            category: 3,
             name: 'Wild Spearow Attack!',
             description: `A group of wild Spearow's suddenly fly out of a nearby tree. You must have disturbed their nest!`,
             image: 'assets/encounters/AttackingSpearows.jpeg',
@@ -44,6 +47,7 @@ export class RandomEcounterService {
         this.expEncounters.set([
           {
             id: 1,
+            category: 2,
             name: 'Youngster Joey',
             description: `Youngster Joey challenges you to a battle! His Rattata looks fierce...`,
             image: '',
@@ -53,6 +57,7 @@ export class RandomEcounterService {
           },
           {
             id: 2,
+            category: 2,
             name: 'Shorts Boy',
             description: `Shorts Boy challenges you to a battle!`,
             image: '',
@@ -62,6 +67,7 @@ export class RandomEcounterService {
           },
           {
             id: 3,
+            category: 2,
             name: 'A Shaking Bush',
             description: `You notice a bush on the side of the road move; do you investigate it?`,
             image: '',
@@ -71,6 +77,7 @@ export class RandomEcounterService {
           },
           {
             id: 4,
+            category: 2,
             name: 'Stop Team Rocket!',
             description: `You see a Team Rocket grunt fleeing from a trainer. Maybe you can stop them from getting away?`,
             image: '',

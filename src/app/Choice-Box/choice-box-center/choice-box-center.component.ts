@@ -127,12 +127,36 @@ export class ChoiceBoxCenterComponent {
     }
   });
 
+  resetEncounter = effect(() => {
+    if (this.bossEncounterPokemonService.resetEncounters() === true) {
+      this.bossEncounterPokemonService.centerDisable.set(false);
+      this.currentRandomEncounter.set(null);
+      setTimeout(() => {
+        this.encounterService.increaseRouteCount();
+        this.bossEncounterPokemonService.resetEncounters.set(false);
+      }, 300);
+    }
+  });
+
   choose() {
     this.bossEncounterPokemonService.leftDisable.set(true);
     this.bossEncounterPokemonService.rightDisable.set(true);
+    this.encounterService.choosingEvent.set(true);
+    setTimeout(() => {
+      this.bossEncounterPokemonService.resetEncounters.set(true);
+      this.bossEncounterPokemonService.encounterToggle.set(true);
+      this.encounterService.choosingEvent.set(false);
+    }, 1200);
   }
 
   choice() {
     return this.bossEncounterPokemonService.centerDisable();
+  }
+  choosingDisable() {
+    return this.encounterService.choosingEvent();
+  }
+
+  selectedEvent() {
+    this.encounterService.selectedEvent.set(this.currentRandomEncounter());
   }
 }

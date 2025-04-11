@@ -32,6 +32,8 @@ export class BossEncounterPokemonService {
     }
   });
 
+  resetEncounters: WritableSignal<boolean> = signal(false);
+
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {
       const activeAttackers = [];

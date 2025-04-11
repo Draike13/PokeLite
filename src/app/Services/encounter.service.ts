@@ -5,6 +5,7 @@ import { HelperService } from './helper.service';
 import { BattleService } from './battle.service';
 import { BossEncounterPokemonService } from './boss-encounter-pokemon.service';
 import { ItemsService } from '../Data/items.service';
+import { RandomEncounter } from '../Models/random-encounter.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,20 @@ export class EncounterService {
     private helperService: HelperService,
     private battleService: BattleService
   ) {}
+
+  selectedEvent: WritableSignal<RandomEncounter | null> = signal(null);
+
+  runEvent = effect(() => {
+    if (this.selectedEvent() !== null) {
+    }
+  });
+
+  choosingEvent: WritableSignal<boolean> = signal(false);
+  routeCounter: WritableSignal<number> = signal(0);
+
+  increaseRouteCount() {
+    this.routeCounter.set(this.routeCounter() + 1);
+  }
 
   playerWin: WritableSignal<boolean> = signal(false);
   victoryCenter: WritableSignal<boolean> = signal(false);
