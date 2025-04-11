@@ -37,6 +37,12 @@ export class EncounterService {
         this.battleService.gainAttack(2);
       }, 300);
     }
+    if (event.category === 1 && event.id === 3) {
+      console.log('A Giant Store!');
+      setTimeout(() => {
+        this.battleService.gainAttack(3);
+      }, 300);
+    }
     if (event.category === 2 && event.id === 1) {
       console.log('heres joey!');
       setTimeout(() => {
