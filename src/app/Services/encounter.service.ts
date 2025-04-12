@@ -60,15 +60,33 @@ export class EncounterService {
     }
     if (event.category === 2 && event.id === 2) {
       console.log('get the shorts');
-      setTimeout(() => {
-        this.battleService.giveExp(15);
-      }, 300);
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 70) {
+        setTimeout(() => {
+          this.battleService.giveExp(15);
+        }, 300);
+      }
+      if (chance > 70) {
+        this.rewardChecker.set(true);
+        setTimeout(() => {
+          this.battleService.takeDamage(2);
+        }, 300);
+      }
     }
     if (event.category === 2 && event.id === 3) {
       console.log('Its a shaking bush');
-      setTimeout(() => {
-        this.battleService.giveExp(25);
-      }, 300);
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 80) {
+        setTimeout(() => {
+          this.battleService.giveExp(15);
+        }, 300);
+      }
+      if (chance > 80) {
+        this.rewardChecker.set(true);
+        setTimeout(() => {
+          this.battleService.takeDamage(5);
+        }, 300);
+      }
     }
     if (event.category === 2 && event.id === 4) {
       console.log('stop rocket!');
