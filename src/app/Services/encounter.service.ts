@@ -96,9 +96,48 @@ export class EncounterService {
     }
     if (event.category === 3 && event.id === 1) {
       console.log('Spearow Attack!');
-      setTimeout(() => {
-        this.battleService.takeDamage(5);
-      }, 300);
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 5) {
+        setTimeout(() => {
+          this.battleService.giveExp(15);
+        }, 300);
+      }
+      if (chance > 5) {
+        this.rewardChecker.set(true);
+        setTimeout(() => {
+          this.battleService.takeDamage(2);
+        }, 300);
+      }
+    }
+    if (event.category === 3 && event.id === 2) {
+      console.log('Chansey');
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 60) {
+        setTimeout(() => {
+          this.battleService.giveExp(15);
+        }, 300);
+      }
+      if (chance > 60) {
+        this.rewardChecker.set(true);
+        setTimeout(() => {
+          this.battleService.takeDamage(2);
+        }, 300);
+      }
+    }
+    if (event.category === 3 && event.id === 3) {
+      console.log('Spooky');
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 60) {
+        setTimeout(() => {
+          this.battleService.giveExp(15);
+        }, 300);
+      }
+      if (chance > 60) {
+        this.rewardChecker.set(true);
+        setTimeout(() => {
+          this.battleService.takeDamage(2);
+        }, 300);
+      }
     }
   });
 
