@@ -56,11 +56,11 @@ export class SpecialService {
   glitchTimer: ReturnType<typeof setInterval> | null = null;
 
   startGlitchLog() {
-    this.stopGlitchLog(); // clear any existing ones
+    this.stopGlitchLog();
 
     this.glitchTimer = setInterval(() => {
-      // 50% chance to glitch
-      if (Math.random() < 0.5) {
+      // 80% chance to glitch
+      if (Math.random() < 0.8) {
         const glitchMessages = [
           '█▓▒░͘͟͢G̶̴͜L̷̵͘I͢T̵̢͘͝C̨͜͏Ḩ̸̧░▒▓█',
           'Err0r...R͜͠e͝͠͏a̴͢l͏͝i̸̶t͘͟ý̴̴ D͟͢͏ís̷t͢͏͝ơ̵͠r̡̛ţ̡́e̸̛d̨.',
@@ -77,7 +77,7 @@ export class SpecialService {
           type: 'glitch',
         });
       }
-    }, 2000); // every 2 seconds
+    }, 1600);
   }
 
   stopGlitchLog() {

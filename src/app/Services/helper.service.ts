@@ -153,7 +153,8 @@ export class HelperService {
 
   cleanBoss: WritableSignal<boolean> = signal(false);
   cleanup() {
-    this.playerAttack.set(0);
+    this.bonusAtk.set(0);
+    this.minusAtk.set(0);
     this.playerLevel.set(null);
     this.playerPokemonName.set('');
     this.playerImage.set('assets/Default.jpg');
