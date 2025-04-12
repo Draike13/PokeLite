@@ -1,13 +1,13 @@
 <h2 class="title" mat-dialog-title>
-  Start New Game with {{ data.pokemon.name }}?
+  Start a New Run with {{ data.pokemon.name }}?
 </h2>
 <mat-dialog-content>
   <img src="{{ data.pokemon.image }}" alt="" />
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button (click)="refusal(data.pokemon)" mat-button [mat-dialog-close]>
-    {{ refusalText }}
+  <button (click)="setRefusal()" mat-button [mat-dialog-close]>
+    {{ refusalText(data.pokemon) }}
   </button>
   <button cdkFocusInitial (click)="startGame(data.pokemon)" mat-button>
     Let's Go!

@@ -13,18 +13,21 @@ export class SpecialService {
   ) {}
   eeveeCount = 0;
 
-  changeCount = effect(() => {
-    let count = 0;
-    if (this.cRefusal()) count++;
-    if (this.bRefusal()) count++;
-    if (this.sRefusal()) count++;
-    this.refusalCount.set(count);
-  });
+  refusal: WritableSignal<boolean> = signal(false);
+  refusalText: WritableSignal<string> = signal('On second thought...');
 
-  cRefusal: WritableSignal<boolean> = signal(false);
   bRefusal: WritableSignal<boolean> = signal(false);
+  cRefusal: WritableSignal<boolean> = signal(false);
   sRefusal: WritableSignal<boolean> = signal(false);
   refusalCount: WritableSignal<number> = signal(0);
+
+  specialHoldoutId: WritableSignal<number | null> = signal(null);
+
+  refusalFlags = {
+    1: this.bRefusal,
+    2: this.cRefusal,
+    3: this.sRefusal,
+  };
 
   specialUnlock = effect(() => {
     if (this.refusalCount() === 3) {
@@ -33,16 +36,6 @@ export class SpecialService {
       }, 500);
     }
   });
-
-  refusal(pokemon: Pokemon) {
-    if (pokemon.commonId === 1) {
-      this.bRefusal.set(true);
-    } else if (pokemon.commonId === 2) {
-      this.cRefusal.set(true);
-    } else if (pokemon.commonId === 3) {
-      this.sRefusal.set(true);
-    }
-  }
 
   unlockPikachu() {
     this.helperService.activeSave()!.pokemonData.filter((eachPokemon) => {

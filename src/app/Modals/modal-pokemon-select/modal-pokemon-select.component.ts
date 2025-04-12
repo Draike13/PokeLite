@@ -1,4 +1,11 @@
-import { Component, effect, inject, NgZone } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  NgZone,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -38,32 +45,49 @@ export class ModalPokemonSelectComponent {
     private helperService: HelperService,
     private dialogRef: MatDialogRef<ModalPokemonSelectComponent>
   ) {
-    this.countTracker();
+    // this.countTracker();
   }
   data = inject(MAT_DIALOG_DATA);
 
-  refusalText = '';
-
-  get refusalCount() {
-    return this.specialService.refusalCount;
-  }
-  refusal(pokemon: Pokemon) {
-    return this.specialService.refusal(pokemon);
-  }
   startGame(pokemon: Pokemon) {
     this.helperService.activePokemon.set(pokemon);
     this.helperService.pokemonBaseId = pokemon.commonId;
     this.dialogRef.close();
   }
 
-  countTracker() {
-    if (this.refusalCount() < 2) {
-      this.refusalText = 'On Second Thought...';
-    } else if (this.refusalCount() === 2) {
-      this.refusalText = 'Maybe You Just Need Something...Different?';
-    } else if (this.refusalCount() > 2) {
-      this.refusalText = 'On Second Thought...';
+  setRefusal() {
+    const id = this.data.pokemon.commonId;
+    if (![1, 2, 3].includes(id)) return;
+    const flag = this.specialService.refusalFlags[id as 1 | 2 | 3];
+    if (flag()) return;
+    flag.set(true);
+    const refusedCount = Object.values(this.specialService.refusalFlags).filter(
+      (flag) => flag()
+    ).length;
+    this.specialService.refusalCount.set(refusedCount);
+    if (refusedCount === 3) {
+      this.specialService.specialHoldoutId.set(null);
     }
-    //add more logic to these to make it see WHICH pokemon have been checked
+    if (refusedCount === 2) {
+      const remainingId = [1, 2, 3].find(
+        (pid) => !this.specialService.refusalFlags[pid as 1 | 2 | 3]()
+      );
+      this.specialService.specialHoldoutId.set(remainingId ?? null);
+    }
+  }
+
+  refusalText(pokemon: Pokemon): string {
+    const id = pokemon.commonId;
+    if (![1, 2, 3].includes(id)) return 'On Second Thought...';
+    const flag = this.specialService.refusalFlags[id as 1 | 2 | 3];
+    const isRefused = flag();
+    const specialId = this.specialService.specialHoldoutId();
+    if (!isRefused && specialId === id) {
+      return 'Maybe You Just Need Something...Different?';
+    }
+    if (isRefused) {
+      return 'On Second Thought...';
+    }
+    return 'On Second Thought...';
   }
 }
