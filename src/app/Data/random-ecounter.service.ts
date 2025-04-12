@@ -38,6 +38,15 @@ export class RandomEcounterService {
             reward: `${activePokemon} feels a lot stronger!`,
             hidden: false,
           },
+          {
+            id: 4,
+            category: 1,
+            name: 'Poffins!',
+            description: `Every pokemon loves Poffins!`,
+            image: 'assets/encounters/Poffins.jpg',
+            reward: `${activePokemon} feels slightly restored.`,
+            hidden: false,
+          },
         ]);
 
         this.expEncounters.set([
@@ -112,6 +121,15 @@ export class RandomEcounterService {
             image: 'assets/encounters/Terrifying.jpg',
             reward: `${activePokemon} reacts just in time! You take out the Haunter; whew!`,
             failure: `You run in fear as ${activePokemon} is attacked by the wild Haunter...`,
+            hidden: true,
+          },
+          {
+            id: 4,
+            category: 3,
+            name: 'Rare Candy!!',
+            description: `${activePokemon} found a Rare Candy as you were walking down the road!`,
+            image: 'assets/encounters/Terrifying.jpg',
+            reward: `It was already opened...but it'll do!`,
             hidden: true,
           },
         ]);

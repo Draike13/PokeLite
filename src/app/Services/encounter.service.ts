@@ -25,26 +25,32 @@ export class EncounterService {
   runEvent = effect(() => {
     const event = this.selectedEvent();
     if (!event) return;
+    //pokemon center
     if (event.category === 1 && event.id === 1) {
-      console.log('healing center');
       setTimeout(() => {
         this.battleService.recoverHealth(10);
       }, 300);
     }
+    //pokemart
     if (event.category === 1 && event.id === 2) {
-      console.log('time to shop');
       setTimeout(() => {
         this.battleService.gainAttack(2);
       }, 300);
     }
+    //celedon dept store
     if (event.category === 1 && event.id === 3) {
-      console.log('A Giant Store!');
       setTimeout(() => {
         this.battleService.gainAttack(3);
       }, 300);
     }
+    //Poffins!
+    if (event.category === 1 && event.id === 3) {
+      setTimeout(() => {
+        this.battleService.recoverHealth(5);
+      }, 300);
+    }
+    //trainer joey
     if (event.category === 2 && event.id === 1) {
-      console.log('heres joey!');
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 80) {
         setTimeout(() => {
@@ -58,8 +64,8 @@ export class EncounterService {
         }, 300);
       }
     }
+    //shorts boy
     if (event.category === 2 && event.id === 2) {
-      console.log('get the shorts');
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 70) {
         setTimeout(() => {
@@ -73,8 +79,8 @@ export class EncounterService {
         }, 300);
       }
     }
+    //random moving bush
     if (event.category === 2 && event.id === 3) {
-      console.log('Its a shaking bush');
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 80) {
         setTimeout(() => {
@@ -88,14 +94,14 @@ export class EncounterService {
         }, 300);
       }
     }
+    //stop the team rocket grunt
     if (event.category === 2 && event.id === 4) {
-      console.log('stop rocket!');
       setTimeout(() => {
         this.battleService.giveExp(30);
       }, 300);
     }
+    //spearow attack
     if (event.category === 3 && event.id === 1) {
-      console.log('Spearow Attack!');
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 5) {
         setTimeout(() => {
@@ -109,35 +115,38 @@ export class EncounterService {
         }, 300);
       }
     }
+    //found a chansey
     if (event.category === 3 && event.id === 2) {
-      console.log('Chansey');
       const chance = Math.floor(Math.random() * 100);
-      if (chance <= 60) {
+      if (chance <= 70) {
         setTimeout(() => {
-          this.battleService.giveExp(15);
+          this.battleService.recoverHealth(15);
         }, 300);
       }
-      if (chance > 60) {
+      if (chance > 70) {
+        this.rewardChecker.set(true);
+      }
+    }
+    //haunter attack
+    if (event.category === 3 && event.id === 3) {
+      const chance = Math.floor(Math.random() * 100);
+      if (chance <= 50) {
+        setTimeout(() => {
+          this.battleService.giveExp(40);
+        }, 300);
+      }
+      if (chance > 50) {
         this.rewardChecker.set(true);
         setTimeout(() => {
-          this.battleService.takeDamage(2);
+          this.battleService.takeDamage(5);
         }, 300);
       }
     }
-    if (event.category === 3 && event.id === 3) {
-      console.log('Spooky');
-      const chance = Math.floor(Math.random() * 100);
-      if (chance <= 60) {
-        setTimeout(() => {
-          this.battleService.giveExp(15);
-        }, 300);
-      }
-      if (chance > 60) {
-        this.rewardChecker.set(true);
-        setTimeout(() => {
-          this.battleService.takeDamage(2);
-        }, 300);
-      }
+    //rare candy
+    if (event.category === 3 && event.id === 4) {
+      setTimeout(() => {
+        this.battleService.gainLevel();
+      }, 300);
     }
   });
 

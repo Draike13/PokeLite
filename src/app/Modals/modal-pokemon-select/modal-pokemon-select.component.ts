@@ -40,13 +40,10 @@ import { PokemonService } from '../../Data/pokemon.service';
 })
 export class ModalPokemonSelectComponent {
   constructor(
-    private pokemonService: PokemonService,
     private specialService: SpecialService,
     private helperService: HelperService,
     private dialogRef: MatDialogRef<ModalPokemonSelectComponent>
-  ) {
-    // this.countTracker();
-  }
+  ) {}
   data = inject(MAT_DIALOG_DATA);
 
   startGame(pokemon: Pokemon) {
