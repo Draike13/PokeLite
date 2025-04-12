@@ -93,11 +93,12 @@
 
     }
 
-    <!-- path selection view -->
+    <!-- boss path selection view -->
     @if (currentView() === 'battleSelect') {
 
     <app-boss-carousel></app-boss-carousel>
     }
+
     <!-- event path way for battles -->
     @if (currentView() === 'battlePath'){
     <div class="boss-container">
@@ -107,8 +108,8 @@
         <img class="boss-image" src="{{ mapImage }}" alt="" />
       </div>
       <div class="boss-badge-container">
-        Distance till Boss
-        <div class="item-holder">
+        <div class="count-title">Distance till Boss</div>
+        <div class="count-holder">
           {{ remainingRouteCount() }}
         </div>
       </div>
@@ -134,10 +135,15 @@
     </div>
 
     <!-- victory view -->
-    } @if (currentView() === 'victory') { Congratulations you completed a run! }
+    } @if (currentView() === 'victory') {
+    <div class="completion-text">Congratulations you completed a run!</div>
+    }
   </mat-card-content>
 
   <!-- loss view -->
-  @if (currentView() === 'loss'){ Oh no! You were defeated. Better luck next
-  time. }
+  @if (currentView() === 'loss'){
+  <div class="completion-text">
+    Oh no! You were defeated. Better luck next time.
+  </div>
+  }
 </mat-card>

@@ -76,8 +76,8 @@ export class RandomEcounterService {
             name: 'A Shaking Bush',
             description: `You notice a bush on the side of the road move; do you investigate it?`,
             image: 'assets/encounters/Bush.jpg',
-            reward: `You start to investigate and are ambushed by a [--random pokemon here--]. Luckily ${activePokemon} was able to defeat it. `,
-            failure: `As you start to investigate, you are ambushed by a [--Random pokemon here--] and have to run. ${activePokemon} is hurt defending you.`,
+            reward: `You start to investigate and are ambushed by an angry Nidoran. Luckily ${activePokemon} was able to defeat it. `,
+            failure: `As you start to investigate, you are ambushed by an angry Nidoking and have to run. ${activePokemon} is hurt defending you.`,
             hidden: false,
           },
           {
