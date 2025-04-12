@@ -33,10 +33,13 @@ import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component'
 import { BattleLogComponent } from '../battle-log/battle-log.component';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
 import { ItemsService } from '../Data/items.service';
+import { NgStyle } from '@angular/common';
+import { BattleLogService } from '../Services/battle-log.service';
 
 @Component({
   selector: 'app-content-box',
   imports: [
+    NgStyle,
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
@@ -98,7 +101,7 @@ export class ContentBoxComponent {
   }
 
   constructor(
-    private itemService: ItemsService,
+    private battleLogService: BattleLogService,
     private dialog: MatDialog,
     private saveService: SaveService,
     private helperService: HelperService,
@@ -147,7 +150,7 @@ export class ContentBoxComponent {
         this.bossEncounterpokemonService.leftView.set('empty');
         this.bossEncounterpokemonService.centerView.set('empty');
         this.bossEncounterpokemonService.rightView.set('empty');
-        this.bossEncounterpokemonService.battleLog.set([]);
+        this.battleLogService.battleLog.set([]);
         this.encounterService.currentItems.set([]);
         this.helperService.cleanup();
         this.currentView.set('pokemonSelection');
@@ -244,7 +247,7 @@ export class ContentBoxComponent {
         this.bossEncounterpokemonService.leftView.set('empty');
         this.bossEncounterpokemonService.centerView.set('empty');
         this.bossEncounterpokemonService.rightView.set('empty');
-        this.bossEncounterpokemonService.battleLog.set([]);
+        this.battleLogService.battleLog.set([]);
         this.encounterService.currentItems.set([]);
         this.helperService.cleanup();
         this.currentView.set('pokemonSelection');
@@ -262,10 +265,14 @@ export class ContentBoxComponent {
         this.encounterService.selectedEvent.set(null);
         this.encounterService.increaseRouteCount();
         this.encounterService.rewardChecker.set(false);
+        this.encounterService.contentBackground.set(false);
       }, 2400);
     }
   });
 
+  eventBackground() {
+    return this.encounterService.contentBackground();
+  }
   rewardChecker() {
     return this.encounterService.rewardChecker();
   }

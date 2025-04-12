@@ -45,7 +45,7 @@
 }
 
 .log-line.player-damage {
-  color: green;
+  color: blue;
 }
 
 .log-line.enemy-damage {
@@ -58,4 +58,8 @@
 
 .log-line.taunt {
   color: #ffabf3;
+}
+
+.log-line.glitch {
+  color: greenyellow;
 }

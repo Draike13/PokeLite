@@ -6,6 +6,8 @@ import { BattleService } from './battle.service';
 import { BossEncounterPokemonService } from './boss-encounter-pokemon.service';
 import { ItemsService } from '../Data/items.service';
 import { RandomEncounter } from '../Models/random-encounter.model';
+import { SaveService } from './save.service';
+import { SpecialService } from './special.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +15,12 @@ import { RandomEncounter } from '../Models/random-encounter.model';
 export class EncounterService {
   constructor(
     private itemService: ItemsService,
-    private bossService: BossService,
+    private specialService: SpecialService,
     private helperService: HelperService,
     private battleService: BattleService
   ) {}
 
+  contentBackground: WritableSignal<boolean> = signal(false);
   bossSelected: WritableSignal<boolean> = signal(false);
   rewardChecker: WritableSignal<boolean> = signal(false);
   selectedEvent: WritableSignal<RandomEncounter | null> = signal(null);
@@ -100,15 +103,17 @@ export class EncounterService {
         this.battleService.giveExp(30);
       }, 300);
     }
-    //spearow attack
+    //spearow attack/Missing No.
     if (event.category === 3 && event.id === 1) {
       const chance = Math.floor(Math.random() * 100);
-      if (chance <= 5) {
+      if (chance <= 95) {
         setTimeout(() => {
-          this.battleService.giveExp(15);
+          this.contentBackground.set(true);
+          this.specialService.unlockMissingNo();
+          console.log('uh oh....');
         }, 300);
       }
-      if (chance > 5) {
+      if (chance > 95) {
         this.rewardChecker.set(true);
         setTimeout(() => {
           this.battleService.takeDamage(2);

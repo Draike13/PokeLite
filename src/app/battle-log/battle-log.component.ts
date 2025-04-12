@@ -1,6 +1,7 @@
 import { Component, ElementRef, viewChild, ViewChild } from '@angular/core';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
 import { NgClass } from '@angular/common';
+import { BattleLogService } from '../Services/battle-log.service';
 
 @Component({
   selector: 'app-battle-log',
@@ -9,9 +10,7 @@ import { NgClass } from '@angular/common';
   styleUrl: './battle-log.component.css',
 })
 export class BattleLogComponent {
-  constructor(
-    private bossEncounterPokemonService: BossEncounterPokemonService
-  ) {}
+  constructor(private battleLogService: BattleLogService) {}
   ngAfterViewChecked() {
     const container = document.querySelector('.log-wrapper');
     if (container) {
@@ -20,6 +19,6 @@ export class BattleLogComponent {
   }
 
   log() {
-    return this.bossEncounterPokemonService.battleLog();
+    return this.battleLogService.battleLog();
   }
 }

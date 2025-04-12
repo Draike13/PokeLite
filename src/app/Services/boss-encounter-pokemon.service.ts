@@ -4,17 +4,19 @@ import { HelperService } from './helper.service';
 import { Pokemon } from '../Models/pokemon.model';
 import { BattleLog } from '../Models/battle-log.model';
 import { Item } from '../Models/item.model';
+import { BattleLogService } from './battle-log.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BossEncounterPokemonService {
   constructor(
+    private battleLogService: BattleLogService,
     private encounterService: EncounterService,
     private helperService: HelperService
   ) {}
   encounterToggle: WritableSignal<boolean> = signal(false);
-  battleLog: WritableSignal<BattleLog[]> = signal([]);
+  // battleLog: WritableSignal<BattleLog[]> = signal([]);
 
   playerDeclareAttack: WritableSignal<boolean> = signal(false);
   leftAttacking: WritableSignal<boolean> = signal(false);
@@ -49,7 +51,7 @@ export class BossEncounterPokemonService {
           setTimeout(() => {
             const attack = this.leftContainerAttack();
             this.helperService.damage.update((current) => current + attack);
-            this.addToBattleLog({
+            this.battleLogService.addToBattleLog({
               text: `${this.leftContainerPokemonName()} dealt ${this.leftContainerAttack()} to ${this.helperService.playerPokemonName()}`,
               type: 'enemy-damage',
             });
@@ -61,7 +63,7 @@ export class BossEncounterPokemonService {
           setTimeout(() => {
             const attack = this.centerContainerAttack();
             this.helperService.damage.update((current) => current + attack);
-            this.addToBattleLog({
+            this.battleLogService.addToBattleLog({
               text: `${this.centerContainerPokemonName()} dealt ${this.centerContainerAttack()} to ${this.helperService.playerPokemonName()}`,
               type: 'enemy-damage',
             });
@@ -73,7 +75,7 @@ export class BossEncounterPokemonService {
           setTimeout(() => {
             const attack = this.rightContainerAttack();
             this.helperService.damage.update((current) => current + attack);
-            this.addToBattleLog({
+            this.battleLogService.addToBattleLog({
               text: `${this.rightContainerPokemonName()} dealt ${this.rightContainerAttack()} to ${this.helperService.playerPokemonName()}`,
               type: 'enemy-damage',
             });
@@ -84,11 +86,11 @@ export class BossEncounterPokemonService {
     }
   });
 
-  addToBattleLog(newLog: BattleLog) {
-    const logs = this.battleLog();
-    const updated = [...logs, newLog];
-    this.battleLog.set(updated);
-  }
+  // addToBattleLog(newLog: BattleLog) {
+  //   const logs = this.battleLog();
+  //   const updated = [...logs, newLog];
+  //   this.battleLog.set(updated);
+  // }
 
   activePokemon: WritableSignal<Pokemon[]> = signal([]);
 
@@ -172,13 +174,13 @@ export class BossEncounterPokemonService {
       this.leftContainerCurrentHealth.set(
         this.leftContainerCurrentHealth() - this.helperService.playerAttack()
       );
-      this.addToBattleLog({
+      this.battleLogService.addToBattleLog({
         text: `${this.helperService.playerPokemonName()} dealt ${this.helperService.playerAttack()} damage to ${this.leftContainerPokemonName()}`,
         type: 'player-damage',
       });
     }
     if (this.leftContainerCurrentHealth() <= 0) {
-      this.addToBattleLog({
+      this.battleLogService.addToBattleLog({
         text: `${this.helperService.playerPokemonName()} has defeated ${this.leftContainerPokemonName()}`,
         type: 'player-damage',
       });
@@ -251,13 +253,13 @@ export class BossEncounterPokemonService {
       this.centerContainerCurrentHealth.set(
         this.centerContainerCurrentHealth() - this.helperService.playerAttack()
       );
-      this.addToBattleLog({
+      this.battleLogService.addToBattleLog({
         text: `${this.helperService.playerPokemonName()} dealt ${this.helperService.playerAttack()} damage to ${this.centerContainerPokemonName()}`,
         type: 'player-damage',
       });
     }
     if (this.centerContainerCurrentHealth() <= 0) {
-      this.addToBattleLog({
+      this.battleLogService.addToBattleLog({
         text: `${this.helperService.playerPokemonName()} has defeated ${this.centerContainerPokemonName()}`,
         type: 'player-damage',
       });
@@ -330,13 +332,13 @@ export class BossEncounterPokemonService {
       this.rightContainerCurrentHealth.set(
         this.rightContainerCurrentHealth() - this.helperService.playerAttack()
       );
-      this.addToBattleLog({
+      this.battleLogService.addToBattleLog({
         text: `${this.helperService.playerPokemonName()} dealt ${this.helperService.playerAttack()} damage to ${this.rightContainerPokemonName()}`,
         type: 'player-damage',
       });
     }
     if (this.rightContainerCurrentHealth() <= 0) {
-      this.addToBattleLog({
+      this.battleLogService.addToBattleLog({
         text: `${this.helperService.playerPokemonName()} has defeated ${this.rightContainerPokemonName()}`,
         type: 'player-damage',
       });
@@ -364,9 +366,12 @@ export class BossEncounterPokemonService {
           if (leftDead === true && centerDead === true) {
             setTimeout(() => {
               this.brockRan = true;
-              this.addToBattleLog({ text: `What?...`, type: 'status' });
+              this.battleLogService.addToBattleLog({
+                text: `What?...`,
+                type: 'status',
+              });
               setTimeout(() => {
-                this.addToBattleLog({
+                this.battleLogService.addToBattleLog({
                   text: `Oh no! ${this.rightContainerPokemonName()} is evolving!`,
                   type: 'status',
                 });
@@ -431,7 +436,7 @@ export class BossEncounterPokemonService {
 
       this.rightAttacking.set(true);
       if (!rampageTriggered) {
-        this.addToBattleLog({
+        this.battleLogService.addToBattleLog({
           text: 'Oh no! Psyduck is on a psychic rampage!',
           type: 'status',
         });
@@ -441,7 +446,7 @@ export class BossEncounterPokemonService {
       setTimeout(() => {
         const attack = this.rightContainerAttack();
         this.helperService.damage.update((current) => current + attack);
-        this.addToBattleLog({
+        this.battleLogService.addToBattleLog({
           text: `${this.rightContainerPokemonName()} dealt ${attack} bonus damage to ${this.helperService.playerPokemonName()}`,
           type: 'enemy-damage',
         });
@@ -455,7 +460,7 @@ export class BossEncounterPokemonService {
           this.leftContainerAttack.update((atk) => atk + 2);
           this.centerContainerAttack.update((atk) => atk + 2);
           this.rightContainerAttack.update((atk) => atk + 2);
-          this.addToBattleLog({
+          this.battleLogService.addToBattleLog({
             text: `Misty's Pokemon are getting stronger...`,
             type: 'status',
           });
@@ -486,7 +491,7 @@ export class BossEncounterPokemonService {
         if (chance <= 60) {
           setTimeout(() => {
             this.surgeEffect.set(true);
-            this.addToBattleLog({
+            this.battleLogService.addToBattleLog({
               text: `Oh no! Your Pokemon was paralyzed!`,
               type: 'status',
             });

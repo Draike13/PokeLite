@@ -244,5 +244,18 @@ export class PokemonService {
       image: 'assets/player-pokemon/Moltres.jpg',
       locked: true,
     },
+    {
+      id: 101010101010,
+      commonId: 101010101010,
+      name: 'Missing No.',
+      currentHealth: 999,
+      maxHealth: 999,
+      attack: 999,
+      level: 1,
+      evolutionLevel: 10,
+      experience: 0,
+      image: 'assets/player-pokemon/MissingNo.jpg',
+      locked: true,
+    },
   ]);
 }

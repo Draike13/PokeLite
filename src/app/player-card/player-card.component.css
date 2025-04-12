@@ -8,7 +8,8 @@
   left: 50%;
   transform: translateX(-50%);
   width: 86vw;
-  height: 48vh;
+  aspect-ratio: 7/5;
+  max-height: 48vh;
   z-index: 1;
   background-size: contain;
   background-position: center;

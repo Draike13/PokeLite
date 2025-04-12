@@ -1,4 +1,12 @@
-<mat-card class="main-content-container" appearance="outlined">
+<mat-card
+  [ngStyle]="
+    eventBackground()
+      ? { 'background-image': 'url(assets/effects/MissingNoBackground.jpg)' }
+      : {}
+  "
+  class="main-content-container"
+  appearance="outlined"
+>
   <mat-card-content class="content">
     <!-- blurb view -->
     @if (currentView() === 'blurb') {
@@ -90,8 +98,8 @@
 
     <app-boss-carousel></app-boss-carousel>
     } @if (currentView() === 'battlePath'){
+    <app-battle-log />
     <span>{{ bossTaunt() }}</span>
-    <button (click)="('')" mat-button>Incease Route Count</button>
     }
 
     <!-- event active view -->
