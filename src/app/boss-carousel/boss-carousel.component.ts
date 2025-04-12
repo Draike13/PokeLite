@@ -9,7 +9,6 @@ import { HelperService } from '../Services/helper.service';
 import { BossService } from '../Data/boss.service';
 import { Boss } from '../Models/boss.model';
 import { EncounterService } from '../Services/encounter.service';
-import { Badge } from '../Models/badge.model';
 
 @Component({
   selector: 'app-boss-carousel',

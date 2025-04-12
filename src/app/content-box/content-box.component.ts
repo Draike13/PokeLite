@@ -1,29 +1,13 @@
-import {
-  Component,
-  effect,
-  inject,
-  signal,
-  Signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, effect, signal, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HelperService } from '../Services/helper.service';
 import { SaveService } from '../Services/save.service';
-import { Dialog } from '@angular/cdk/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  MatDialog,
-  MatDialogModule,
-  MAT_DIALOG_DATA,
-  MatDialogConfig,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalNameEntryComponent } from '../Modals/modal-name-entry/modal-name-entry.component';
-import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
 import { SaveFile } from '../Models/save.model';
-import { Pokemon } from '../Models/pokemon.model';
-import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { Rank } from '../Models/rank.model';
 import { Boss } from '../Models/boss.model';
 import { BossService } from '../Data/boss.service';
@@ -32,7 +16,6 @@ import { PokemonCarouselComponent } from '../pokemon-carousel/pokemon-carousel.c
 import { BossCarouselComponent } from '../boss-carousel/boss-carousel.component';
 import { BattleLogComponent } from '../battle-log/battle-log.component';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
-import { ItemsService } from '../Data/items.service';
 import { NgStyle } from '@angular/common';
 import { BattleLogService } from '../Services/battle-log.service';
 
@@ -69,7 +52,7 @@ export class ContentBoxComponent {
 
   bossTaunt() {
     const boss = this.encounterService.activeBoss();
-    if (!boss) return ''; // or return a loading message, or null
+    if (!boss) return '';
 
     if (boss.difficulty === 1) {
       return 'Brock: Good luck ever reaching me!';

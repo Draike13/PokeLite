@@ -1,5 +1,4 @@
-import { Component, ElementRef, viewChild, ViewChild } from '@angular/core';
-import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
+import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { BattleLogService } from '../Services/battle-log.service';
 

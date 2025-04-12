@@ -10,7 +10,6 @@ import { StatBoxLeftComponent } from '../Stat-Boxes/stat-box-left/stat-box-left.
 import { PlayerCardComponent } from '../player-card/player-card.component';
 import { ExpBarComponent } from '../exp-bar/exp-bar.component';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
-import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-main',

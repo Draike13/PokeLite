@@ -1,11 +1,4 @@
-import {
-  Component,
-  effect,
-  inject,
-  NgZone,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -21,7 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SpecialService } from '../../Services/special.service';
-import { PokemonService } from '../../Data/pokemon.service';
 @Component({
   selector: 'app-modal-pokemon-select',
   imports: [

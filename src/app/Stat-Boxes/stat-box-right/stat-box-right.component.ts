@@ -1,4 +1,3 @@
-import { HttpClientJsonpModule } from '@angular/common/http';
 import { Component, effect } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

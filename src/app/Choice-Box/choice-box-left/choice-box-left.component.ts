@@ -3,7 +3,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { EncounterService } from '../../Services/encounter.service';
 import { HelperService } from '../../Services/helper.service';
-import { Pokemon } from '../../Models/pokemon.model';
 import { NgStyle } from '@angular/common';
 import { BossEncounterPokemonService } from '../../Services/boss-encounter-pokemon.service';
 import { Item } from '../../Models/item.model';

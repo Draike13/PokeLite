@@ -4,14 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { HelperService } from '../Services/helper.service';
-import { Pokemon } from '../Models/pokemon.model';
-import {
-  MatDialog,
-  MatDialogModule,
-  MAT_DIALOG_DATA,
-  MatDialogConfig,
-} from '@angular/material/dialog';
-import { ModalPokemonSelectComponent } from '../Modals/modal-pokemon-select/modal-pokemon-select.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { SpecialService } from '../Services/special.service';
 import { ModalPlayerCardComponent } from '../Modals/modal-player-card/modal-player-card.component';
