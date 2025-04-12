@@ -128,7 +128,7 @@ export class RandomEcounterService {
             category: 3,
             name: 'Rare Candy!!',
             description: `${activePokemon} found a Rare Candy as you were walking down the road!`,
-            image: 'assets/encounters/Terrifying.jpg',
+            image: 'assets/encounters/RareCandy.jpg',
             reward: `It was already opened...but it'll do!`,
             hidden: true,
           },

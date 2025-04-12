@@ -44,7 +44,7 @@ export class EncounterService {
       }, 300);
     }
     //Poffins!
-    if (event.category === 1 && event.id === 3) {
+    if (event.category === 1 && event.id === 4) {
       setTimeout(() => {
         this.battleService.recoverHealth(5);
       }, 300);
