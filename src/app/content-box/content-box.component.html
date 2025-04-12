@@ -97,18 +97,23 @@
     @if (currentView() === 'battleSelect') {
 
     <app-boss-carousel></app-boss-carousel>
-    } @if (currentView() === 'battlePath'){
-    <app-battle-log />
-    <span>{{ bossTaunt() }}</span>
     }
+    <!-- event path way for battles -->
+    @if (currentView() === 'battlePath'){
+    <div class="boss-container">
+      <app-battle-log />
 
-    <!-- event active view -->
-    @if (currentView() === 'eventSelected') { @if (rewardChecker()===false) {
-
-    <div>{{ selectedEvent()!.reward }}</div>
-    } @if (rewardChecker() ===true) {
-    <div>{{ selectedEvent()!.failure }}</div>
-    } }
+      <div class="boss-image-container">
+        <img class="boss-image" src="{{ mapImage }}" alt="" />
+      </div>
+      <div class="boss-badge-container">
+        Distance till Boss
+        <div class="item-holder">
+          {{ remainingRouteCount() }}
+        </div>
+      </div>
+    </div>
+    }
 
     <!-- boss battle view -->
     @if (currentView() === 'pathBoss') {

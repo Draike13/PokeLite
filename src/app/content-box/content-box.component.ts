@@ -86,7 +86,6 @@ export class ContentBoxComponent {
     | 'pokemonSelection'
     | 'battleSelect'
     | 'battlePath'
-    | 'eventSelected'
     | 'pathBoss'
     | 'victory'
     | 'loss'
@@ -138,6 +137,7 @@ export class ContentBoxComponent {
         this.encounterService.activeBoss()!.encounterCount
     ) {
       this.encounterService.bossBattleStart.set(true);
+      this.battleLogService.battleLog.set([]);
       this.currentView.set('pathBoss');
     }
   });
@@ -259,12 +259,9 @@ export class ContentBoxComponent {
   responseToEvent = effect(() => {
     if (this.encounterService.selectedEvent()) {
       this.encounterService.bossBattleStart.set(false);
-      this.currentView.set('eventSelected');
       setTimeout(() => {
-        this.currentView.set('battlePath');
         this.encounterService.selectedEvent.set(null);
         this.encounterService.increaseRouteCount();
-        this.encounterService.rewardChecker.set(false);
         this.encounterService.contentBackground.set(false);
       }, 2400);
     }
@@ -273,10 +270,16 @@ export class ContentBoxComponent {
   eventBackground() {
     return this.encounterService.contentBackground();
   }
-  rewardChecker() {
-    return this.encounterService.rewardChecker();
-  }
   selectedEvent() {
     return this.encounterService.selectedEvent();
+  }
+
+  mapImage = 'assets/Kanto.jpg';
+
+  remainingRouteCount() {
+    return (
+      this.encounterService.activeBoss()!.encounterCount -
+      this.encounterService.routeCounter()
+    );
   }
 }

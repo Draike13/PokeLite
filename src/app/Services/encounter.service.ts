@@ -8,12 +8,14 @@ import { ItemsService } from '../Data/items.service';
 import { RandomEncounter } from '../Models/random-encounter.model';
 import { SaveService } from './save.service';
 import { SpecialService } from './special.service';
+import { BattleLogService } from './battle-log.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EncounterService {
   constructor(
+    private battleLogService: BattleLogService,
     private itemService: ItemsService,
     private specialService: SpecialService,
     private helperService: HelperService,
@@ -22,7 +24,6 @@ export class EncounterService {
 
   contentBackground: WritableSignal<boolean> = signal(false);
   bossSelected: WritableSignal<boolean> = signal(false);
-  rewardChecker: WritableSignal<boolean> = signal(false);
   selectedEvent: WritableSignal<RandomEncounter | null> = signal(null);
 
   runEvent = effect(() => {
@@ -31,24 +32,40 @@ export class EncounterService {
     //pokemon center
     if (event.category === 1 && event.id === 1) {
       setTimeout(() => {
+        this.battleLogService.addToBattleLog({
+          text: event.reward,
+          type: 'player-damage',
+        });
         this.battleService.recoverHealth(10);
       }, 300);
     }
     //pokemart
     if (event.category === 1 && event.id === 2) {
       setTimeout(() => {
+        this.battleLogService.addToBattleLog({
+          text: event.reward,
+          type: 'player-damage',
+        });
         this.battleService.gainAttack(2);
       }, 300);
     }
     //celedon dept store
     if (event.category === 1 && event.id === 3) {
       setTimeout(() => {
+        this.battleLogService.addToBattleLog({
+          text: event.reward,
+          type: 'player-damage',
+        });
         this.battleService.gainAttack(3);
       }, 300);
     }
     //Poffins!
     if (event.category === 1 && event.id === 4) {
       setTimeout(() => {
+        this.battleLogService.addToBattleLog({
+          text: event.reward,
+          type: 'player-damage',
+        });
         this.battleService.recoverHealth(5);
       }, 300);
     }
@@ -57,12 +74,19 @@ export class EncounterService {
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 80) {
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.reward,
+            type: 'player-damage',
+          });
           this.battleService.giveExp(20);
         }, 300);
       }
       if (chance > 80) {
-        this.rewardChecker.set(true);
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.failure!,
+            type: 'enemy-damage',
+          });
           this.battleService.takeDamage(3);
         }, 300);
       }
@@ -72,12 +96,19 @@ export class EncounterService {
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 70) {
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.reward,
+            type: 'player-damage',
+          });
           this.battleService.giveExp(15);
         }, 300);
       }
       if (chance > 70) {
-        this.rewardChecker.set(true);
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.failure!,
+            type: 'enemy-damage',
+          });
           this.battleService.takeDamage(2);
         }, 300);
       }
@@ -87,12 +118,19 @@ export class EncounterService {
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 80) {
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.reward,
+            type: 'player-damage',
+          });
           this.battleService.giveExp(15);
         }, 300);
       }
       if (chance > 80) {
-        this.rewardChecker.set(true);
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.failure!,
+            type: 'enemy-damage',
+          });
           this.battleService.takeDamage(5);
         }, 300);
       }
@@ -100,6 +138,10 @@ export class EncounterService {
     //stop the team rocket grunt
     if (event.category === 2 && event.id === 4) {
       setTimeout(() => {
+        this.battleLogService.addToBattleLog({
+          text: event.reward,
+          type: 'player-damage',
+        });
         this.battleService.giveExp(30);
       }, 300);
     }
@@ -108,14 +150,21 @@ export class EncounterService {
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 95) {
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.reward,
+            type: 'player-damage',
+          });
           this.contentBackground.set(true);
           this.specialService.unlockMissingNo();
           console.log('uh oh....');
         }, 300);
       }
       if (chance > 95) {
-        this.rewardChecker.set(true);
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.failure!,
+            type: 'enemy-damage',
+          });
           this.battleService.takeDamage(2);
         }, 300);
       }
@@ -125,11 +174,18 @@ export class EncounterService {
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 70) {
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.reward,
+            type: 'player-damage',
+          });
           this.battleService.recoverHealth(15);
         }, 300);
       }
       if (chance > 70) {
-        this.rewardChecker.set(true);
+        this.battleLogService.addToBattleLog({
+          text: event.failure!,
+          type: 'status',
+        });
       }
     }
     //haunter attack
@@ -137,12 +193,19 @@ export class EncounterService {
       const chance = Math.floor(Math.random() * 100);
       if (chance <= 50) {
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.reward,
+            type: 'player-damage',
+          });
           this.battleService.giveExp(40);
         }, 300);
       }
       if (chance > 50) {
-        this.rewardChecker.set(true);
         setTimeout(() => {
+          this.battleLogService.addToBattleLog({
+            text: event.failure!,
+            type: 'enemy-damage',
+          });
           this.battleService.takeDamage(5);
         }, 300);
       }
@@ -150,6 +213,10 @@ export class EncounterService {
     //rare candy
     if (event.category === 3 && event.id === 4) {
       setTimeout(() => {
+        this.battleLogService.addToBattleLog({
+          text: event.reward,
+          type: 'player-damage',
+        });
         this.battleService.gainLevel();
       }, 300);
     }

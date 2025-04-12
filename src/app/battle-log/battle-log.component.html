@@ -1,7 +1,7 @@
 <div class="log-container">
   <div class="log-wrapper">
     @for (line of log(); track $index) {
-    <div class="log-line" [ngClass]="['log-line', line.type]">
+    <div class="log-line" [ngClass]="line.type">
       {{ line.text }}
     </div>
     }

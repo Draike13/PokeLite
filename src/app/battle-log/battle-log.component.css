@@ -45,7 +45,7 @@
 }
 
 .log-line.player-damage {
-  color: blue;
+  color: rgb(44, 44, 255);
 }
 
 .log-line.enemy-damage {
