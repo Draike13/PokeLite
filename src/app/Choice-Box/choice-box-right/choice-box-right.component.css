@@ -140,6 +140,8 @@ mat-card-content {
 }
 
 .evolve-effect {
+  cursor: not-allowed;
+  pointer-events: none;
   animation: evolveFlash 2.5s ease-in-out forwards;
 }
 @keyframes evolveFlash {
@@ -211,7 +213,7 @@ mat-card-content {
 }
 
 .blurred {
-  filter: blur(6px);
+  filter: blur(7px);
   pointer-events: none;
 }
 
