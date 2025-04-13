@@ -60,7 +60,7 @@ export class HelperService {
       this.buildStats();
     }
   });
-
+  evolveEffect: WritableSignal<boolean> = signal(false);
   standardEvolution = effect(() => {
     const level = this.playerLevel();
     const evoLevel = this.playerEvolutionLevel();
@@ -78,20 +78,24 @@ export class HelperService {
           this.playerId() !==
           Number(`${this.pokemonBaseId} + ${this.pokemonBaseId}`)
         ) {
-          this.activeSave()!.pokemonData.forEach((eachPokemon) => {
-            if (
-              eachPokemon.id ===
-              Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
-            ) {
-              eachPokemon.locked = false;
-              this.activePokemon.set(eachPokemon);
-              this.saveService.saveGame(this.activeSave()!);
-            }
-            if (eachPokemon.id === Number(`${this.pokemonBaseId}`)) {
-              eachPokemon.locked = true;
-              this.saveService.saveGame(this.activeSave()!);
-            }
-          });
+          this.evolveEffect.set(true);
+          setTimeout(() => {
+            this.activeSave()!.pokemonData.forEach((eachPokemon) => {
+              if (
+                eachPokemon.id ===
+                Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
+              ) {
+                eachPokemon.locked = false;
+                this.activePokemon.set(eachPokemon);
+                this.saveService.saveGame(this.activeSave()!);
+              }
+              if (eachPokemon.id === Number(`${this.pokemonBaseId}`)) {
+                eachPokemon.locked = true;
+                this.saveService.saveGame(this.activeSave()!);
+              }
+              this.evolveEffect.set(false);
+            });
+          }, 1700);
         }
       }
     }

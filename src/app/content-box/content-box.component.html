@@ -111,6 +111,9 @@
         <div class="count-title">Distance till Boss</div>
         <div class="count-holder">
           {{ remainingRouteCount() }}
+          <button (click)="this.battleService.gainLevel()">
+            level up test
+          </button>
         </div>
       </div>
     </div>

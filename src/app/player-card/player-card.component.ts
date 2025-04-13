@@ -26,4 +26,7 @@ export class PlayerCardComponent {
   surgeEffect() {
     return this.bossEncounterPokemonService.surgeEffect();
   }
+  evolving() {
+    return this.helperService.evolveEffect();
+  }
 }

@@ -90,3 +90,43 @@ mat-card-actions {
 .player-display.paralyze-effect {
   animation: shake 0.3s ease-in-out;
 }
+
+.evolve-effect {
+  animation: evolveFlash 2.5s ease-in-out forwards;
+}
+@keyframes evolveFlash {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  10% {
+    filter: brightness(3);
+  }
+  20% {
+    filter: brightness(0.3);
+  }
+  30% {
+    filter: brightness(3);
+  }
+  40% {
+    filter: brightness(0.3);
+  }
+  50% {
+    filter: brightness(3);
+  }
+  60% {
+    filter: brightness(0.3);
+  }
+  70% {
+    filter: brightness(3);
+  }
+  80% {
+    filter: brightness(1);
+  }
+  90% {
+    filter: brightness(8) contrast(8);
+  }
+  100% {
+    filter: brightness(1) contrast(1);
+  }
+}

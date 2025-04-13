@@ -1,4 +1,5 @@
 <mat-card
+  [class.evolve-effect]="evolving()"
   [class.paralyze-effect]="surgeEffect()"
   [class.player-loss]="playerLoss()"
   [ngStyle]="{ 'background-image': 'url(' + selectedImage() + ')' }"

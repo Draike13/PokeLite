@@ -18,6 +18,7 @@ import { BattleLogComponent } from '../battle-log/battle-log.component';
 import { BossEncounterPokemonService } from '../Services/boss-encounter-pokemon.service';
 import { NgStyle } from '@angular/common';
 import { BattleLogService } from '../Services/battle-log.service';
+import { BattleService } from '../Services/battle.service';
 
 @Component({
   selector: 'app-content-box',
@@ -83,6 +84,7 @@ export class ContentBoxComponent {
   }
 
   constructor(
+    public battleService: BattleService,
     private battleLogService: BattleLogService,
     private dialog: MatDialog,
     private saveService: SaveService,
@@ -93,7 +95,10 @@ export class ContentBoxComponent {
   ) {}
 
   activeCheck = effect(() => {
-    if (this.helperService.activePokemon()) {
+    if (
+      this.helperService.activePokemon() &&
+      !this.encounterService.activeBoss()
+    ) {
       this.currentView.set('battleSelect');
     }
   });
