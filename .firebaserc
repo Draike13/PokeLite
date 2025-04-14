@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "pokelite-c7e7c"
-  }
+    "default": "pokelite-c7e7c",
+    "pokelite": "pokelite-2025"
+  },
+  "targets": {},
+  "etags": {}
 }

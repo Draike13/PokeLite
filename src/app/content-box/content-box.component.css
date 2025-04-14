@@ -81,8 +81,8 @@ mat-card-content {
 
 /* Start Button (Bottom Right) */
 .start-button {
-  font-size: 1.5vh;
   position: absolute;
+  font-size: 1.5vh;
   bottom: 8px;
   right: 8px;
 }
@@ -110,7 +110,7 @@ mat-card-content {
   aspect-ratio: 1/1;
 }
 .rank-img {
-  margin: 1rem;
+  margin: 0.5vh;
   width: 60px;
   aspect-ratio: 1/1;
 }

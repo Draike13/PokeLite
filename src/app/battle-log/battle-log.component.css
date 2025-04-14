@@ -36,6 +36,7 @@
 .log-line {
   opacity: 0;
   animation: fadeInUp 0.5s forwards;
+  font-size: 1.5vh;
 }
 
 @keyframes fadeInUp {
