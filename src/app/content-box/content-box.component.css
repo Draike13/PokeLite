@@ -6,6 +6,8 @@
 }
 
 mat-card-content {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
   overflow: hidden !important;
 }
 
@@ -45,19 +47,19 @@ mat-card-content {
   height: 14vh;
   aspect-ratio: 4/1;
   overflow: hidden;
-  margin-bottom: 1vh;
+  margin-bottom: 0.5vh;
 }
 
 /* Pokémon List (Top) */
 .pokemon-container {
-  font-size: 1.5vh;
+  font-size: 1vh;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 1.5vh;
   width: 70%;
-  padding-left: 2rem;
-  padding-top: 2rem;
+  padding-left: 1vh;
+  padding-top: 0.5vh;
 }
 
 /* Badges (Bottom Left) */

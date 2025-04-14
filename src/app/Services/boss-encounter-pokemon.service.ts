@@ -404,7 +404,7 @@ export class BossEncounterPokemonService {
   mistyAttackEffect: WritableSignal<boolean> = signal(false);
   pulseEffect: WritableSignal<boolean> = signal(false);
   mistyAttackCooldown = false;
-  mistyBonusStaged = false; // NEW: used to delay misty effect after normal attack
+  mistyBonusStaged = false; //used to delay misty effect after normal attack
 
   mistyAttackEffectSetter = effect(() => {
     const boss = this.encounterService.activeBoss();
@@ -434,7 +434,6 @@ export class BossEncounterPokemonService {
     ) {
       // If Psyduck already attacked normally, stage this for next tick
       if (this.rightAttacking()) {
-        // 🧠 Psyduck is doing a normal attack, wait for it to end before rampage
         if (!this.mistyBonusStaged) {
           this.mistyBonusStaged = true;
           setTimeout(() => {
@@ -466,7 +465,6 @@ export class BossEncounterPokemonService {
 
         setTimeout(() => {
           this.pulseEffect.set(false);
-          // stat boost happens here
           this.leftContainerAttack.update((atk) => atk + 2);
           this.centerContainerAttack.update((atk) => atk + 2);
           this.rightContainerAttack.update((atk) => atk + 2);

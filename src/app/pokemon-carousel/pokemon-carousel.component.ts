@@ -49,7 +49,9 @@ export class PokemonCarouselComponent {
     this.dialog.open(ModalPokemonSelectComponent, {
       data: { pokemon: currentPokemon },
       height: '24vh',
+      minHeight: '260px',
       width: '48vw',
+      minWidth: '400px',
       position: {
         top: '8vh',
       },

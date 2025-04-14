@@ -13,25 +13,15 @@
 }
 
 .attack {
-  align-self: flex-end;
-  font-size: 2rem;
+  font-size: 2vh;
   color: #ffabf3;
+  align-self: center;
 }
 
 .stat {
-  margin-top: 1.5vh;
-  align-self: flex-start;
-  font-size: 2rem;
+  margin-top: 0.25vh;
+  align-self: center;
+  font-size: 1.5vh;
   color: #ffabf3;
-  padding-bottom: 0;
-}
-
-@media (max-width: 2800px) {
-  .attack {
-    font-size: 1.5rem;
-  }
-  .stat {
-    font-size: 1.5rem;
-    margin-top: 0.5vh;
-  }
+  padding-bottom: 0.5vh;
 }
