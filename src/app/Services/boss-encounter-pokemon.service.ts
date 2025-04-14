@@ -402,9 +402,11 @@ export class BossEncounterPokemonService {
   });
 
   mistyAttackEffect: WritableSignal<boolean> = signal(false);
-  mistyAttackCooldown = false; // just a local class field
   pulseEffect: WritableSignal<boolean> = signal(false);
-  mistySpecialSetter = effect(() => {
+  mistyAttackCooldown = false;
+  mistyBonusStaged = false; // NEW: used to delay misty effect after normal attack
+
+  mistyAttackEffectSetter = effect(() => {
     const boss = this.encounterService.activeBoss();
     const misty = boss?.difficulty === 2;
     const psyduckAlive = this.rightContainerCurrentHealth() > 0;
@@ -421,9 +423,8 @@ export class BossEncounterPokemonService {
 
   mistySpecial = effect(() => {
     const shouldRun = this.mistyAttackEffect();
-    const attackTriggered = this.playerDeclareAttack();
+    const attackTriggered = this.attackLocked();
     const psyduckAlive = this.rightContainerCurrentHealth() > 0;
-    let rampageTriggered = false;
 
     if (
       shouldRun &&
@@ -431,16 +432,26 @@ export class BossEncounterPokemonService {
       psyduckAlive &&
       !this.mistyAttackCooldown
     ) {
-      this.mistyAttackCooldown = true;
-
-      this.rightAttacking.set(true);
-      if (!rampageTriggered) {
-        this.battleLogService.addToBattleLog({
-          text: 'Oh no! Psyduck is on a psychic rampage!',
-          type: 'status',
-        });
-        rampageTriggered = true;
+      // If Psyduck already attacked normally, stage this for next tick
+      if (this.rightAttacking()) {
+        // 🧠 Psyduck is doing a normal attack, wait for it to end before rampage
+        if (!this.mistyBonusStaged) {
+          this.mistyBonusStaged = true;
+          setTimeout(() => {
+            this.attackLocked.set(true); // retrigger mistySpecial
+            this.mistyBonusStaged = false;
+          }, 50); // short delay just to let the current attack resolve
+        }
+        return;
       }
+
+      this.mistyAttackCooldown = true;
+      this.rightAttacking.set(true);
+
+      this.battleLogService.addToBattleLog({
+        text: 'Oh no! Psyduck is on a psychic rampage!',
+        type: 'status',
+      });
 
       setTimeout(() => {
         const attack = this.rightContainerAttack();
@@ -449,13 +460,13 @@ export class BossEncounterPokemonService {
           text: `${this.rightContainerPokemonName()} dealt ${attack} bonus damage to ${this.helperService.playerPokemonName()}`,
           type: 'enemy-damage',
         });
+
         this.rightAttacking.set(false);
         this.pulseEffect.set(true);
 
         setTimeout(() => {
           this.pulseEffect.set(false);
           // stat boost happens here
-
           this.leftContainerAttack.update((atk) => atk + 2);
           this.centerContainerAttack.update((atk) => atk + 2);
           this.rightContainerAttack.update((atk) => atk + 2);
@@ -463,12 +474,11 @@ export class BossEncounterPokemonService {
             text: `Misty's Pokemon are getting stronger...`,
             type: 'status',
           });
-        }, 1150); // adjust to match the animation duration
+        }, 1150);
 
-        // Cooldown resets AFTER the action cycle completes
         setTimeout(() => {
           this.mistyAttackCooldown = false;
-        }, 1200); // adjust this value if needed
+        }, 1200);
       }, 1100);
     }
   });
