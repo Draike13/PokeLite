@@ -148,18 +148,18 @@ export class EncounterService {
     //spearow attack/Missing No.
     if (event.category === 3 && event.id === 1) {
       const chance = Math.floor(Math.random() * 100);
-      if (chance <= 95) {
+      if (chance <= 5) {
         setTimeout(() => {
           this.battleLogService.addToBattleLog({
             text: event.reward,
-            type: 'player-damage',
+            type: 'glitch',
           });
           this.contentBackground.set(true);
           this.specialService.unlockMissingNo();
           console.log('uh oh....');
         }, 300);
       }
-      if (chance > 95) {
+      if (chance > 5) {
         setTimeout(() => {
           this.battleLogService.addToBattleLog({
             text: event.failure!,
