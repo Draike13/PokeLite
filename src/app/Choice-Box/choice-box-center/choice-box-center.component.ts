@@ -72,8 +72,11 @@ export class ChoiceBoxCenterComponent {
 
   hitListener = effect(() => {
     if (this.bossEncounterPokemonService.centerAttacking() === true) {
-      this.triggerHitEffect();
-      this.bossEncounterPokemonService.centerAttacking.set(false);
+      setTimeout(() => {
+        this.triggerHitEffect();
+
+        this.bossEncounterPokemonService.centerAttacking.set(false);
+      }, 50);
     }
   });
   triggerHitEffect() {
@@ -90,7 +93,7 @@ export class ChoiceBoxCenterComponent {
     return this.helperService.playerLoss();
   }
   currentlyAttacking() {
-    return this.bossEncounterPokemonService.playerDeclareAttack();
+    return this.bossEncounterPokemonService.attackLocked();
   }
 
   availableItems() {

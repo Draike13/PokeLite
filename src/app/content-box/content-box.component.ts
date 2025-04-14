@@ -270,4 +270,8 @@ export class ContentBoxComponent {
       this.encounterService.routeCounter()
     );
   }
+
+  routeIncrease() {
+    return this.encounterService.increaseRouteCount();
+  }
 }

@@ -62,10 +62,14 @@ export class ChoiceBoxLeftComponent {
 
   hitListener = effect(() => {
     if (this.bossEncounterPokemonService.leftAttacking() === true) {
-      this.triggerHitEffect();
-      this.bossEncounterPokemonService.leftAttacking.set(false);
+      setTimeout(() => {
+        this.triggerHitEffect();
+
+        this.bossEncounterPokemonService.leftAttacking.set(false);
+      }, 50);
     }
   });
+
   triggerHitEffect() {
     this.pokemonHit.set(true);
     setTimeout(() => {
@@ -81,7 +85,7 @@ export class ChoiceBoxLeftComponent {
   }
 
   currentlyAttacking() {
-    return this.bossEncounterPokemonService.playerDeclareAttack();
+    return this.bossEncounterPokemonService.attackLocked();
   }
 
   availableItems() {

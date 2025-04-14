@@ -32,14 +32,11 @@ export class MainComponent {
   pulseEffect() {
     return this.bossEncounterPokemonService.pulseEffect();
   }
+  healingEffect() {
+    return this.bossEncounterPokemonService.healingEffect();
+  }
+
   constructor(
     private bossEncounterPokemonService: BossEncounterPokemonService
   ) {}
-
-  triggerPulseEffect() {
-    this.bossEncounterPokemonService.pulseEffect.set(true);
-    setTimeout(() => {
-      this.bossEncounterPokemonService.pulseEffect.set(false);
-    }, 800);
-  }
 }

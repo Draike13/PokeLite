@@ -35,14 +35,19 @@ export class BossEncounterPokemonService {
   });
 
   resetEncounters: WritableSignal<boolean> = signal(false);
+  attackLocked: WritableSignal<boolean> = signal(false);
 
   combatPhase = effect(() => {
     if (this.playerDeclareAttack() === true) {
+      this.attackLocked.set(true);
+      this.playerDeclareAttack.set(false);
       const activeAttackers = [];
       if (this.leftContainerCurrentHealth() > 0) activeAttackers.push(0);
       if (this.centerContainerCurrentHealth() > 0) activeAttackers.push(1);
       if (this.rightContainerCurrentHealth() > 0) activeAttackers.push(2);
-      if (activeAttackers.length < 1) this.playerDeclareAttack.set(false);
+      if (activeAttackers.length < 1) {
+        this.attackLocked.set(false);
+      }
       let randomAttacker = Math.floor(Math.random() * activeAttackers.length);
       const selectedAttacker = activeAttackers[randomAttacker];
       setTimeout(() => {
@@ -55,7 +60,7 @@ export class BossEncounterPokemonService {
               text: `${this.leftContainerPokemonName()} dealt ${this.leftContainerAttack()} to ${this.helperService.playerPokemonName()}`,
               type: 'enemy-damage',
             });
-            this.playerDeclareAttack.set(false);
+            this.attackLocked.set(false);
           }, 1100);
         }
         if (selectedAttacker === 1) {
@@ -67,7 +72,7 @@ export class BossEncounterPokemonService {
               text: `${this.centerContainerPokemonName()} dealt ${this.centerContainerAttack()} to ${this.helperService.playerPokemonName()}`,
               type: 'enemy-damage',
             });
-            this.playerDeclareAttack.set(false);
+            this.attackLocked.set(false);
           }, 1100);
         }
         if (selectedAttacker === 2) {
@@ -79,18 +84,12 @@ export class BossEncounterPokemonService {
               text: `${this.rightContainerPokemonName()} dealt ${this.rightContainerAttack()} to ${this.helperService.playerPokemonName()}`,
               type: 'enemy-damage',
             });
-            this.playerDeclareAttack.set(false);
+            this.attackLocked.set(false);
           }, 1100);
         }
       }, 300);
     }
   });
-
-  // addToBattleLog(newLog: BattleLog) {
-  //   const logs = this.battleLog();
-  //   const updated = [...logs, newLog];
-  //   this.battleLog.set(updated);
-  // }
 
   activePokemon: WritableSignal<Pokemon[]> = signal([]);
 
@@ -464,12 +463,12 @@ export class BossEncounterPokemonService {
             text: `Misty's Pokemon are getting stronger...`,
             type: 'status',
           });
-        }, 1000); // adjust to match the animation duration
+        }, 1150); // adjust to match the animation duration
 
         // Cooldown resets AFTER the action cycle completes
         setTimeout(() => {
           this.mistyAttackCooldown = false;
-        }, 2000); // adjust this value if needed
+        }, 1200); // adjust this value if needed
       }, 1100);
     }
   });
@@ -504,6 +503,146 @@ export class BossEncounterPokemonService {
           }, 1100);
         }
       }
+    }
+  });
+
+  poisonLevel: WritableSignal<number> = signal(0); // 0 = none, 1 = slight, 2 = poisoned, 3 = badly
+  poisonAttackers = new Set<string>();
+
+  isPoisonBossActive(): boolean {
+    const boss = this.encounterService.activeBoss();
+    return boss?.difficulty === 4;
+  }
+
+  checkPoisonTriggers() {
+    if (!this.isPoisonBossActive()) return;
+
+    const newTriggers: string[] = [];
+
+    if (this.leftAttacking() && !this.poisonAttackers.has('left')) {
+      this.poisonAttackers.add('left');
+      newTriggers.push('left');
+    }
+
+    if (this.centerAttacking() && !this.poisonAttackers.has('center')) {
+      this.poisonAttackers.add('center');
+      newTriggers.push('center');
+    }
+
+    if (this.rightAttacking() && !this.poisonAttackers.has('right')) {
+      this.poisonAttackers.add('right');
+      newTriggers.push('right');
+    }
+
+    if (newTriggers.length > 0) {
+      const newLevel = this.poisonAttackers.size;
+      this.poisonLevel.set(newLevel);
+
+      const statusText = ['slightly poisoned', 'poisoned', 'badly poisoned'][
+        newLevel - 1
+      ];
+
+      this.battleLogService.addToBattleLog({
+        text: `Oh no! ${
+          this.helperService.activePokemon()!.name
+        } was ${statusText}!`,
+        type: 'status',
+      });
+    }
+  }
+
+  applyPoisonDamage() {
+    if (!this.isPoisonBossActive()) return;
+
+    const level = this.poisonLevel();
+    const damage = level * 2;
+
+    if (damage > 0) {
+      this.helperService.damage.update((current) => current + damage);
+
+      this.battleLogService.addToBattleLog({
+        text: `You take ${damage} poison damage!`,
+        type: 'enemy-damage',
+      });
+    }
+  }
+
+  resetPoisonEffect() {
+    this.poisonAttackers.clear();
+    this.poisonLevel.set(0);
+  }
+  poisonApplied = {
+    left: false,
+    center: false,
+    right: false,
+  };
+  poisonAttackWatcher = effect(() => {
+    if (!this.isPoisonBossActive()) return;
+    if (this.leftAttacking() && !this.poisonApplied.left) {
+      this.poisonApplied.left = true;
+      this.checkPoisonTriggers();
+      setTimeout(() => {
+        this.applyPoisonDamage();
+        this.poisonApplied.left = false;
+      }, 50);
+    }
+
+    if (this.centerAttacking() && !this.poisonApplied.center) {
+      this.poisonApplied.center = true;
+      this.checkPoisonTriggers();
+      this.healingWaveLockout = true;
+      this.healingEffect.set(true);
+
+      setTimeout(() => {
+        this.triggerHealingWave();
+        this.applyPoisonDamage();
+        this.poisonApplied.center = false;
+      }, 50);
+    }
+
+    if (this.rightAttacking() && !this.poisonApplied.right) {
+      this.poisonApplied.right = true;
+      this.checkPoisonTriggers();
+      setTimeout(() => {
+        this.applyPoisonDamage();
+        this.poisonApplied.right = false;
+      }, 50);
+    }
+  });
+  healingEffect: WritableSignal<boolean> = signal(false);
+  healingWaveLockout = false;
+  triggerHealingWave() {
+    if (!this.isPoisonBossActive()) return;
+    setTimeout(() => {
+      this.healingEffect.set(false);
+    }, 800);
+    if (!this.healingWaveLockout) return;
+    this.healingWaveLockout = false;
+    const left = this.leftContainerCurrentHealth;
+    const right = this.rightContainerCurrentHealth;
+    const center = this.centerContainerCurrentHealth;
+
+    if (this.leftView() === 'active') {
+      left.update((current) => current + 7);
+      console.log('left healed');
+    }
+    if (this.centerView() === 'active') {
+      center.update((current) => current + 12);
+      console.log('center healed');
+      this.battleLogService.addToBattleLog({
+        text: `${this.centerContainerPokemonName()} is healing its allies!`,
+        type: 'status',
+      });
+    }
+    if (this.leftView() === 'active') {
+      right.update((current) => current + 7);
+      console.log('right healed');
+    }
+  }
+
+  removePoison = effect(() => {
+    if (this.helperService.playerLoss() || this.encounterService.playerWin()) {
+      this.resetPoisonEffect();
     }
   });
 }

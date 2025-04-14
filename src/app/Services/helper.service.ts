@@ -109,25 +109,28 @@ export class HelperService {
             `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
           )
         ) {
-          this.activeSave()!.pokemonData.forEach((eachPokemon) => {
-            if (
-              eachPokemon.id ===
-              Number(
-                `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
-              )
-            ) {
-              eachPokemon.locked = false;
-              this.activePokemon.set(eachPokemon);
-              this.saveService.saveGame(this.activeSave()!);
-            }
-            if (
-              eachPokemon.id ===
-              Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
-            ) {
-              eachPokemon.locked = true;
-              this.saveService.saveGame(this.activeSave()!);
-            }
-          });
+          this.evolveEffect.set(true);
+          setTimeout(() => {
+            this.activeSave()!.pokemonData.forEach((eachPokemon) => {
+              if (
+                eachPokemon.id ===
+                Number(
+                  `${this.pokemonBaseId}${this.pokemonBaseId}${this.pokemonBaseId}`
+                )
+              ) {
+                eachPokemon.locked = false;
+                this.activePokemon.set(eachPokemon);
+                this.saveService.saveGame(this.activeSave()!);
+              }
+              if (
+                eachPokemon.id ===
+                Number(`${this.pokemonBaseId}${this.pokemonBaseId}`)
+              ) {
+                eachPokemon.locked = true;
+                this.saveService.saveGame(this.activeSave()!);
+              }
+            });
+          }, 1700);
         }
       }
     }
